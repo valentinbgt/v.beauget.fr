@@ -6,6 +6,7 @@
         src="/bg-video.mp4"
         muted
         autoplay
+        loop
         controls="false"
       ></video>
     </div>
@@ -23,7 +24,7 @@
             Valentin BEAUGET
           </h1>
           <h2
-            class="font-title text-vlightblue w-full text-right text-4xl mb-4"
+            class="font-title text-vlightblue w-full text-right text-4xl mb-4 mix-blend-difference"
           >
             Fullstack Developper
           </h2>
