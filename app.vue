@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <div class="video-mask w-screen h-screen blur brightness-75 absolute">
+    <div class="video-mask w-screen h-screen blur brightness-75 fixed">
       <video
         class="w-screen h-screen object-cover"
         src="/bg-video.mp4"
@@ -74,7 +74,7 @@
           <div class="bg-vblack w-full flex flex-col-reverse px-6 py-5">
             <a
               href=""
-              class="text-sm font-title border-2 border-white py-3 w-full mx-auto text-center"
+              class="text-sm font-title border-2 border-white py-3 w-full mx-auto text-center hover:bg-white hover:text-vblack transition-colors"
               >{{ project.button }}</a
             >
             <p
