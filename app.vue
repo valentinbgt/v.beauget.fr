@@ -40,21 +40,53 @@
             </li>
           </ul>
         </div>
-        <div class="flex flex-col items-center w-10/12 mx-auto">
-          <h1 class="font-title uppercase w-full text-5xl mb-4">
+        <div
+          class="flex flex-col items-center w-10/12 mx-auto mt-10 md:mt-6 xl:mt-2"
+        >
+          <h1
+            class="font-title uppercase w-full mb-4 text-5xl md:text-7xl xl:text-8xl"
+          >
             Valentin BEAUGET
           </h1>
           <h2
-            class="font-title text-vlightblue w-full text-right text-4xl mb-4 mix-blend-difference"
+            class="font-title text-vlightblue w-full text-right text-4xl md:text-5xl xl:text-6xl mb-4 mix-blend-difference"
           >
             Fullstack Developper
           </h2>
           <p class="text-vgray w-full text-justify text-2xl">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud. 
+            ad minim veniam, quis nostrud.
           </p>
+          <div
+            class="size-40 border-8 rounded-full border-vlightblue mt-20 md:mt-16 xl:mt-10"
+          ></div>
         </div>
+      </div>
+      <div
+        class="bg-slate-400 p-6 grid justify-items-center gap-7 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 max-w-screen-2xl mx-auto"
+      >
+        <div
+          class="w-full max-w-md h-80 bg-white flex flex-col-reverse overflow-hidden"
+        >
+          <div class="bg-vblack w-full h-fit">
+            <h3>BledMarket</h3>
+            <p>
+              Un moyen de stocker ses fichier sur Internet et les partager p...
+            </p>
+            <a href="">Cliquez ici c'est super !</a>
+          </div>
+          <img
+            class="flex-1 w-full object-cover"
+            src="https://plus.unsplash.com/premium_photo-1686729237226-0f2edb1e8970?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d2FsbHBhcGVyfGVufDB8fDB8fHww"
+            alt=""
+          />
+        </div>
+        <div class="w-full max-w-md h-80 bg-white"></div>
+        <div class="w-full max-w-md h-80 bg-white"></div>
+        <div class="w-full max-w-md h-80 bg-white"></div>
+        <div class="w-full max-w-md h-80 bg-white"></div>
+        <div class="w-full max-w-md h-80 bg-white"></div>
       </div>
     </div>
   </div>
