@@ -1,38 +1,68 @@
-{
-  "0": {
+[
+  {
     "name": "BledMarket",
-    "description": " Un moyen de stocker ses fichier sur Internet et les partager p... ",
+    "description": "Un moyen de stocker ses fichier sur Internet et les partager p...",
     "button": "Cliquez ici c'est super !",
-    "image": "bledmarket.webp"
+    "image": "bledmarket.png",
+    "lien": "https://bledmarket.fr/",
+    "image1": "",
+    "image2": "",
+    "image3": "",
+    "image4": ""
   },
-  "1": {
-    "name": "BledMarket",
-    "description": " Un moyen de stocker ses fichier sur Internet et les partager p... ",
-    "button": "Cliquez ici c'est super !",
-    "image": "bledmarket.webp"
+  {
+    "name": "Serveur Auto Hébergé",
+    "description": "Un serveur sous Debian 12 CLI, redondance des données (RA...",
+    "button": "Vous ne serez pas déçu !",
+    "image": "serveur.png",
+    "lien": "https://google.fr/",
+    "image1": "",
+    "image2": "",
+    "image3": "",
+    "image4": ""
   },
-  "2": {
-    "name": "BledMarket",
-    "description": " Un moyen de stocker ses fichier sur Internet et les partager p... ",
-    "button": "Cliquez ici c'est super !",
-    "image": "bledmarket.webp"
+  {
+    "name": "La SAÉ 105",
+    "description": "Un projet réalisé dans le cadre de mes études en Bachelor Un...",
+    "button": "Je suis un super projet !",
+    "image": "sae105.png",
+    "lien": "https://google.fr/",
+    "image1": "",
+    "image2": "",
+    "image3": "",
+    "image4": ""
   },
-  "3": {
-    "name": "BledMarket",
-    "description": " Un moyen de stocker ses fichier sur Internet et les partager p... ",
-    "button": "Cliquez ici c'est super !",
-    "image": "bledmarket.webp"
+  {
+    "name": "Results",
+    "description": "Un projet pour visualiser les différences dans les résultats éle...",
+    "button": "Venez en voir plus !",
+    "image": "results.png",
+    "lien": "https://google.fr/",
+    "image1": "",
+    "image2": "",
+    "image3": "",
+    "image4": ""
   },
-  "4": {
-    "name": "BledMarket",
-    "description": " Un moyen de stocker ses fichier sur Internet et les partager p... ",
-    "button": "Cliquez ici c'est super !",
-    "image": "bledmarket.webp"
+  {
+    "name": "Lorem ipsum",
+    "description": "Lorem ipsum dolor sit amet. Sit repellat ipsam in nostrum lab...",
+    "button": "Il faut cliquer là !",
+    "image": "lorem1.png",
+    "lien": "https://google.fr/",
+    "image1": "",
+    "image2": "",
+    "image3": "",
+    "image4": ""
   },
-  "5": {
-    "name": "BledMarket",
-    "description": " Un moyen de stocker ses fichier sur Internet et les partager p... ",
-    "button": "Cliquez ici c'est super !",
-    "image": "bledmarket.webp"
+  {
+    "name": "Lorem ipsum",
+    "description": "Lorem ipsum dolor sit amet. Sit repellat ipsam in nostrum lab...",
+    "button": "Ce bouton est vraiment génial !",
+    "image": "lorem2.png",
+    "lien": "https://google.fr/",
+    "image1": "",
+    "image2": "",
+    "image3": "",
+    "image4": ""
   }
-}
+]

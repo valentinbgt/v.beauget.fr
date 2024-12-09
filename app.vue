@@ -67,37 +67,59 @@
         class="p-6 md:p-7 xl:p-8 grid justify-items-center gap-7 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 max-w-screen-xl mx-auto"
       >
         <div
-          class="bg-vblack w-full max-w-md h-80 flex flex-col-reverse overflow-hidden border-2 border-white hover:-translate-x-4 hover:-translate-y-4 transition hover:shadow-vgray"
+          v-for="(project, index) in projects"
+          class="bg-vblack w-full max-w-md h-80 flex flex-col-reverse overflow-hidden border-2 border-white hover:-translate-x-2 hover:-translate-y-2 transition hover:shadow-vgray"
           style="box-shadow: 15px 15px 0px -5px var(--tw-shadow-color)"
         >
           <div class="bg-vblack w-full flex flex-col-reverse px-6 py-5">
             <a
               href=""
-              class="text-base font-title border-2 border-white py-3 w-full mx-auto text-center"
-              >Cliquez ici c'est super !</a
+              class="text-sm font-title border-2 border-white py-3 w-full mx-auto text-center"
+              >{{ project.button }}</a
             >
             <p
-              class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-lg text-vgray pt-1 pb-2"
+              class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-base text-vgray pt-1 pb-2"
             >
-              Un moyen de stocker ses fichier sur Internet et les partager p...
+              {{ project.description }}
             </p>
-            <h3 class="font-title text-vlightblue text-2xl">BledMarket</h3>
+            <h3 class="font-title text-vlightblue text-2xl">
+              {{ project.name }}
+            </h3>
           </div>
           <img
             class="flex-1 w-full object-cover h-4/6"
-            src="https://plus.unsplash.com/premium_photo-1686729237226-0f2edb1e8970?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d2FsbHBhcGVyfGVufDB8fDB8fHww"
-            alt=""
+            :src="`/images/${project.image}`"
+            :alt="project.name"
           />
         </div>
-        <div class="w-full max-w-md h-80 bg-white"></div>
-        <div class="w-full max-w-md h-80 bg-white"></div>
-        <div class="w-full max-w-md h-80 bg-white"></div>
-        <div class="w-full max-w-md h-80 bg-white"></div>
-        <div class="w-full max-w-md h-80 bg-white"></div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import { ref, onMounted } from "vue";
+
+export default {
+  setup() {
+    const projects = ref([]);
+
+    onMounted(async () => {
+      try {
+        const response = await fetch("/data/projects.json");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        projects.value = await response.json();
+      } catch (error) {
+        console.error("Erreur lors du chargement des projets :", error);
+      }
+    });
+
+    return { projects };
+  },
+};
+</script>
 
 <style>
 /* reset */
