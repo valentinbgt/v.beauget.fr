@@ -67,7 +67,8 @@
         class="p-6 md:p-7 xl:p-8 grid justify-items-center gap-7 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 max-w-screen-xl mx-auto"
       >
         <div
-          class="bg-vblack w-full max-w-md h-80 flex flex-col-reverse overflow-hidden border-2 border-white"
+          class="bg-vblack w-full max-w-md h-80 flex flex-col-reverse overflow-hidden border-2 border-white hover:-translate-x-4 hover:-translate-y-4 transition hover:shadow-vgray"
+          style="box-shadow: 15px 15px 0px -5px var(--tw-shadow-color)"
         >
           <div class="bg-vblack w-full flex flex-col-reverse px-6 py-5">
             <a
