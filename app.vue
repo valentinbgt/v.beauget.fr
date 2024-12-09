@@ -64,20 +64,26 @@
         </div>
       </div>
       <div
-        class="bg-slate-400 p-6 grid justify-items-center gap-7 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 max-w-screen-2xl mx-auto"
+        class="p-6 md:p-7 xl:p-8 grid justify-items-center gap-7 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 max-w-screen-xl mx-auto"
       >
         <div
-          class="w-full max-w-md h-80 bg-white flex flex-col-reverse overflow-hidden"
+          class="bg-vblack w-full max-w-md h-80 flex flex-col-reverse overflow-hidden border-2 border-white"
         >
-          <div class="bg-vblack w-full h-fit">
-            <h3>BledMarket</h3>
-            <p>
+          <div class="bg-vblack w-full flex flex-col-reverse px-6 py-5">
+            <a
+              href=""
+              class="text-base font-title border-2 border-white py-3 w-full mx-auto text-center"
+              >Cliquez ici c'est super !</a
+            >
+            <p
+              class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-lg text-vgray pt-1 pb-2"
+            >
               Un moyen de stocker ses fichier sur Internet et les partager p...
             </p>
-            <a href="">Cliquez ici c'est super !</a>
+            <h3 class="font-title text-vlightblue text-2xl">BledMarket</h3>
           </div>
           <img
-            class="flex-1 w-full object-cover"
+            class="flex-1 w-full object-cover h-4/6"
             src="https://plus.unsplash.com/premium_photo-1686729237226-0f2edb1e8970?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8d2FsbHBhcGVyfGVufDB8fDB8fHww"
             alt=""
           />
@@ -99,7 +105,7 @@
 }
 
 body {
-  @apply bg-vblack;
+  @apply bg-vblack overflow-x-hidden;
 }
 
 .video-mask {
