@@ -74,7 +74,7 @@
           <div class="bg-vblack w-full flex flex-col-reverse px-6 py-5">
             <a
               href=""
-              class="text-sm font-title border-2 border-white py-3 w-full mx-auto text-center hover:bg-white hover:text-vblack transition-colors"
+              class="text-sm font-title border-2 border-white py-3 w-full mx-auto text-center hover:bg-white hover:text-vblack transition-colors active:underline active:decoration-vlightblue active:transition-none"
               >{{ project.button }}</a
             >
             <p
@@ -109,21 +109,46 @@
             <div></div>
             <a
               href=""
-              class="text-xl font-title border-2 block px-4 border-vgray py-3 w-full mx-auto text-center hover:bg-white hover:text-vblack transition-colors"
+              class="text-xl font-title border-2 block px-4 border-vgray py-3 w-full mx-auto text-center hover:bg-white hover:text-vblack transition-colors hover:border-white active:underline active:decoration-vlightblue active:transition-none"
               >Curriculum vitæ</a
             >
           </div>
         </div>
         <div class="p-4 w-full md:w-1/2">
           <div>
-            <form action="" class="w-full border-2 border-vgray">
-              <input type="text" placeholder="Nom" />
-              <input type="text" placeholder="Prénom" />
-              <input type="text" placeholder="Adresse E-mail" />
-              <textarea name="" id="" placeholder="Message..."></textarea>
-              <input type="submit" value="Envoyer" />
+            <form action="" class="w-full border-2 border-vgray mb-4">
+              <div class="flex">
+                <input
+                  class="h-20 bg-vblack w-1/2 border-vgray border-r-2 px-7 flex items-center text-xl outline-none focus:underline decoration-vlightblue caret-vlightblue"
+                  type="text"
+                  placeholder="Nom"
+                />
+                <input
+                  class="h-20 bg-vblack w-1/2 px-7 flex items-center text-xl outline-none focus:underline decoration-vlightblue caret-vlightblue"
+                  type="text"
+                  placeholder="Prénom"
+                />
+              </div>
+
+              <input
+                class="h-20 bg-vblack w-full px-7 flex items-center text-xl border-vgray border-y-2 invalid:text-vgray outline-none focus:underline decoration-vlightblue caret-vlightblue"
+                type="email"
+                placeholder="Adresse E-mail"
+              />
+              <textarea
+                class="bg-vblack w-full px-7 py-6 flex items-center text-xl h-fit min-h-72 max-h-96 resize-none overflow-y-auto outline-none focus:underline decoration-vlightblue caret-vlightblue"
+                oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
+                name=""
+                id=""
+                placeholder="Message..."
+              ></textarea>
+              <input
+                class="h-20 bg-vblack w-full border-vgray border-t-2 font-title text-2xl text-center hover:bg-white hover:text-vblack transition-colors hover:border-white hover:cursor-pointer active:underline active:decoration-vlightblue active:transition-none"
+                type="submit"
+                value="Envoyer"
+              />
             </form>
-            <div class="w-10/12 h-px bg-vgray mx-auto"></div>
+            <div class="w-10/12 h-px bg-vgray mx-auto my-8"></div>
             <h2
               class="font-title text-vlightblue text-3xl md:text-2xl xl:text-3xl text-center text-balance m-4"
             >
@@ -164,7 +189,7 @@ export default {
 <style>
 /* reset */
 * {
-  @apply p-0 m-0 box-border text-vwhite;
+  @apply p-0 m-0 box-border text-vwhite font-text;
 }
 
 body {
