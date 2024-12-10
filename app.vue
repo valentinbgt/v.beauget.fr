@@ -13,32 +13,7 @@
     <div class="absolute">
       <div class="h-screen">
         <div class="w-screen flex flex-row-reverse">
-          <ul class="flex flex-row m-5 md:m-10 xl:m-16">
-            <li>
-              <a href="https://github.com/valentinbgt"
-                ><img
-                  class="w-10 md:w-14 m-2.5 md:m-4 social-icon"
-                  src="/icons/github.svg"
-                  alt=""
-              /></a>
-            </li>
-            <li>
-              <a href="https://v.beauget.fr/linkedin"
-                ><img
-                  class="w-10 md:w-14 m-2.5 md:m-4 social-icon"
-                  src="/icons/linkedin.svg"
-                  alt=""
-              /></a>
-            </li>
-            <li>
-              <a href="https://v.beauget.fr/cv"
-                ><img
-                  class="w-10 md:w-14 m-2.5 md:m-4 social-icon"
-                  src="/icons/cv.svg"
-                  alt=""
-              /></a>
-            </li>
-          </ul>
+          <Socials></Socials>
         </div>
         <div
           class="flex flex-col items-center w-10/12 mx-auto mt-10 md:mt-6 xl:mt-2"
@@ -158,32 +133,8 @@
         </div>
       </div>
       <footer class="border-t-2 border-vgray bg-vblack">
-        <ul class="flex flex-row m-5 md:m-10 xl:m-16">
-          <li>
-            <a href="https://github.com/valentinbgt"
-              ><img
-                class="w-10 md:w-14 m-2.5 md:m-4 social-icon"
-                src="/icons/github.svg"
-                alt=""
-            /></a>
-          </li>
-          <li>
-            <a href="https://v.beauget.fr/linkedin"
-              ><img
-                class="w-10 md:w-14 m-2.5 md:m-4 social-icon"
-                src="/icons/linkedin.svg"
-                alt=""
-            /></a>
-          </li>
-          <li>
-            <a href="https://v.beauget.fr/cv"
-              ><img
-                class="w-10 md:w-14 m-2.5 md:m-4 social-icon"
-                src="/icons/cv.svg"
-                alt=""
-            /></a>
-          </li>
-        </ul>
+        <Socials></Socials>
+
         <div
           class="size-40 border-8 rounded-full border-vlightblue mt-20 md:mt-16 xl:mt-10"
         ></div>
@@ -202,6 +153,7 @@
 
 <script>
 import { ref, onMounted } from "vue";
+import socials from "./components/Socials.vue";
 
 export default {
   setup() {
