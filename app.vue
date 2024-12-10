@@ -17,7 +17,7 @@
             <li>
               <a href="https://github.com/valentinbgt"
                 ><img
-                  class="w-10 md:w-14 m-2.5 md:m-4"
+                  class="w-10 md:w-14 m-2.5 md:m-4 social-icon"
                   src="/icons/github.svg"
                   alt=""
               /></a>
@@ -25,7 +25,7 @@
             <li>
               <a href="https://v.beauget.fr/linkedin"
                 ><img
-                  class="w-10 md:w-14 m-2.5 md:m-4"
+                  class="w-10 md:w-14 m-2.5 md:m-4 social-icon"
                   src="/icons/linkedin.svg"
                   alt=""
               /></a>
@@ -33,7 +33,7 @@
             <li>
               <a href="https://v.beauget.fr/cv"
                 ><img
-                  class="w-10 md:w-14 m-2.5 md:m-4"
+                  class="w-10 md:w-14 m-2.5 md:m-4 social-icon"
                   src="/icons/cv.svg"
                   alt=""
               /></a>
@@ -202,5 +202,14 @@ body {
   mask-repeat: no-repeat;
   mask-size: cover;
   mask-position: center;
+}
+
+.social-icon:hover {
+  filter: drop-shadow(0px 3px 0px white);
+  @apply transition;
+}
+.social-icon:active {
+  transform: translateY(3px);
+  filter: drop-shadow(0px 0px 0px white);
 }
 </style>
