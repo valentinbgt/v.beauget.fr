@@ -64,7 +64,7 @@
         </div>
       </div>
       <div
-        class="p-6 md:p-7 xl:p-8 grid justify-items-center gap-7 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 max-w-screen-xl mx-auto"
+        class="p-6 md:p-7 xl:p-8 grid justify-items-center gap-7 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 max-w-screen-xl mx-auto border-vgray border-y-2 xl:border-2 bg-vblack"
       >
         <div
           v-for="(project, index) in projects"
@@ -93,6 +93,46 @@
           />
         </div>
       </div>
+      <div
+        class="mx-auto my-24 w-9/12 md:w-10/12 xl:w-11/12 max-w-screen-xl border-2 border-vgray bg-vblack flex flex-col md:flex-row"
+      >
+        <div
+          class="border-vgray border-b-2 md:border-b-0 md:border-r-2 p-4 w-full md:w-1/2"
+        >
+          <div>
+            <h2
+              class="font-title text-vlightblue text-3xl md:text-2xl xl:text-3xl text-center text-balance m-4"
+            >
+              Mes compétences
+            </h2>
+            <div class="w-10/12 h-px bg-vgray mx-auto"></div>
+            <div></div>
+            <a
+              href=""
+              class="text-xl font-title border-2 block px-4 border-vgray py-3 w-full mx-auto text-center hover:bg-white hover:text-vblack transition-colors"
+              >Curriculum vitæ</a
+            >
+          </div>
+        </div>
+        <div class="p-4 w-full md:w-1/2">
+          <div>
+            <form action="" class="w-full border-2 border-vgray">
+              <input type="text" placeholder="Nom" />
+              <input type="text" placeholder="Prénom" />
+              <input type="text" placeholder="Adresse E-mail" />
+              <textarea name="" id="" placeholder="Message..."></textarea>
+              <input type="submit" value="Envoyer" />
+            </form>
+            <div class="w-10/12 h-px bg-vgray mx-auto"></div>
+            <h2
+              class="font-title text-vlightblue text-3xl md:text-2xl xl:text-3xl text-center text-balance m-4"
+            >
+              On reste en contact ?
+            </h2>
+          </div>
+        </div>
+      </div>
+      <footer></footer>
     </div>
   </div>
 </template>
