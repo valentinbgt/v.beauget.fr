@@ -49,8 +49,20 @@
         >
           <div class="bg-vblack w-full flex flex-col-reverse px-6 py-5">
             <a
-              href=""
-              class="text-sm font-title border-2 border-white py-3 w-full mx-auto text-center hover:bg-white hover:text-vblack transition-colors active:underline active:decoration-vlightblue active:transition-none"
+              v-if="!project.disabled"
+              :href="project.lien"
+              :class="[
+                'text-sm font-title border-2 border-white py-3 w-full mx-auto text-center',
+                'hover:bg-white hover:text-vblack transition-colors active:underline active:decoration-vlightblue active:transition-none',
+              ]"
+              >{{ project.button }}</a
+            >
+            <a
+              v-else
+              :class="[
+                'text-sm font-title border-2 border-white py-3 w-full mx-auto text-center',
+                'text-vgray cursor-not-allowed',
+              ]"
               >{{ project.button }}</a
             >
             <p
