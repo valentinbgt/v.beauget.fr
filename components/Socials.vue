@@ -1,5 +1,5 @@
 <template>
-  <ul class="flex flex-row m-5 md:m-10 xl:m-16">
+  <ul class="flex flex-row m-5 md:m-10 xl:m-16 min-w-80 justify-center">
     <li>
       <a href="https://github.com/valentinbgt"
         ><img

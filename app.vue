@@ -11,7 +11,7 @@
       ></video>
     </div>
     <div class="absolute">
-      <div class="h-screen">
+      <div id="home_anchor" class="h-screen">
         <div class="w-screen flex flex-row-reverse">
           <Socials></Socials>
         </div>
@@ -33,13 +33,15 @@
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud.
           </p>
-          <div
+          <a
             class="size-40 border-8 rounded-full border-vlightblue mt-20 md:mt-16 xl:mt-10"
-          ></div>
+            href="#projects_anchor"
+          ></a>
         </div>
       </div>
+      <div id="projects_anchor"></div>
       <div
-        class="p-6 md:p-7 xl:p-8 grid justify-items-center gap-7 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 max-w-screen-xl mx-auto border-vgray border-y-2 xl:border-2 bg-vblack"
+        class="p-6 md:p-7 xl:p-8 my-24 grid justify-items-center gap-7 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 max-w-screen-xl mx-auto border-vgray border-y-2 xl:border-2 bg-vblack"
       >
         <div
           v-for="(project, index) in projects"
@@ -132,19 +134,31 @@
           </div>
         </div>
       </div>
-      <footer class="border-t-2 border-vgray bg-vblack">
-        <Socials></Socials>
+      <footer
+        class="border-t-2 border-vgray bg-vblack grid grid-cols-1 md:grid-cols-[450px_1fr] pb-12"
+      >
+        <div class="flex flex-col items-center">
+          <Socials></Socials>
+          <a
+            class="size-40 border-8 rounded-full border-vlightblue"
+            href="#home_anchor"
+          ></a>
+        </div>
 
-        <div
-          class="size-40 border-8 rounded-full border-vlightblue mt-20 md:mt-16 xl:mt-10"
-        ></div>
-        <div>
-          <p>
+        <div class="flex flex-col items-center justify-center">
+          <p
+            class="w-10/12 mx-auto my-10 text-xl text-center text-balance max-w-screen-md"
+          >
             Ce site web ne récolte aucune donnée personnelle.<br />Les cookies
-            utilisés sont strictement esthétique (ex: mémorisation du thème) et
-            ne servent aucunement de traceur.
+            utilisés sont strictement esthétique
+            <span class="text-nowrap">(ex: mémorisation du thème)</span> et ne
+            servent aucunement de traceur.
           </p>
-          <a href="">Code Source</a>
+          <a
+            href=""
+            class="text-xl font-title border-2 border-vgray py-3 px-4 mt-4 text-center hover:bg-white hover:text-vblack transition-colors hover:border-white active:underline active:decoration-vlightblue active:transition-none"
+            >Code Source</a
+          >
         </div>
       </footer>
     </div>
@@ -153,7 +167,7 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import socials from "./components/Socials.vue";
+import Socials from "./components/Socials.vue";
 
 export default {
   setup() {
@@ -179,7 +193,11 @@ export default {
 <style>
 /* reset */
 * {
-  @apply p-0 m-0 box-border text-vwhite font-text;
+  @apply p-0 m-0 box-border text-vwhite font-text scroll-smooth;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
