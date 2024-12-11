@@ -33,10 +33,9 @@
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud.
           </p>
-          <a
-            class="size-40 border-8 rounded-full border-vlightblue mt-20 md:mt-16 xl:mt-10"
-            href="#projects_anchor"
-          ></a>
+          <CircularTextLink link="#projects_anchor">
+            Par ici la suite • Par ici la suite •
+          </CircularTextLink>
         </div>
       </div>
       <div id="projects_anchor"></div>
@@ -135,17 +134,18 @@
         </div>
       </div>
       <footer
-        class="border-t-2 border-vgray bg-vblack grid grid-cols-1 md:grid-cols-[450px_1fr] pb-12"
+        class="border-t-2 border-vgray bg-vblack grid grid-cols-1 md:grid-cols-[450px_1fr]"
       >
-        <div class="flex flex-col items-center">
+        <div
+          class="flex flex-col items-center md:border-r-2 md:border-vgray pb-12"
+        >
           <Socials></Socials>
-          <a
-            class="size-40 border-8 rounded-full border-vlightblue"
-            href="#home_anchor"
-          ></a>
+          <CircularTextLink link="#home_anchor" direction="up">
+            Revenir en haut • Accueil • Up •
+          </CircularTextLink>
         </div>
 
-        <div class="flex flex-col items-center justify-center">
+        <div class="flex flex-col items-center justify-center pb-12">
           <p
             class="w-10/12 mx-auto my-10 text-xl text-center text-balance max-w-screen-md"
           >
@@ -155,7 +155,8 @@
             servent aucunement de traceur.
           </p>
           <a
-            href=""
+            href="https://github.com/valentinbgt/v.beauget.fr/"
+            target="_blank"
             class="text-xl font-title border-2 border-vgray py-3 px-4 mt-4 text-center hover:bg-white hover:text-vblack transition-colors hover:border-white active:underline active:decoration-vlightblue active:transition-none"
             >Code Source</a
           >
@@ -167,7 +168,6 @@
 
 <script>
 import { ref, onMounted } from "vue";
-import Socials from "./components/Socials.vue";
 
 export default {
   setup() {
