@@ -29,9 +29,9 @@
             Fullstack Developper
           </h2>
           <p class="text-vgray w-full text-justify text-2xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud.
+            Développeur autodidacte depuis mes 15 ans, j'ai intégré la formation
+            MMI à Troyes et recherche maintenant une alternance d'un an et demi
+            en tant que développeur fullstack pour Février 2025.
           </p>
           <CircularTextLink link="#projects_anchor">
             Par ici la suite • Par ici la suite •
@@ -96,7 +96,7 @@
             <div class="w-10/12 h-px bg-vgray mx-auto"></div>
             <div class="flex-grow my-4"></div>
             <a
-              href=""
+              href="/cv"
               class="text-xl font-title border-2 block px-4 border-vgray py-3 w-full mx-auto text-center hover:bg-white hover:text-vblack transition-colors hover:border-white active:underline active:decoration-vlightblue active:transition-none"
               >Curriculum vitæ</a
             >

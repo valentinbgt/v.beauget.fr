@@ -17,7 +17,7 @@
       /></a>
     </li>
     <li>
-      <a href="https://v.beauget.fr/cv"
+      <a href="/cv"
         ><img
           class="w-10 md:w-14 m-2.5 md:m-4 social-icon"
           src="/icons/cv.svg"
