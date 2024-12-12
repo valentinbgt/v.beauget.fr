@@ -172,8 +172,9 @@
           <p
             class="w-10/12 mx-auto my-10 text-xl text-center text-balance max-w-screen-md"
           >
-            Ormis le formulaire de contact, ce site web ne récolte aucune donnée
-            personnelle.<br />Les cookies utilisés sont strictement esthétique
+            Hormis le formulaire de contact, ce site web ne récolte aucune
+            donnée personnelle.<br />Les cookies utilisés sont strictement
+            esthétique
             <span class="text-nowrap">(ex: mémorisation du thème)</span> et ne
             servent aucunement de traceur.
           </p>
