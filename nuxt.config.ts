@@ -10,4 +10,9 @@ export default defineNuxtConfig({
   modules: ["@nuxtjs/tailwindcss"],
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
+  app: {
+    head: {
+      link: [{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
+    },
+  },
 });
