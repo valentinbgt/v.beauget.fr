@@ -1,5 +1,6 @@
-import { writeFile, readFile } from "fs/promises";
+import { writeFile, readFile, mkdir } from "fs/promises";
 import { resolve } from "path";
+import { existsSync } from "fs";
 
 export default defineEventHandler(async (event) => {
   try {
@@ -10,7 +11,12 @@ export default defineEventHandler(async (event) => {
       id: crypto.randomUUID(),
     };
 
-    const filePath = resolve("./server/data/messages.json");
+    const dataDir = resolve("./server/data");
+    const filePath = resolve(dataDir, "messages.json");
+
+    if (!existsSync(dataDir)) {
+      await mkdir(dataDir, { recursive: true });
+    }
 
     let messages = [];
     try {
