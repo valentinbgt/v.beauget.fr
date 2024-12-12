@@ -6,6 +6,7 @@
           class="w-10 md:w-14 m-2.5 md:m-4 social-icon"
           src="/icons/github.svg"
           alt=""
+          target="_blank"
       /></a>
     </li>
     <li>
@@ -14,6 +15,7 @@
           class="w-10 md:w-14 m-2.5 md:m-4 social-icon"
           src="/icons/linkedin.svg"
           alt=""
+          target="_blank"
       /></a>
     </li>
     <li>
@@ -22,6 +24,7 @@
           class="w-10 md:w-14 m-2.5 md:m-4 social-icon"
           src="/icons/cv.svg"
           alt=""
+          target="_blank"
       /></a>
     </li>
   </ul>

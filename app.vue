@@ -7,7 +7,6 @@
         muted
         autoplay
         loop
-        controls="false"
       ></video>
     </div>
     <div class="absolute">
@@ -50,6 +49,7 @@
           <div class="bg-vblack w-full flex flex-col-reverse px-6 py-5">
             <a
               v-if="!project.disabled"
+              target="_blank"
               :href="project.lien"
               :class="[
                 'text-sm font-title border-2 border-white py-3 w-full mx-auto text-center',
@@ -97,6 +97,7 @@
             <div class="flex-grow my-4"></div>
             <a
               href="/cv"
+              target="_blank"
               class="text-xl font-title border-2 block px-4 border-vgray py-3 w-full mx-auto text-center hover:bg-white hover:text-vblack transition-colors hover:border-white active:underline active:decoration-vlightblue active:transition-none"
               >Curriculum vitæ</a
             >
