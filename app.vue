@@ -1,6 +1,10 @@
 <template>
   <div class="relative">
-    <div class="video-mask w-screen h-screen blur brightness-75 fixed">
+    <div
+      class="video-mask w-screen h-screen blur brightness-75 fixed"
+      ref="videoContainer"
+      :style="{ transform: `translateY(${parallaxOffset}px)` }"
+    >
       <video
         class="w-screen h-screen object-cover"
         src="/bg-video.mp4"
@@ -205,7 +209,7 @@
 </template>
 
 <script>
-import { ref, onMounted, reactive, computed } from "vue";
+import { ref, onMounted, reactive, computed, onUnmounted } from "vue";
 
 export default {
   setup() {
@@ -222,6 +226,9 @@ export default {
       message: "",
       type: "success",
     });
+
+    const parallaxOffset = ref(0);
+    const videoContainer = ref(null);
 
     const visibleProjects = computed(() => {
       return projects.value.filter((project) => !project.hidden);
@@ -273,6 +280,11 @@ export default {
       }
     };
 
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      parallaxOffset.value = scrollPosition * -0.5; // parallax intensity
+    };
+
     onMounted(async () => {
       try {
         const response = await fetch("/data/projects.json");
@@ -283,6 +295,12 @@ export default {
       } catch (error) {
         console.error("Erreur lors du chargement des projets :", error);
       }
+
+      window.addEventListener("scroll", handleScroll);
+    });
+
+    onUnmounted(() => {
+      window.removeEventListener("scroll", handleScroll);
     });
 
     return {
@@ -292,6 +310,8 @@ export default {
       handleSubmit,
       autoResize,
       notification,
+      parallaxOffset,
+      videoContainer,
     };
   },
 };
