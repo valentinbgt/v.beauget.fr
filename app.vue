@@ -233,12 +233,13 @@ export default {
     const handleSubmit = async () => {
       try {
         isSubmitting.value = true;
+
         const response = await fetch("/api/contact", {
           method: "POST",
+          body: JSON.stringify(formData),
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(formData),
         });
 
         if (!response.ok) {
@@ -256,7 +257,7 @@ export default {
           type: "success",
         };
       } catch (error) {
-        console.error("Error sending message:", error);
+        console.error("Error saving message:", error);
         notification.value = {
           show: true,
           message: "Une erreur est survenue lors de l'envoi du message.",
