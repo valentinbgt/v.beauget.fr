@@ -185,6 +185,10 @@ export default {
   setup() {
     const projects = ref([]);
 
+    const visibleProjects = computed(() => {
+      return projects.value.filter((project) => !project.hidden);
+    });
+
     onMounted(async () => {
       try {
         const response = await fetch("/data/projects.json");
@@ -197,7 +201,7 @@ export default {
       }
     });
 
-    return { projects };
+    return { projects: visibleProjects };
   },
 };
 </script>
@@ -205,7 +209,7 @@ export default {
 <style>
 /* reset */
 * {
-  @apply p-0 m-0 box-border text-vwhite font-text scroll-smooth;
+  @apply p-0 m-0 box-border text-vwhite font-text scroll-smooth select-none;
 }
 
 html {
