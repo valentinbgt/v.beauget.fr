@@ -87,14 +87,14 @@
         <div
           class="border-vgray border-b-2 md:border-b-0 md:border-r-2 p-4 w-full md:w-1/2"
         >
-          <div>
+          <div class="h-full flex flex-col">
             <h2
               class="font-title text-vlightblue text-3xl md:text-2xl xl:text-3xl text-center text-balance m-4"
             >
               Mes compétences
             </h2>
             <div class="w-10/12 h-px bg-vgray mx-auto"></div>
-            <div></div>
+            <div class="flex-grow my-4"></div>
             <a
               href=""
               class="text-xl font-title border-2 block px-4 border-vgray py-3 w-full mx-auto text-center hover:bg-white hover:text-vblack transition-colors hover:border-white active:underline active:decoration-vlightblue active:transition-none"
@@ -104,36 +104,46 @@
         </div>
         <div class="p-4 w-full md:w-1/2">
           <div>
-            <form action="" class="w-full border-2 border-vgray mb-4">
+            <form
+              @submit.prevent="handleSubmit"
+              class="w-full border-2 border-vgray mb-4"
+            >
               <div class="flex">
                 <input
+                  v-model="formData.lastName"
                   class="h-20 bg-vblack w-1/2 border-vgray border-r-2 px-7 flex items-center text-xl outline-none focus:underline decoration-vlightblue caret-vlightblue"
                   type="text"
                   placeholder="Nom"
+                  required
                 />
                 <input
+                  v-model="formData.firstName"
                   class="h-20 bg-vblack w-1/2 px-7 flex items-center text-xl outline-none focus:underline decoration-vlightblue caret-vlightblue"
                   type="text"
                   placeholder="Prénom"
+                  required
                 />
               </div>
 
               <input
+                v-model="formData.email"
                 class="h-20 bg-vblack w-full px-7 flex items-center text-xl border-vgray border-y-2 invalid:text-vgray outline-none focus:underline decoration-vlightblue caret-vlightblue"
                 type="email"
                 placeholder="Adresse E-mail"
+                required
               />
               <textarea
+                v-model="formData.message"
                 class="bg-vblack w-full px-7 py-6 flex items-center text-xl h-fit min-h-72 max-h-96 resize-none overflow-y-auto outline-none focus:underline decoration-vlightblue caret-vlightblue"
-                oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
-                name=""
-                id=""
+                @input="autoResize"
                 placeholder="Message..."
+                required
               ></textarea>
               <input
                 class="h-20 bg-vblack w-full border-vgray border-t-2 font-title text-2xl text-center hover:bg-white hover:text-vblack transition-colors hover:border-white hover:cursor-pointer active:underline active:decoration-vlightblue active:transition-none"
                 type="submit"
                 value="Envoyer"
+                :disabled="isSubmitting"
               />
             </form>
             <div class="w-10/12 h-px bg-vgray mx-auto my-8"></div>
@@ -175,19 +185,90 @@
         </div>
       </footer>
     </div>
+    <Transition name="fade">
+      <div
+        v-if="notification.show"
+        :class="[
+          'fixed top-8 right-8 z-50 p-4 border-2 font-title text-xl',
+          'backdrop-blur-md transition-all duration-300',
+          notification.type === 'success'
+            ? 'border-vlightblue bg-vblack/80'
+            : 'border-red-500 bg-vblack/80',
+        ]"
+      >
+        {{ notification.message }}
+      </div>
+    </Transition>
   </div>
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, reactive, computed } from "vue";
 
 export default {
   setup() {
     const projects = ref([]);
+    const isSubmitting = ref(false);
+    const formData = reactive({
+      firstName: "",
+      lastName: "",
+      email: "",
+      message: "",
+    });
+    const notification = ref({
+      show: false,
+      message: "",
+      type: "success",
+    });
 
     const visibleProjects = computed(() => {
       return projects.value.filter((project) => !project.hidden);
     });
+
+    const autoResize = (e) => {
+      e.target.style.height = "";
+      e.target.style.height = e.target.scrollHeight + "px";
+    };
+
+    const handleSubmit = async () => {
+      try {
+        isSubmitting.value = true;
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to send message");
+        }
+
+        formData.firstName = "";
+        formData.lastName = "";
+        formData.email = "";
+        formData.message = "";
+
+        notification.value = {
+          show: true,
+          message: "Message envoyé avec succès !",
+          type: "success",
+        };
+      } catch (error) {
+        console.error("Error sending message:", error);
+        notification.value = {
+          show: true,
+          message: "Une erreur est survenue lors de l'envoi du message.",
+          type: "error",
+        };
+      } finally {
+        isSubmitting.value = false;
+        setTimeout(() => {
+          notification.value.show = false;
+        }, 10000);
+      }
+    };
 
     onMounted(async () => {
       try {
@@ -201,7 +282,14 @@ export default {
       }
     });
 
-    return { projects: visibleProjects };
+    return {
+      projects: visibleProjects,
+      isSubmitting,
+      formData,
+      handleSubmit,
+      autoResize,
+      notification,
+    };
   },
 };
 </script>
@@ -235,5 +323,16 @@ body {
 .social-icon:active {
   transform: translateY(3px);
   filter: drop-shadow(0px 0px 0px white);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
 </style>
