@@ -1,6 +1,6 @@
-# Nuxt Minimal Starter
-
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+# PortFolio
+Home page :
+![portfolio home section](https://storry.fr/apps/files_sharing/publicpreview/erH7aqmCEDaRSXc?file=/&fileId=36767&x=1920&y=1080&a=true&etag=5f0ba2218e7f2cfa13ed3b571249f7bf)
 
 ## Setup
 
