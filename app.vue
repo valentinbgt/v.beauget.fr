@@ -34,7 +34,7 @@
           <p class="text-vgray w-full text-justify text-2xl">
             Développeur autodidacte depuis mes 15 ans, j'ai intégré la formation
             MMI à Troyes et recherche maintenant une alternance d'un an et demi
-            en tant que développeur fullstack pour Février 2025.
+            en tant que développeur fullstack pour Février 2025. test
           </p>
           <CircularTextLink link="#projects_anchor">
             Par ici la suite • Par ici la suite •
