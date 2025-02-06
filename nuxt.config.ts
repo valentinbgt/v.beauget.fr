@@ -12,7 +12,16 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
+      title: "Valentin BEAUGET",
       link: [{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { 
+          name: 'description', 
+          content: 'Portfolio de Valentin BEAUGET - Développeur Fullstack'
+        }
+      ]
     },
   },
 });
