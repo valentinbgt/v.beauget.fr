@@ -1,3 +1,5 @@
+//useless file for current production
+
 import { writeFile, readFile, mkdir } from "fs/promises";
 import { resolve } from "path";
 import { existsSync } from "fs";
