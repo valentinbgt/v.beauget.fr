@@ -1,7 +1,7 @@
 [
   {
     "disabled": false,
-    "hidden": false,
+    "hidden": true,
     "name": "BledMarket",
     "description": "Un moyen de stocker ses fichier sur Internet et les partager p...",
     "button": "Cliquez ici c'est super !",
@@ -13,11 +13,37 @@
     "image4": ""
   },
   {
+    "disabled": false,
+    "hidden": false,
+    "name": "Présidence BDE MMI",
+    "description": "J'ai fondé le Bureau Des Étudiants en Métiers du Multimédia et de l'Internet à Troyes en 2024.",
+    "button": "Site web de l'association",
+    "image": "bde.png",
+    "lien": "https://bde.mmi-troyes.fr/",
+    "image1": "",
+    "image2": "",
+    "image3": "",
+    "image4": ""
+  },
+  {
+    "disabled": false,
+    "hidden": false,
+    "name": "Organisation Nuit Campus 3",
+    "description": "Responsable de la House Stage lors de la Nuit Campus 3 2025",
+    "button": "Site web de l'association",
+    "image": "nc3.jpg",
+    "lien": "https://nc3.campus3.fr/",
+    "image1": "",
+    "image2": "",
+    "image3": "",
+    "image4": ""
+  },
+  {
     "disabled": true,
     "hidden": false,
     "name": "Serveur Auto Hébergé",
     "description": "Un serveur sous Debian 12 CLI, redondance des données (RA...",
-    "button": "Vous ne serez pas déçu !",
+    "button": "Rien à visualiser pour ce projet..",
     "image": "serveur.png",
     "lien": "https://google.fr/",
     "image1": "",

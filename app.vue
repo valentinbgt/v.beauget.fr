@@ -33,7 +33,7 @@
           </h2>
           <p class="text-vgray w-full text-justify text-2xl">
             Développeur autodidacte depuis mes 15 ans, j'ai intégré la formation
-            MMI à Troyes en alternance chez Gravity Media.
+            MMI à Troyes, en alternance chez Gravity Media.
           </p>
           <CircularTextLink link="#projects_anchor">
             Par ici la suite • Par ici la suite •
