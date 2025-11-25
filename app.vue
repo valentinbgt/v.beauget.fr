@@ -210,10 +210,11 @@
 
 <script>
 import { ref, onMounted, reactive, computed, onUnmounted } from "vue";
+import projectsData from "~/assets/data/projects.json";
 
 export default {
   setup() {
-    const projects = ref([]);
+    const projects = ref(projectsData);
     const isSubmitting = ref(false);
     const formData = reactive({
       firstName: "",
@@ -291,16 +292,6 @@ export default {
     };
 
     onMounted(async () => {
-      try {
-        const response = await fetch("/data/projects.json");
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        projects.value = await response.json();
-      } catch (error) {
-        console.error("Erreur lors du chargement des projets :", error);
-      }
-
       window.addEventListener("scroll", handleScroll);
     });
 
