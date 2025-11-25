@@ -12,7 +12,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
     public: {
-      formUrl: process.env.FORM_URL || "",
+      formUrl: "",
     },
   },
   app: {
