@@ -240,20 +240,19 @@ export default {
       e.target.style.height = e.target.scrollHeight + "px";
     };
 
+    const config = useRuntimeConfig();
+
     const handleSubmit = async () => {
       try {
         isSubmitting.value = true;
 
-        const response = await fetch(
-          "https://n8n.beauget.fr/webhook/e773ca75-a69e-4260-9182-a58a4b765af1",
-          {
-            method: "POST",
-            body: JSON.stringify(formData),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const response = await fetch(config.public.formUrl, {
+          method: "POST",
+          body: JSON.stringify(formData),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
         console.log("Response:", response);
 

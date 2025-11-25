@@ -10,18 +10,23 @@ export default defineNuxtConfig({
   modules: ["@nuxtjs/tailwindcss"],
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
+  runtimeConfig: {
+    public: {
+      formUrl: process.env.FORM_URL || "",
+    },
+  },
   app: {
     head: {
       title: "Valentin BEAUGET",
       link: [{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
       meta: [
-        { charset: 'utf-8' },
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { 
-          name: 'description', 
-          content: 'Portfolio de Valentin BEAUGET - Développeur Fullstack'
-        }
-      ]
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        {
+          name: "description",
+          content: "Portfolio de Valentin BEAUGET - Développeur Fullstack",
+        },
+      ],
     },
   },
 });
