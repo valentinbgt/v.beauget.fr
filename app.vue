@@ -87,7 +87,7 @@
       <div
         class="mx-auto my-24 w-9/12 md:w-10/12 xl:w-11/12 max-w-screen-xl border-2 border-vgray bg-vblack flex flex-col md:flex-row"
       >
-        <div
+        <!--         <div
           class="border-vgray border-b-2 md:border-b-0 md:border-r-2 p-4 w-full md:w-1/2"
         >
           <div class="h-full flex flex-col">
@@ -105,9 +105,16 @@
               >Curriculum vitæ</a
             >
           </div>
-        </div>
-        <div class="p-4 w-full md:w-1/2">
+        </div> -->
+        <div class="p-4 w-full">
+          <!--md:w-1/2"-->
           <div>
+            <h2
+              class="font-title text-vlightblue text-3xl md:text-2xl xl:text-3xl text-center text-balance m-4"
+            >
+              Pour me contacter ⬇️
+            </h2>
+            <div class="w-10/12 h-px bg-vgray mx-auto my-8"></div>
             <form
               @submit.prevent="handleSubmit"
               class="w-full border-2 border-vgray mb-4"
@@ -150,12 +157,6 @@
                 :disabled="isSubmitting"
               />
             </form>
-            <div class="w-10/12 h-px bg-vgray mx-auto my-8"></div>
-            <h2
-              class="font-title text-vlightblue text-3xl md:text-2xl xl:text-3xl text-center text-balance m-4"
-            >
-              On reste en contact ?
-            </h2>
           </div>
         </div>
       </div>
