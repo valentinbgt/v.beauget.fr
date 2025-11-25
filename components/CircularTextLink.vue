@@ -1,23 +1,23 @@
 <template>
   <div class="relative">
-    <svg class="circular-text" viewBox="0 0 200 200" width="200" height="200">
-      <defs>
-        <path
-          id="circle"
-          d="M 100,100 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"
-        />
-      </defs>
-      <text class="rotating-text">
-        <textPath
-          xlink:href="#circle"
-          class="text-xl font-title tracking-wider"
-        >
-          <slot>Click to scroll • Click to scroll •</slot>
-        </textPath>
-      </text>
-    </svg>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-      <a :href="link">
+    <a :href="link">
+      <svg class="circular-text" viewBox="0 0 200 200" width="200" height="200">
+        <defs>
+          <path
+            id="circle"
+            d="M 100,100 m -70,0 a 70,70 0 1,1 140,0 a 70,70 0 1,1 -140,0"
+          />
+        </defs>
+        <text class="rotating-text">
+          <textPath
+            xlink:href="#circle"
+            class="text-xl font-title tracking-wider"
+          >
+            <slot>Click to scroll • Click to scroll •</slot>
+          </textPath>
+        </text>
+      </svg>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         <svg
           class="w-12 h-12"
           viewBox="0 0 24 24"
@@ -32,8 +32,8 @@
             stroke-linejoin="round"
           />
         </svg>
-      </a>
-    </div>
+      </div>
+    </a>
   </div>
 </template>
 
