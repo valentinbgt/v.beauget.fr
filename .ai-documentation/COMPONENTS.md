@@ -189,7 +189,6 @@ Full-screen modal overlay displaying project details with image and description.
 
 ### Current Limitations
 
-- Button click shows `window.alert("oui")` (placeholder)
 - No gallery support yet (image1-4 fields unused)
 - Fixed dimensions: 680x600px image container
 

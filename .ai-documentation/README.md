@@ -98,4 +98,3 @@ v.beauget.fr/
 
 - **Internationalization**: French/English language support
 - **Project Gallery**: Multiple images per project (image1-4 fields ready)
-- **Modal Actions**: Replace placeholder button functionality

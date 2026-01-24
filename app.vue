@@ -29,7 +29,7 @@
           <h2
             class="font-title text-vlightblue w-full text-right text-4xl md:text-5xl xl:text-6xl mb-4 mix-blend-difference"
           >
-            Fullstack Developper
+            Fullstack Developer
           </h2>
           <p class="text-vgray w-full text-justify text-2xl">
             Développeur autodidacte depuis mes 15 ans, j'ai intégré la formation
@@ -50,7 +50,8 @@
         class="p-6 md:p-7 xl:p-8 my-24 grid justify-items-center gap-7 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 max-w-screen-xl mx-auto border-vgray border-y-2 xl:border-2 bg-vblack"
       >
         <div
-          v-for="(project, index) in projects"
+          v-for="project in projects"
+          :key="project.name"
           class="bg-vblack w-full max-w-md h-80 flex flex-col-reverse overflow-hidden border-2 border-white hover:-translate-x-2 hover:-translate-y-2 transition hover:shadow-vgray"
           style="box-shadow: 15px 15px 0px -5px var(--tw-shadow-color)"
         >
@@ -93,27 +94,7 @@
       <div
         class="mx-auto my-24 w-9/12 md:w-10/12 xl:w-11/12 max-w-screen-xl border-2 border-vgray bg-vblack flex flex-col md:flex-row"
       >
-        <!--         <div
-          class="border-vgray border-b-2 md:border-b-0 md:border-r-2 p-4 w-full md:w-1/2"
-        >
-          <div class="h-full flex flex-col">
-            <h2
-              class="font-title text-vlightblue text-3xl md:text-2xl xl:text-3xl text-center text-balance m-4"
-            >
-              Mes compétences
-            </h2>
-            <div class="w-10/12 h-px bg-vgray mx-auto"></div>
-            <div class="flex-grow my-4"></div>
-            <a
-              href="/cv"
-              target="_blank"
-              class="text-xl font-title border-2 block px-4 border-vgray py-3 w-full mx-auto text-center hover:bg-white hover:text-vblack transition-colors hover:border-white active:underline active:decoration-vlightblue active:transition-none"
-              >Curriculum vitæ</a
-            >
-          </div>
-        </div> -->
         <div class="p-4 w-full">
-          <!--md:w-1/2"-->
           <div>
             <h2
               class="font-title text-vlightblue text-3xl md:text-2xl xl:text-3xl text-center text-balance m-4"
@@ -263,9 +244,7 @@ export default {
           },
         });
 
-        console.log("Response:", response);
-
-        if (response.status !== 200) {
+        if (!response.ok) {
           throw new Error("Failed to send message");
         }
 

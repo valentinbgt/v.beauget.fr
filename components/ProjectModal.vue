@@ -46,20 +46,30 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  project: {
-    type: Object,
-    default: () => ({}),
-  },
-});
+interface Project {
+  disabled: boolean;
+  hidden: boolean;
+  name: string;
+  description: string;
+  button: string;
+  image: string;
+  lien: string;
+}
 
-const emit = defineEmits(["close"]);
+const props = defineProps<{
+  project: Project;
+}>();
+
+const emit = defineEmits<{
+  close: [];
+}>();
 
 const handleButtonClick = () => {
-  window.alert("oui");
+  if (props.project?.lien) {
+    window.open(props.project.lien, "_blank");
+  }
 };
 
-//if echap is pressed, emit close
 const handleKeydown = (event: KeyboardEvent) => {
   if (event.key === "Escape") {
     emit("close");
@@ -68,5 +78,9 @@ const handleKeydown = (event: KeyboardEvent) => {
 
 onMounted(() => {
   window.addEventListener("keydown", handleKeydown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("keydown", handleKeydown);
 });
 </script>
