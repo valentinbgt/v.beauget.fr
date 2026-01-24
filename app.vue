@@ -41,6 +41,11 @@
         </div>
       </div>
       <div id="projects_anchor"></div>
+      <ProjectModal
+        v-if="showProjectsModal"
+        :project="selectedProject"
+        @close="closeProjectsModal"
+      ></ProjectModal>
       <div
         class="p-6 md:p-7 xl:p-8 my-24 grid justify-items-center gap-7 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 max-w-screen-xl mx-auto border-vgray border-y-2 xl:border-2 bg-vblack"
       >
@@ -50,24 +55,25 @@
           style="box-shadow: 15px 15px 0px -5px var(--tw-shadow-color)"
         >
           <div class="bg-vblack w-full flex flex-col-reverse px-6 py-5">
-            <a
+            <button
               v-if="!project.disabled"
-              target="_blank"
-              :href="project.lien"
+              @click="openProjectsModal(project)"
               :class="[
                 'text-sm font-title border-2 border-white py-3 w-full mx-auto text-center',
                 'hover:bg-white hover:text-vblack transition-colors active:underline active:decoration-vlightblue active:transition-none',
               ]"
-              >{{ project.button }}</a
             >
-            <a
+              {{ project.button }}
+            </button>
+            <button
               v-else
               :class="[
                 'text-sm font-title border-2 border-white py-3 w-full mx-auto text-center',
                 'text-vgray cursor-not-allowed',
               ]"
-              >{{ project.button }}</a
             >
+              {{ project.button }}
+            </button>
             <p
               class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-base text-vgray pt-1 pb-2"
             >
@@ -235,6 +241,9 @@ export default {
       return projects.value.filter((project) => !project.hidden);
     });
 
+    const selectedProject = ref(null);
+    const showProjectsModal = ref(false);
+
     const autoResize = (e) => {
       e.target.style.height = "";
       e.target.style.height = e.target.scrollHeight + "px";
@@ -298,6 +307,16 @@ export default {
       window.removeEventListener("scroll", handleScroll);
     });
 
+    const openProjectsModal = (project) => {
+      selectedProject.value = project;
+      showProjectsModal.value = true;
+    };
+
+    const closeProjectsModal = () => {
+      showProjectsModal.value = false;
+      selectedProject.value = null;
+    };
+
     return {
       projects: visibleProjects,
       isSubmitting,
@@ -307,6 +326,10 @@ export default {
       notification,
       parallaxOffset,
       videoContainer,
+      selectedProject,
+      showProjectsModal,
+      openProjectsModal,
+      closeProjectsModal,
     };
   },
 };
