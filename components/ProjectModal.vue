@@ -18,7 +18,7 @@
           v-if="prevProject"
           :key="prevProject.id"
           @click="goToPrev"
-          class="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 w-[15%] max-h-[70%] cursor-pointer z-10 transition-all duration-300 hover:w-[17%] group bg-white dark:bg-slate-800 rounded-r-2xl border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-primary-400 dark:hover:border-primary-500 flex flex-col opacity-60 hover:opacity-100"
+          class="hidden xl:block absolute left-0 top-1/2 -translate-y-1/2 w-[15%] max-h-[70%] cursor-pointer z-10 transition-all duration-300 hover:w-[17%] group bg-white dark:bg-slate-800 rounded-r-2xl border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-primary-400 dark:hover:border-primary-500 flex flex-col opacity-60 hover:opacity-100"
         >
           <!-- Header Image -->
           <div class="relative h-48 overflow-hidden bg-slate-200 flex-shrink-0">
@@ -79,7 +79,7 @@
           v-if="nextProject"
           :key="nextProject.id"
           @click="goToNext"
-          class="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[15%] max-h-[70%] cursor-pointer z-10 transition-all duration-300 hover:w-[17%] group bg-white dark:bg-slate-800 rounded-l-2xl border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-primary-400 dark:hover:border-primary-500 flex flex-col opacity-60 hover:opacity-100"
+          class="hidden xl:block absolute right-0 top-1/2 -translate-y-1/2 w-[15%] max-h-[70%] cursor-pointer z-10 transition-all duration-300 hover:w-[17%] group bg-white dark:bg-slate-800 rounded-l-2xl border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-primary-400 dark:hover:border-primary-500 flex flex-col opacity-60 hover:opacity-100"
         >
           <!-- Header Image -->
           <div class="relative h-48 overflow-hidden bg-slate-200 flex-shrink-0">
@@ -138,7 +138,7 @@
       <button
         v-if="prevProject"
         @click="goToPrev"
-        class="absolute left-4 lg:left-[16%] top-1/2 -translate-y-1/2 z-20 p-3 bg-white dark:bg-slate-800 rounded-full shadow-lg border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700 transition-all hover:scale-110"
+        class="absolute left-4 xl:left-[16%] top-1/2 -translate-y-1/2 z-20 p-3 bg-white dark:bg-slate-800 rounded-full shadow-lg border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700 transition-all hover:scale-110"
       >
         <svg
           class="w-6 h-6 text-slate-600 dark:text-slate-300"
@@ -158,7 +158,7 @@
       <button
         v-if="nextProject"
         @click="goToNext"
-        class="absolute right-4 lg:right-[16%] top-1/2 -translate-y-1/2 z-20 p-3 bg-white dark:bg-slate-800 rounded-full shadow-lg border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700 transition-all hover:scale-110"
+        class="absolute right-4 xl:right-[16%] top-1/2 -translate-y-1/2 z-20 p-3 bg-white dark:bg-slate-800 rounded-full shadow-lg border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700 transition-all hover:scale-110"
       >
         <svg
           class="w-6 h-6 text-slate-600 dark:text-slate-300"
@@ -179,7 +179,7 @@
       <Transition :name="slideDirection" mode="out-in">
         <div
           :key="currentProject.id"
-          class="relative bg-white dark:bg-slate-900 w-full max-w-4xl lg:max-w-5xl max-h-[90vh] lg:max-h-[85vh] rounded-2xl shadow-2xl overflow-hidden flex flex-col border border-gray-200 dark:border-slate-700 mx-auto lg:mx-[17%]"
+          class="relative bg-white dark:bg-slate-900 w-full max-w-4xl lg:max-w-5xl max-h-[90vh] lg:max-h-[85vh] rounded-2xl shadow-2xl overflow-hidden flex flex-col border border-gray-200 dark:border-slate-700 mx-auto xl:mx-[17%]"
         >
           <!-- Modal Header -->
           <div
