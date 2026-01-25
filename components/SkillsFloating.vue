@@ -13,9 +13,15 @@
       :class="skill.borderColor"
     >
       <div
+        v-if="skill.image"
         class="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0 flex items-center justify-center"
-        v-html="skill.logo"
-      ></div>
+      >
+        <img
+          :src="skill.image"
+          :alt="skill.name"
+          class="w-full h-full object-contain"
+        />
+      </div>
       <span
         class="font-mono text-xs sm:text-sm md:text-md font-bold text-slate-700 dark:text-slate-300 pointer-events-none"
       >
@@ -49,8 +55,8 @@ const skills = ref([
   {
     id: 1,
     name: "Vue.js",
-    borderColor: "border-green-500",
-    logo: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24 1.61H12.225L9.388 6.588 6.55 1.61H0L9.388 19.39 18.775 1.61H24Z" fill="#4FC08D"/><path d="M0 1.61L6.55 13.213 9.388 8.236 3.838 1.61H0Z" fill="#35495E"/></svg>`,
+    borderColor: "border-[#3fb984]",
+    image: "/icons/skills/vue.png",
     x: 0,
     y: 0,
     vx: 0,
@@ -61,8 +67,8 @@ const skills = ref([
   {
     id: 2,
     name: "TypeScript",
-    borderColor: "border-blue-500",
-    logo: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="4" fill="#3178C6"/><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0H1.125zm16.41 10.5c.612 0 1.227.03 1.84.06v2.527h-1.312c-.08 0-.16-.002-.24-.003-.08-.002-.16-.005-.24-.01-.08-.003-.16-.01-.24-.017-.08-.01-.16-.02-.24-.033a2.7 2.7 0 0 0-.24-.05c-.08-.02-.16-.04-.24-.07-.08-.03-.16-.06-.24-.1-.08-.04-.16-.08-.24-.13-.08-.05-.16-.1-.24-.16-.08-.06-.16-.12-.24-.19-.08-.07-.16-.14-.24-.22-.08-.08-.16-.16-.24-.25-.08-.09-.16-.18-.24-.28-.08-.1-.16-.2-.24-.31-.08-.11-.16-.22-.24-.34-.08-.12-.16-.24-.24-.37-.08-.13-.16-.26-.24-.4-.08-.14-.16-.28-.24-.43-.08-.15-.16-.3-.24-.46-.08-.16-.16-.32-.24-.48.08-.16.16-.32.24.48h2.88v-1.68H9.225v2.16h1.44c.08 0 .16.01.24.02.08.01.16.03.24.05.08.02.16.05.24.08.08.03.16.07.24.12.08.05.16.1.24.16.08.06.16.13.24.2.08.07.16.15.24.23.08.08.16.17.24.26.08.09.16.18.24.28.08.1.16.2.24.31.08.11.16.22.24.34.08.12.16.24.24.37.08.13.16.26.24.4.08.14.16.28.24.43.08.15.16.3.24.46.08.16.16.32.24.48.08.16.16.32.24.48h-2.88v1.68H17.535z" fill="#fff"/></svg>`,
+    borderColor: "border-[#2d79c7]",
+    image: "/icons/skills/typescript.png",
     x: 0,
     y: 0,
     vx: 0,
@@ -72,9 +78,9 @@ const skills = ref([
   },
   {
     id: 3,
-    name: "Tailwind",
-    borderColor: "border-cyan-500",
-    logo: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 6c-2.67 0-4.33 1.33-5 4 1-1.33 2.17-1.83 3.5-1.5.76.19 1.31.74 1.91 1.35.98 1 2.12 2.15 4.59 2.15 2.67 0 4.33-1.33 5-4-1 1.33-2.17 1.83-3.5 1.5-.76-.19-1.31-.74-1.91-1.35C15.61 7.15 14.47 6 12 6zm-5 6c-2.67 0-4.33 1.33-5 4 1-1.33 2.17-1.83 3.5-1.5.76.19 1.31.74 1.91 1.35.98 1 2.12 2.15 4.59 2.15 2.67 0 4.33-1.33 5-4-1 1.33-2.17 1.83-3.5 1.5-.76-.19-1.31-.74-1.91-1.35C10.61 13.15 9.47 12 7 12z" fill="#06B6D4"/></svg>`,
+    name: "Tailwind CSS",
+    borderColor: "border-[#39bef8]",
+    image: "/icons/skills/tailwind.png",
     x: 0,
     y: 0,
     vx: 0,
@@ -84,21 +90,9 @@ const skills = ref([
   },
   {
     id: 4,
-    name: "React",
-    borderColor: "border-blue-400",
-    logo: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="2" fill="#61DAFB"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#61DAFB"/><path d="M8.5 12c0-1.93 1.57-3.5 3.5-3.5s3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5-3.5-1.57-3.5-3.5z" fill="#61DAFB"/></svg>`,
-    x: 0,
-    y: 0,
-    vx: 0,
-    vy: 0,
-    width: 0,
-    height: 0,
-  },
-  {
-    id: 5,
-    name: "Node.js",
-    borderColor: "border-green-500",
-    logo: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.998 24c-2.246 0-4.122-.745-5.627-2.234-1.5-1.487-2.244-3.36-2.244-5.62 0-1.8.6-3.36 1.8-4.68L8.15 4.38c.3-.3.75-.3 1.05 0s.3.75 0 1.05L6.99 13.11c-.9 1.05-1.35 2.31-1.35 3.78 0 1.8.6 3.24 1.8 4.32 1.2 1.08 2.7 1.62 4.5 1.62 1.8 0 3.3-.54 4.5-1.62 1.2-1.08 1.8-2.52 1.8-4.32 0-1.47-.45-2.73-1.35-3.78L13.8 5.43c-.3-.3-.3-.75 0-1.05s.75-.3 1.05 0l3.223 6.086c1.2 1.32 1.8 2.88 1.8 4.68 0 2.26-.744 4.133-2.244 5.62-1.505 1.489-3.381 2.234-5.627 2.234z" fill="#339933"/></svg>`,
+    name: "Nuxt",
+    borderColor: "border-[#00dc82]",
+    image: "/icons/skills/nuxt.svg",
     x: 0,
     y: 0,
     vx: 0,
@@ -108,9 +102,8 @@ const skills = ref([
   },
   {
     id: 6,
-    name: "PostgreSQL",
-    borderColor: "border-blue-600",
-    logo: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.559 14.644c-.053-1.003-.146-2.008-.146-3.012 0-1.007.093-2.009.146-3.012.08-1.5.16-3.003.16-4.507 0-1.504-.08-3.007-.16-4.51-.053-1.003-.146-2.005-.146-3.012 0-.507.053-1.01.146-1.514H.44c-.093.504-.146 1.007-.146 1.514 0 1.007.053 2.009.146 3.012.08 1.503.16 3.006.16 4.51 0 1.504-.08 3.007-.16 4.507-.093 1.003-.146 2.005-.146 3.012 0 1.004.053 2.009.146 3.012.08 1.5.16 3.003.16 4.507 0 1.504-.08 3.007-.16 4.51-.093 1.003-.146 2.005-.146 3.012 0 .507.053 1.01.146 1.514h23.12c.093-.504.146-1.007.146-1.514 0-1.007-.053-2.009-.146-3.012-.08-1.503-.16-3.006-.16-4.51 0-1.504.08-3.007.16-4.507z" fill="#336791"/></svg>`,
+    name: "Debian",
+    borderColor: "border-red-600",
     x: 0,
     y: 0,
     vx: 0,
@@ -121,8 +114,8 @@ const skills = ref([
   {
     id: 7,
     name: "Docker",
-    borderColor: "border-blue-500",
-    logo: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.983 10.807h2.119v2.121h-2.119v-2.121zm-2.12 0H9.744v2.121h2.119v-2.121zm-2.121 0H7.623v2.121h2.119v-2.121zm-2.12 0H5.503v2.121h2.119v-2.121zm-2.121 0H3.382v2.121h2.119v-2.121zM1.14 8.686h2.119v2.121H1.14V8.686zm15.963 0h2.119v2.121h-2.119V8.686zm-2.12 0h-2.12v2.121h2.12V8.686zm-2.121 0h-2.119v2.121h2.119V8.686zm4.241-2.121h2.119v2.121h-2.119V6.565zm-2.12 0h-2.12v2.121h2.12V6.565zm-2.121 0h-2.119v2.121h2.119V6.565zm-2.12 0h-2.12v2.121h2.12V6.565zm-2.121 0H7.623v2.121h2.119V6.565zm-2.12 0H5.503v2.121h2.119V6.565zm-2.121 0H3.382v2.121h2.119V6.565zM1.14 6.565h2.119v2.121H1.14V6.565zm0-2.121h2.119v2.121H1.14V4.444zm2.12 0h2.119v2.121H3.26V4.444zm2.121 0h2.119v2.121h-2.119V4.444zm2.12 0h2.12v2.121h-2.12V4.444zm2.121 0h2.119v2.121h-2.119V4.444zm2.12 0h2.12v2.121h-2.12V4.444zm2.121 0h2.119v2.121h-2.119V4.444zm2.12 0h2.12v2.121h-2.12V4.444zm2.121 0h2.119v2.121h-2.119V4.444z" fill="#2496ED"/></svg>`,
+    borderColor: "border-[#5b87a9]",
+    image: "/icons/skills/docker.png",
     x: 0,
     y: 0,
     vx: 0,
@@ -133,8 +126,110 @@ const skills = ref([
   {
     id: 8,
     name: "Git",
+    borderColor: "border-[#f05030]",
+    image: "/icons/skills/git.png",
+    x: 0,
+    y: 0,
+    vx: 0,
+    vy: 0,
+    width: 0,
+    height: 0,
+  },
+  {
+    id: 9,
+    name: "Réseau",
+    borderColor: "border-[#54c3f1]",
+    image: "/icons/skills/network.png",
+    x: 0,
+    y: 0,
+    vx: 0,
+    vy: 0,
+    width: 0,
+    height: 0,
+  },
+  {
+    id: 10,
+    name: "Gestion d'équipe",
+    borderColor: "border-black-500",
+    x: 0,
+    y: 0,
+    vx: 0,
+    vy: 0,
+    width: 0,
+    height: 0,
+  },
+  {
+    id: 11,
+    name: "Gestion de projets",
+    borderColor: "border-yellow-500",
+    x: 0,
+    y: 0,
+    vx: 0,
+    vy: 0,
+    width: 0,
+    height: 0,
+  },
+  {
+    id: 12,
+    name: "Leadership",
+    borderColor: "border-red-600",
+    x: 0,
+    y: 0,
+    vx: 0,
+    vy: 0,
+    width: 0,
+    height: 0,
+  },
+  {
+    id: 13,
+    name: "Gestion des risques",
     borderColor: "border-red-500",
-    logo: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.546 10.93L13.067.45a1.524 1.524 0 0 0-2.134 0L.454 10.93a1.524 1.524 0 0 0 0 2.134l10.479 10.48a1.524 1.524 0 0 0 2.134 0l10.479-10.48a1.524 1.524 0 0 0 0-2.134zM9.424 19.424l-1.9-1.9 2.134-2.134-2.134-2.134 1.9-1.9 2.134 2.134 2.134-2.134 1.9 1.9-2.134 2.134 2.134 2.134-1.9 1.9-2.134-2.134-2.134 2.134z" fill="#F05032"/></svg>`,
+    x: 0,
+    y: 0,
+    vx: 0,
+    vy: 0,
+    width: 0,
+    height: 0,
+  },
+  {
+    id: 14,
+    name: "Exécution sous pression",
+    borderColor: "border-red-500",
+    x: 0,
+    y: 0,
+    vx: 0,
+    vy: 0,
+    width: 0,
+    height: 0,
+  },
+  {
+    id: 15,
+    name: "Autonomie",
+    borderColor: "border-red-500",
+    x: 0,
+    y: 0,
+    vx: 0,
+    vy: 0,
+    width: 0,
+    height: 0,
+  },
+  {
+    id: 16,
+    name: "Son",
+    borderColor: "border-black-900",
+    image: "/icons/skills/xlr.jpg",
+    x: 0,
+    y: 0,
+    vx: 0,
+    vy: 0,
+    width: 0,
+    height: 0,
+  },
+  {
+    id: 17,
+    name: "DMX",
+    borderColor: "border-white-900",
+    image: "/icons/skills/dmx.png",
     x: 0,
     y: 0,
     vx: 0,
