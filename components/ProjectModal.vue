@@ -52,9 +52,9 @@
         <!-- Scrollable Content -->
         <div class="flex-1 overflow-y-auto">
           <!-- Image Gallery Grid -->
-          <div class="p-6 bg-gray-50 dark:bg-slate-950/30">
+          <div class="p-2 bg-gray-50 dark:bg-slate-950/30">
             <div
-              class="grid gap-4 w-full"
+              class="grid gap-1 w-full"
               :class="[
                 getGridClass(displayImages.length),
                 displayImages.length === 1 ? 'h-64 md:h-80' : 'h-64 md:h-96',
@@ -63,32 +63,18 @@
               <div
                 v-for="(img, idx) in displayImages"
                 :key="idx"
-                class="relative group overflow-hidden rounded-xl cursor-zoom-in bg-slate-200 dark:bg-slate-800"
+                class="relative group overflow-hidden cursor-pointer bg-slate-200 dark:bg-slate-800"
                 @click="openLightbox(idx)"
               >
                 <img
                   :src="img"
                   :alt="`${project.title} - Image ${idx + 1}`"
-                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  class="w-full h-full object-cover"
                   loading="lazy"
                 />
                 <div
-                  class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center"
-                >
-                  <svg
-                    class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                    ></path>
-                  </svg>
-                </div>
+                  class="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors"
+                ></div>
               </div>
             </div>
           </div>
