@@ -341,9 +341,7 @@
             <div
               class="flex-1 overflow-y-auto p-6 bg-gray-50 dark:bg-slate-900/50"
             >
-              <div
-                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-              >
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Project Card -->
                 <article
                   v-for="project in visibleProjects"
@@ -457,7 +455,11 @@
               <h3 class="font-bold text-lg">Frontend Development</h3>
             </div>
             <div class="space-y-4">
-              <div v-for="skill in skills.frontend" :key="skill.name" class="group">
+              <div
+                v-for="skill in skills.frontend"
+                :key="skill.name"
+                class="group"
+              >
                 <div class="flex justify-between text-sm mb-1">
                   <span class="font-mono font-medium">{{ skill.name }}</span>
                   <span
@@ -606,7 +608,7 @@
             :disabled="isSubmitting"
             class="w-full py-4 bg-slate-900 dark:bg-primary-600 text-white font-bold rounded-lg hover:bg-slate-800 dark:hover:bg-primary-700 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {{ isSubmitting ? 'Envoi en cours...' : 'Envoyer le message' }}
+            {{ isSubmitting ? "Envoi en cours..." : "Envoyer le message" }}
           </button>
         </form>
       </div>
@@ -617,8 +619,13 @@
       class="py-8 text-center border-t border-gray-100 dark:border-slate-800 text-slate-400 text-sm font-mono"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p>&copy; {{ new Date().getFullYear() }} Valentin BEAUGET. Made with Nuxt & Tailwind.</p>
+        <div
+          class="flex flex-col sm:flex-row items-center justify-between gap-4"
+        >
+          <p>
+            &copy; {{ new Date().getFullYear() }} Valentin BEAUGET. Made with
+            Nuxt & Tailwind.
+          </p>
           <div class="flex items-center gap-4">
             <a
               href="https://github.com/valentinbgt"

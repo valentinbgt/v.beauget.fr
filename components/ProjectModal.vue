@@ -1,13 +1,15 @@
 <template>
-  <Transition name="modal">
-    <div class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
-      <!-- Backdrop -->
+  <div class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+    <!-- Backdrop -->
+    <Transition name="backdrop">
       <div
         @click="$emit('close')"
         class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm"
       ></div>
+    </Transition>
 
-      <!-- Modal Content -->
+    <!-- Modal Content -->
+    <Transition name="modal" appear>
       <div
         class="relative bg-white dark:bg-slate-900 w-full max-w-5xl max-h-[90vh] rounded-2xl shadow-2xl overflow-hidden flex flex-col border border-gray-200 dark:border-slate-700"
       >
@@ -186,8 +188,8 @@
           </div>
         </div>
       </div>
-    </div>
-  </Transition>
+    </Transition>
+  </div>
 
   <!-- Lightbox -->
   <Teleport to="body">
@@ -361,7 +363,7 @@ const handleKeydown = (event: KeyboardEvent) => {
       return;
     }
   }
-  
+
   // Si le lightbox n'est pas ouvert, on gère Échap pour fermer la modal
   if (event.key === "Escape") {
     emit("close");
@@ -378,18 +380,33 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.modal-enter-active,
-.modal-leave-active {
-  transition: all 0.3s ease;
+/* Backdrop animation */
+.backdrop-enter-active,
+.backdrop-leave-active {
+  transition: opacity 0.3s ease;
 }
 
-.modal-enter-from,
-.modal-leave-to {
+.backdrop-enter-from,
+.backdrop-leave-to {
   opacity: 0;
 }
 
-.modal-enter-from > div:last-child,
-.modal-leave-to > div:last-child {
-  transform: scale(0.95);
+/* Modal content animation */
+.modal-enter-active {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-leave-active {
+  transition: all 0.2s ease-in;
+}
+
+.modal-enter-from {
+  opacity: 0;
+  transform: scale(0.9) translateY(20px);
+}
+
+.modal-leave-to {
+  opacity: 0;
+  transform: scale(0.95) translateY(10px);
 }
 </style>
