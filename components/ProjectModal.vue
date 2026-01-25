@@ -9,60 +9,130 @@
     </Transition>
 
     <!-- Carousel Container -->
-    <div class="relative w-full h-full flex items-center justify-center px-4 py-6 overflow-hidden">
+    <div
+      class="relative w-full h-full flex items-center justify-center px-4 py-6 overflow-hidden"
+    >
       <!-- Previous Project Preview (left side) -->
-      <div
-        v-if="prevProject"
-        @click="goToPrev"
-        class="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 w-[15%] h-[70%] cursor-pointer z-10 transition-all duration-300 hover:w-[17%] group"
-      >
-        <div class="w-full h-full bg-white/50 dark:bg-slate-800/50 rounded-l-2xl overflow-hidden border border-gray-200/50 dark:border-slate-700/50 backdrop-blur-sm">
-          <div class="w-full h-full flex flex-col opacity-60 group-hover:opacity-80 transition-opacity">
-            <div class="h-1/2 overflow-hidden">
-              <img
-                :src="prevProject.images[0]"
-                :alt="prevProject.title"
-                class="w-full h-full object-cover"
-              />
+      <Transition :name="slideDirection" mode="out-in">
+        <article
+          v-if="prevProject"
+          :key="prevProject.id"
+          @click="goToPrev"
+          class="hidden lg:block absolute left-0 top-1/2 -translate-y-1/2 w-[15%] max-h-[70%] cursor-pointer z-10 transition-all duration-300 hover:w-[17%] group bg-white dark:bg-slate-800 rounded-r-2xl border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-primary-400 dark:hover:border-primary-500 flex flex-col opacity-60 hover:opacity-100"
+        >
+          <!-- Header Image -->
+          <div class="relative h-48 overflow-hidden bg-slate-200 flex-shrink-0">
+            <img
+              :src="prevProject.images[0]"
+              :alt="prevProject.title"
+              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+            />
+            <div
+              class="absolute top-2 right-2 bg-black/70 backdrop-blur-md text-white text-[10px] font-mono px-2 py-1 rounded"
+            >
+              {{ prevProject.id }}
             </div>
-            <div class="p-4 flex-1">
-              <h3 class="font-bold text-sm text-slate-700 dark:text-slate-300 truncate">
+          </div>
+
+          <!-- Content -->
+          <div class="p-4 flex flex-col flex-1 min-h-0">
+            <div class="flex justify-between items-start mb-2 gap-1">
+              <h3
+                class="font-bold text-sm group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors truncate"
+              >
                 {{ prevProject.title }}
               </h3>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">
-                {{ prevProject.shortDesc }}
-              </p>
+              <span
+                class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 flex-shrink-0"
+              >
+                {{ prevProject.status }}
+              </span>
+            </div>
+            <p
+              class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mb-3 flex-1"
+            >
+              {{ prevProject.shortDesc }}
+            </p>
+            <div
+              class="flex items-center gap-1 pt-2 border-t border-gray-100 dark:border-slate-700 flex-wrap"
+            >
+              <span
+                v-for="tech in prevProject.stack.slice(0, 2)"
+                :key="tech"
+                class="text-[9px] font-mono text-slate-400 bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded"
+              >
+                {{ tech }}
+              </span>
+              <span
+                v-if="prevProject.stack.length > 2"
+                class="text-[9px] text-slate-400"
+                >+{{ prevProject.stack.length - 2 }}</span
+              >
             </div>
           </div>
-        </div>
-      </div>
+        </article>
+      </Transition>
 
       <!-- Next Project Preview (right side) -->
-      <div
-        v-if="nextProject"
-        @click="goToNext"
-        class="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[15%] h-[70%] cursor-pointer z-10 transition-all duration-300 hover:w-[17%] group"
-      >
-        <div class="w-full h-full bg-white/50 dark:bg-slate-800/50 rounded-r-2xl overflow-hidden border border-gray-200/50 dark:border-slate-700/50 backdrop-blur-sm">
-          <div class="w-full h-full flex flex-col opacity-60 group-hover:opacity-80 transition-opacity">
-            <div class="h-1/2 overflow-hidden">
-              <img
-                :src="nextProject.images[0]"
-                :alt="nextProject.title"
-                class="w-full h-full object-cover"
-              />
-            </div>
-            <div class="p-4 flex-1">
-              <h3 class="font-bold text-sm text-slate-700 dark:text-slate-300 truncate">
-                {{ nextProject.title }}
-              </h3>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">
-                {{ nextProject.shortDesc }}
-              </p>
+      <Transition :name="slideDirection" mode="out-in">
+        <article
+          v-if="nextProject"
+          :key="nextProject.id"
+          @click="goToNext"
+          class="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-[15%] max-h-[70%] cursor-pointer z-10 transition-all duration-300 hover:w-[17%] group bg-white dark:bg-slate-800 rounded-l-2xl border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-primary-400 dark:hover:border-primary-500 flex flex-col opacity-60 hover:opacity-100"
+        >
+          <!-- Header Image -->
+          <div class="relative h-48 overflow-hidden bg-slate-200 flex-shrink-0">
+            <img
+              :src="nextProject.images[0]"
+              :alt="nextProject.title"
+              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+            />
+            <div
+              class="absolute top-2 right-2 bg-black/70 backdrop-blur-md text-white text-[10px] font-mono px-2 py-1 rounded"
+            >
+              {{ nextProject.id }}
             </div>
           </div>
-        </div>
-      </div>
+
+          <!-- Content -->
+          <div class="p-4 flex flex-col flex-1 min-h-0">
+            <div class="flex justify-between items-start mb-2 gap-1">
+              <h3
+                class="font-bold text-sm group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors truncate"
+              >
+                {{ nextProject.title }}
+              </h3>
+              <span
+                class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 flex-shrink-0"
+              >
+                {{ nextProject.status }}
+              </span>
+            </div>
+            <p
+              class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mb-3 flex-1"
+            >
+              {{ nextProject.shortDesc }}
+            </p>
+            <div
+              class="flex items-center gap-1 pt-2 border-t border-gray-100 dark:border-slate-700 flex-wrap"
+            >
+              <span
+                v-for="tech in nextProject.stack.slice(0, 2)"
+                :key="tech"
+                class="text-[9px] font-mono text-slate-400 bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded"
+              >
+                {{ tech }}
+              </span>
+              <span
+                v-if="nextProject.stack.length > 2"
+                class="text-[9px] text-slate-400"
+                >+{{ nextProject.stack.length - 2 }}</span
+              >
+            </div>
+          </div>
+        </article>
+      </Transition>
 
       <!-- Navigation Arrows -->
       <button
@@ -70,8 +140,18 @@
         @click="goToPrev"
         class="absolute left-4 lg:left-[16%] top-1/2 -translate-y-1/2 z-20 p-3 bg-white dark:bg-slate-800 rounded-full shadow-lg border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700 transition-all hover:scale-110"
       >
-        <svg class="w-6 h-6 text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        <svg
+          class="w-6 h-6 text-slate-600 dark:text-slate-300"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
         </svg>
       </button>
 
@@ -80,8 +160,18 @@
         @click="goToNext"
         class="absolute right-4 lg:right-[16%] top-1/2 -translate-y-1/2 z-20 p-3 bg-white dark:bg-slate-800 rounded-full shadow-lg border border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700 transition-all hover:scale-110"
       >
-        <svg class="w-6 h-6 text-slate-600 dark:text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        <svg
+          class="w-6 h-6 text-slate-600 dark:text-slate-300"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          />
         </svg>
       </button>
 
@@ -97,12 +187,15 @@
           >
             <div class="flex-1 min-w-0">
               <div class="flex items-center gap-3 flex-wrap">
-                <h2 class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white truncate">
+                <h2
+                  class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white truncate"
+                >
                   {{ currentProject.title }}
                 </h2>
                 <span
                   class="px-2 py-1 bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 text-xs font-mono rounded flex-shrink-0"
-                >{{ currentProject.category }}</span>
+                  >{{ currentProject.category }}</span
+                >
               </div>
               <p class="text-slate-500 text-sm font-mono mt-1">
                 {{ currentProject.id }} • {{ currentProject.year }}
@@ -181,7 +274,10 @@
                   </p>
 
                   <template
-                    v-if="currentProject.features && currentProject.features.length > 0"
+                    v-if="
+                      currentProject.features &&
+                      currentProject.features.length > 0
+                    "
                   >
                     <h4
                       class="font-bold text-sm uppercase tracking-wide text-slate-400 mt-6"
@@ -235,7 +331,11 @@
                   </div>
 
                   <!-- Tech Stack -->
-                  <div v-if="currentProject.stack && currentProject.stack.length > 0">
+                  <div
+                    v-if="
+                      currentProject.stack && currentProject.stack.length > 0
+                    "
+                  >
                     <h4
                       class="font-bold text-sm uppercase tracking-wide text-slate-400 mb-3"
                     >
@@ -454,7 +554,8 @@ const closeLightbox = () => {
 
 const nextLightboxImage = () => {
   if (lightboxIndex.value === null) return;
-  lightboxIndex.value = (lightboxIndex.value + 1) % currentProject.value.images.length;
+  lightboxIndex.value =
+    (lightboxIndex.value + 1) % currentProject.value.images.length;
 };
 
 const prevLightboxImage = () => {
