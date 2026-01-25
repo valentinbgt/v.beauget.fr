@@ -150,7 +150,7 @@ const skills = ref([
   {
     id: 10,
     name: "Gestion d'équipe",
-    borderColor: "border-black-500",
+    borderColor: "border-[#3a3a3a]",
     x: 0,
     y: 0,
     vx: 0,
@@ -171,8 +171,9 @@ const skills = ref([
   },
   {
     id: 12,
-    name: "Leadership",
-    borderColor: "border-red-600",
+    name: "Dokploy",
+    borderColor: "border-[#3a3a3a]",
+    image: "/icons/skills/dokploy.png",
     x: 0,
     y: 0,
     vx: 0,
@@ -193,7 +194,7 @@ const skills = ref([
   },
   {
     id: 14,
-    name: "Exécution sous pression",
+    name: "CI/CD",
     borderColor: "border-red-500",
     x: 0,
     y: 0,
