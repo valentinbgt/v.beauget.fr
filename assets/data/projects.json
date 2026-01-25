@@ -4,9 +4,9 @@
     "hidden": false,
     "title": "Présidence du BDE MMI Troyes",
     "shortDesc": "Fondateur du Bureau Des Étudiants de ma formation.",
-    "description": "J'ai fondé le Bureau Des Étudiants en Métiers du Multimédia et de l'Internet à Troyes en 2024.\n\nCette expérience m'a permis de développer mes compétences en gestion de projet, communication et travail d'équipe.",
+    "description": "En Juin 2024, j'ai fondé le Bureau Des Étudiants en Métiers du Multimédia et de l'Internet à Troyes.\n\nCette expérience m'a appris des compétences comme le leadership bénévole, la capacité à fédérer, la gestion d'équipe et de projets ainsi que la communication.\n\nNous sommes parti, sans structure, de quelques étudiants motivés pour arriver un an après, à environ 25 étudians investis, une structure solide et une trésorerie digne d'une association étudiante.",
     "images": ["/images/bde.png", "/images/nds.jpg", "/images/pull_bde_2025.jpg"],
-    "stack": ["Gestion", "Communication", "Événementiel"],
+    "stack": ["Organisation", "Vision", "Autonomie"],
     "status": "Terminé",
     "category": "Associatif",
     "year": "2024-2025",
@@ -15,9 +15,10 @@
       { "label": "Site web", "url": "https://bde.mmi-troyes.fr/" }
     ],
     "features": [
-      "Organisation d'événements étudiants",
-      "Gestion d'une équipe de bénévoles",
-      "Communication et promotion"
+      "Création de structure",
+      "Vision et stratégie",
+      "Organisation d’événements",
+      "Responsabilité juridique"
     ]
   },
   {
@@ -26,13 +27,14 @@
     "title": "Organisation Nuit Campus 3",
     "shortDesc": "Responsable de la House Stage lors de la Nuit Campus 3 2025.",
     "description": "Responsable de la House Stage lors de la Nuit Campus 3 2025, un festival étudiant regroupant plusieurs scènes musicales.\n\nJ'ai géré la programmation, la logistique et la coordination technique de la scène.",
-    "images": ["/images/nc3.jpg"],
+    "images": ["/images/nc3.jpg", "/images/nc3_2.png", "/images/nc3_3.JPEG", "/images/nc3_4.JPEG"],
     "stack": ["Événementiel", "Logistique", "Son"],
     "status": "Terminé",
     "category": "Festival",
     "year": "2025",
     "links": [
-      { "label": "Site du festival", "url": "https://nc3.campus3.fr/" }
+      { "label": "Site du festival", "url": "https://nc3.campus3.fr/" },
+      { "label": "Instagram", "url": "https://instagram.com/nuitcampus3/" }
     ],
     "features": [
       "Programmation artistique",
