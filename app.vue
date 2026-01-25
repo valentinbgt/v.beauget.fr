@@ -341,7 +341,7 @@
             <div
               class="flex-1 overflow-y-auto p-6 bg-gray-50 dark:bg-slate-900/50"
             >
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Project Card -->
                 <article
                   v-for="project in visibleProjects"
