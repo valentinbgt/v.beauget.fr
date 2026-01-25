@@ -9,7 +9,7 @@
       v-for="(skill, index) in visibleSkills"
       :key="index"
       :ref="(el) => setBrickRef(el, index)"
-      class="absolute w-[100px] h-[70px] sm:w-[120px] sm:h-[80px] rounded-lg border-2 flex flex-col items-center justify-center gap-1 sm:gap-2 bg-white dark:bg-slate-800 transition-colors"
+      class="absolute px-5 py-4 rounded-xl border-2 flex items-center justify-center gap-1 sm:gap-2 bg-white dark:bg-slate-800 transition-colors"
       :class="skill.borderColor"
       :style="{ willChange: 'transform' }"
     >
@@ -18,7 +18,7 @@
         v-html="skill.logo"
       ></div>
       <span
-        class="font-mono text-[10px] sm:text-xs md:text-sm text-slate-700 dark:text-slate-300 text-center px-1 sm:px-2"
+        class="font-mono text-xs sm:text-sm md:text-md font-bold text-slate-700 dark:text-slate-300 text-center px-1 sm:px-2"
       >
         {{ skill.name }}
       </span>
