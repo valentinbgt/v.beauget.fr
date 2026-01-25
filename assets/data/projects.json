@@ -2,15 +2,16 @@
   {
     "id": "#PRJ-001",
     "hidden": false,
-    "title": "Présidence BDE MMI",
-    "shortDesc": "Fondateur du Bureau Des Étudiants en Métiers du Multimédia et de l'Internet à Troyes.",
+    "title": "Présidence du BDE MMI Troyes",
+    "shortDesc": "Fondateur du Bureau Des Étudiants de ma formation.",
     "description": "J'ai fondé le Bureau Des Étudiants en Métiers du Multimédia et de l'Internet à Troyes en 2024.\n\nCette expérience m'a permis de développer mes compétences en gestion de projet, communication et travail d'équipe.",
-    "images": ["/images/bde.png"],
+    "images": ["/images/bde.png", "/images/nds.jpg", "/images/pull_bde_2025.jpg"],
     "stack": ["Gestion", "Communication", "Événementiel"],
-    "status": "En cours",
-    "category": "Association",
-    "year": "2024",
+    "status": "Terminé",
+    "category": "Associatif",
+    "year": "2024-2025",
     "links": [
+      { "label": "Instagram", "url": "https://www.instagram.com/bde.mmi.troyes/" },
       { "label": "Site web", "url": "https://bde.mmi-troyes.fr/" }
     ],
     "features": [

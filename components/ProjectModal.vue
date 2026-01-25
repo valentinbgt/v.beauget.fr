@@ -1,8 +1,6 @@
 <template>
   <Transition name="modal">
-    <div
-      class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
-    >
+    <div class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
       <!-- Backdrop -->
       <div
         @click="$emit('close')"
@@ -59,7 +57,7 @@
               class="grid gap-4 w-full"
               :class="[
                 getGridClass(displayImages.length),
-                displayImages.length === 1 ? 'h-64 md:h-80' : 'h-64 md:h-96'
+                displayImages.length === 1 ? 'h-64 md:h-80' : 'h-64 md:h-96',
               ]"
             >
               <div
@@ -103,7 +101,7 @@
                 <h3
                   class="text-xl font-bold border-b border-gray-100 dark:border-slate-800 pb-2 text-slate-900 dark:text-white"
                 >
-                  À propos du projet
+                  À propos
                 </h3>
                 <p
                   class="text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line"
@@ -111,7 +109,9 @@
                   {{ project.description }}
                 </p>
 
-                <template v-if="project.features && project.features.length > 0">
+                <template
+                  v-if="project.features && project.features.length > 0"
+                >
                   <h4
                     class="font-bold text-sm uppercase tracking-wide text-slate-400 mt-8"
                   >
@@ -347,8 +347,7 @@ const closeLightbox = () => {
 
 const nextImage = () => {
   if (lightboxIndex.value === null) return;
-  lightboxIndex.value =
-    (lightboxIndex.value + 1) % props.project.images.length;
+  lightboxIndex.value = (lightboxIndex.value + 1) % props.project.images.length;
 };
 
 const prevImage = () => {
