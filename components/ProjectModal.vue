@@ -1,59 +1,313 @@
 <template>
-  <div
-    class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40 backdrop-blur-sm"
-    @click.self="$emit('close')"
-  >
+  <Transition name="modal">
     <div
-      class="bg-vblack border-2 max-w-4xl w-full mx-4 border-white relative flex flex-row"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
     >
-      <div class="w-[680px] h-[600px] bg-white flex flex-col">
+      <!-- Backdrop -->
+      <div
+        @click="$emit('close')"
+        class="absolute inset-0 bg-slate-900/80 backdrop-blur-sm"
+      ></div>
+
+      <!-- Modal Content -->
+      <div
+        class="relative bg-white dark:bg-slate-900 w-full max-w-5xl max-h-[90vh] rounded-2xl shadow-2xl overflow-hidden flex flex-col border border-gray-200 dark:border-slate-700"
+      >
+        <!-- Modal Header -->
         <div
-          class="flex-1 bg-cover bg-center"
-          :style="`background-image: url(/images/${project?.image ?? ''})`"
-        ></div>
-
-        <div class="flex p-4 bg-vblack">
-          <button
-            v-if="!project.disabled"
-            @click="handleButtonClick"
-            :class="[
-              'text-sm font-title border-2 border-white py-3 w-full text-center',
-              'hover:bg-white hover:text-vblack transition-colors active:underline active:decoration-vlightblue active:transition-none',
-            ]"
-          >
-            {{ project.button }}
-          </button>
-        </div>
-      </div>
-
-      <div class="p-6 flex flex-col gap-4">
-        <div class="flex justify-between items-center">
-          <h2 class="font-title text-vlightblue text-2xl">
-            {{ project?.name }}
-          </h2>
+          class="flex items-center justify-between p-6 border-b border-gray-100 dark:border-slate-800 bg-white dark:bg-slate-900 z-10 flex-shrink-0"
+        >
+          <div>
+            <div class="flex items-center gap-3 flex-wrap">
+              <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
+                {{ project.title }}
+              </h2>
+              <span
+                class="px-2 py-1 bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 text-xs font-mono rounded"
+                >{{ project.category }}</span
+              >
+            </div>
+            <p class="text-slate-500 text-sm font-mono mt-1">
+              {{ project.id }} • {{ project.year }}
+            </p>
+          </div>
           <button
             @click="$emit('close')"
-            class="text-vgray hover:text-white text-2xl flex items-center justify-center"
+            class="p-2 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-full transition flex-shrink-0"
           >
-            ✕
+            <svg
+              class="w-6 h-6 text-slate-600 dark:text-slate-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            </svg>
           </button>
         </div>
 
-        <p class="text-vgray">{{ project?.description }}</p>
+        <!-- Scrollable Content -->
+        <div class="flex-1 overflow-y-auto">
+          <!-- Image Gallery Grid -->
+          <div class="p-6 bg-gray-50 dark:bg-slate-950/30">
+            <div
+              class="grid gap-4 w-full"
+              :class="[
+                getGridClass(displayImages.length),
+                displayImages.length === 1 ? 'h-64 md:h-80' : 'h-64 md:h-96'
+              ]"
+            >
+              <div
+                v-for="(img, idx) in displayImages"
+                :key="idx"
+                class="relative group overflow-hidden rounded-xl cursor-zoom-in bg-slate-200 dark:bg-slate-800"
+                @click="openLightbox(idx)"
+              >
+                <img
+                  :src="img"
+                  :alt="`${project.title} - Image ${idx + 1}`"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div
+                  class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center"
+                >
+                  <svg
+                    class="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Details Body -->
+          <div class="p-6 md:p-10 max-w-4xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-10">
+              <!-- Main Text -->
+              <div class="md:col-span-2 space-y-6">
+                <h3
+                  class="text-xl font-bold border-b border-gray-100 dark:border-slate-800 pb-2 text-slate-900 dark:text-white"
+                >
+                  À propos du projet
+                </h3>
+                <p
+                  class="text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line"
+                >
+                  {{ project.description }}
+                </p>
+
+                <template v-if="project.features && project.features.length > 0">
+                  <h4
+                    class="font-bold text-sm uppercase tracking-wide text-slate-400 mt-8"
+                  >
+                    Points clés
+                  </h4>
+                  <ul
+                    class="list-disc list-inside space-y-2 text-slate-600 dark:text-slate-300"
+                  >
+                    <li v-for="feat in project.features" :key="feat">
+                      {{ feat }}
+                    </li>
+                  </ul>
+                </template>
+              </div>
+
+              <!-- Sidebar Details -->
+              <div class="space-y-8">
+                <!-- Links -->
+                <div v-if="displayLinks.length > 0">
+                  <h4
+                    class="font-bold text-sm uppercase tracking-wide text-slate-400 mb-3"
+                  >
+                    Liens
+                  </h4>
+                  <div class="flex flex-col gap-3">
+                    <a
+                      v-for="link in displayLinks"
+                      :key="link.url"
+                      :href="link.url"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="flex items-center gap-2 text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 font-medium group transition-colors"
+                    >
+                      <svg
+                        class="w-4 h-4 flex-shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        ></path>
+                      </svg>
+                      {{ link.label }}
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Tech Stack -->
+                <div v-if="project.stack && project.stack.length > 0">
+                  <h4
+                    class="font-bold text-sm uppercase tracking-wide text-slate-400 mb-3"
+                  >
+                    Technologies
+                  </h4>
+                  <div class="flex flex-wrap gap-2">
+                    <span
+                      v-for="tech in project.stack"
+                      :key="tech"
+                      class="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs rounded-md border border-slate-200 dark:border-slate-700"
+                    >
+                      {{ tech }}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Status -->
+                <div>
+                  <h4
+                    class="font-bold text-sm uppercase tracking-wide text-slate-400 mb-3"
+                  >
+                    Statut
+                  </h4>
+                  <span
+                    class="inline-flex items-center gap-2 px-3 py-1.5 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 text-sm font-medium rounded-full"
+                  >
+                    <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                    {{ project.status }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </Transition>
+
+  <!-- Lightbox -->
+  <Teleport to="body">
+    <Transition name="modal">
+      <div
+        v-if="lightboxIndex !== null"
+        class="fixed inset-0 z-[60] bg-black flex items-center justify-center"
+      >
+        <button
+          @click="closeLightbox"
+          class="absolute top-4 right-4 text-white p-2 z-20 hover:bg-white/10 rounded-full transition"
+        >
+          <svg
+            class="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+        <div class="w-full h-full flex items-center justify-center relative">
+          <img
+            :src="project.images[lightboxIndex]"
+            :alt="`${project.title} - Image ${lightboxIndex + 1}`"
+            class="max-h-screen max-w-full object-contain p-4 md:p-10"
+          />
+
+          <!-- Navigation -->
+          <button
+            v-if="project.images.length > 1"
+            @click.stop="prevImage"
+            class="absolute left-4 text-white bg-black/50 p-2 rounded-full hover:bg-white/20 transition"
+          >
+            <svg
+              class="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"
+              ></path>
+            </svg>
+          </button>
+          <button
+            v-if="project.images.length > 1"
+            @click.stop="nextImage"
+            class="absolute right-4 text-white bg-black/50 p-2 rounded-full hover:bg-white/20 transition"
+          >
+            <svg
+              class="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              ></path>
+            </svg>
+          </button>
+
+          <!-- Image counter -->
+          <div
+            class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm font-mono"
+          >
+            {{ lightboxIndex + 1 }} / {{ project.images.length }}
+          </div>
+        </div>
+      </div>
+    </Transition>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
+import { ref, computed, onMounted, onUnmounted } from "vue";
+
+interface ProjectLink {
+  label: string;
+  url: string;
+}
+
 interface Project {
-  disabled: boolean;
+  id: string;
   hidden: boolean;
-  name: string;
+  title: string;
+  shortDesc: string;
   description: string;
-  button: string;
-  image: string;
-  lien: string;
+  images: string[];
+  stack: string[];
+  status: string;
+  category: string;
+  year: string;
+  links: ProjectLink[];
+  features?: string[];
 }
 
 const props = defineProps<{
@@ -64,15 +318,59 @@ const emit = defineEmits<{
   close: [];
 }>();
 
-const handleButtonClick = () => {
-  if (props.project?.lien) {
-    window.open(props.project.lien, "_blank");
-  }
+const lightboxIndex = ref<number | null>(null);
+
+// Limit to 4 images in the grid
+const displayImages = computed(() => {
+  return props.project.images.slice(0, 4);
+});
+
+// Limit to 3 links
+const displayLinks = computed(() => {
+  return props.project.links.slice(0, 3);
+});
+
+const getGridClass = (count: number): string => {
+  if (count === 1) return "grid-gallery-1";
+  if (count === 2) return "grid-gallery-2";
+  if (count === 3) return "grid-gallery-3";
+  return "grid-gallery-4";
+};
+
+const openLightbox = (index: number) => {
+  lightboxIndex.value = index;
+};
+
+const closeLightbox = () => {
+  lightboxIndex.value = null;
+};
+
+const nextImage = () => {
+  if (lightboxIndex.value === null) return;
+  lightboxIndex.value =
+    (lightboxIndex.value + 1) % props.project.images.length;
+};
+
+const prevImage = () => {
+  if (lightboxIndex.value === null) return;
+  lightboxIndex.value =
+    (lightboxIndex.value - 1 + props.project.images.length) %
+    props.project.images.length;
 };
 
 const handleKeydown = (event: KeyboardEvent) => {
   if (event.key === "Escape") {
-    emit("close");
+    if (lightboxIndex.value !== null) {
+      closeLightbox();
+    } else {
+      emit("close");
+    }
+  } else if (lightboxIndex.value !== null) {
+    if (event.key === "ArrowRight") {
+      nextImage();
+    } else if (event.key === "ArrowLeft") {
+      prevImage();
+    }
   }
 };
 
@@ -84,3 +382,20 @@ onUnmounted(() => {
   window.removeEventListener("keydown", handleKeydown);
 });
 </script>
+
+<style scoped>
+.modal-enter-active,
+.modal-leave-active {
+  transition: all 0.3s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-from > div:last-child,
+.modal-leave-to > div:last-child {
+  transform: scale(0.95);
+}
+</style>

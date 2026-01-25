@@ -1,106 +1,120 @@
 [
   {
-    "disabled": false,
+    "id": "#PRJ-001",
+    "hidden": false,
+    "title": "Présidence BDE MMI",
+    "shortDesc": "Fondateur du Bureau Des Étudiants en Métiers du Multimédia et de l'Internet à Troyes.",
+    "description": "J'ai fondé le Bureau Des Étudiants en Métiers du Multimédia et de l'Internet à Troyes en 2024.\n\nCette expérience m'a permis de développer mes compétences en gestion de projet, communication et travail d'équipe.",
+    "images": ["/images/bde.png"],
+    "stack": ["Gestion", "Communication", "Événementiel"],
+    "status": "En cours",
+    "category": "Association",
+    "year": "2024",
+    "links": [
+      { "label": "Site web", "url": "https://bde.mmi-troyes.fr/" }
+    ],
+    "features": [
+      "Organisation d'événements étudiants",
+      "Gestion d'une équipe de bénévoles",
+      "Communication et promotion"
+    ]
+  },
+  {
+    "id": "#PRJ-002",
+    "hidden": false,
+    "title": "Organisation Nuit Campus 3",
+    "shortDesc": "Responsable de la House Stage lors de la Nuit Campus 3 2025.",
+    "description": "Responsable de la House Stage lors de la Nuit Campus 3 2025, un festival étudiant regroupant plusieurs scènes musicales.\n\nJ'ai géré la programmation, la logistique et la coordination technique de la scène.",
+    "images": ["/images/nc3.jpg"],
+    "stack": ["Événementiel", "Logistique", "Son"],
+    "status": "Terminé",
+    "category": "Festival",
+    "year": "2025",
+    "links": [
+      { "label": "Site du festival", "url": "https://nc3.campus3.fr/" }
+    ],
+    "features": [
+      "Programmation artistique",
+      "Coordination technique",
+      "Gestion des artistes"
+    ]
+  },
+  {
+    "id": "#PRJ-003",
+    "hidden": false,
+    "title": "Serveur Auto Hébergé",
+    "shortDesc": "Un serveur sous Debian 12 CLI avec redondance des données.",
+    "description": "Un serveur personnel sous Debian 12 CLI, configuré avec une redondance des données (RAID) et hébergeant plusieurs services.\n\nCe projet m'a permis d'approfondir mes connaissances en administration système et DevOps.",
+    "images": ["/images/serveur.png"],
+    "stack": ["Debian", "Docker", "RAID", "Nginx"],
+    "status": "En production",
+    "category": "Infrastructure",
+    "year": "2024",
+    "links": [],
+    "features": [
+      "Configuration RAID pour la redondance",
+      "Conteneurisation avec Docker",
+      "Reverse proxy avec Nginx"
+    ]
+  },
+  {
+    "id": "#PRJ-004",
+    "hidden": false,
+    "title": "La SAÉ 105",
+    "shortDesc": "Un projet réalisé dans le cadre de mes études en Bachelor MMI.",
+    "description": "Un projet de site web réalisé dans le cadre de mes études en Bachelor Métiers du Multimédia et de l'Internet.\n\nCe projet a été l'occasion de mettre en pratique mes compétences en développement web et design.",
+    "images": ["/images/sae105.png"],
+    "stack": ["HTML", "CSS", "JavaScript"],
+    "status": "Terminé",
+    "category": "Web",
+    "year": "2023",
+    "links": [
+      { "label": "Voir le projet", "url": "https://mmi23a02.sae105.ovh/" }
+    ],
+    "features": [
+      "Design responsive",
+      "Intégration HTML/CSS",
+      "Interactivité JavaScript"
+    ]
+  },
+  {
+    "id": "#PRJ-005",
+    "hidden": false,
+    "title": "Results",
+    "shortDesc": "Un projet pour visualiser les différences dans les résultats électoraux.",
+    "description": "Un outil de visualisation des résultats électoraux permettant de comparer les différences entre les scrutins.\n\nL'interface intuitive permet d'explorer les données de manière interactive.",
+    "images": ["/images/results.png"],
+    "stack": ["Vue.js", "Tailwind", "API"],
+    "status": "En ligne",
+    "category": "Data Viz",
+    "year": "2024",
+    "links": [
+      { "label": "Voir le projet", "url": "https://results.beauget.fr/" }
+    ],
+    "features": [
+      "Visualisation de données",
+      "Interface interactive",
+      "Comparaison de scrutins"
+    ]
+  },
+  {
+    "id": "#PRJ-006",
     "hidden": true,
-    "name": "BledMarket",
-    "description": "Un moyen de stocker ses fichier sur Internet et les partager p...",
-    "button": "Cliquez ici c'est super !",
-    "image": "bledmarket.png",
-    "lien": "https://bledmarket.fr/",
-    "image1": "",
-    "image2": "",
-    "image3": "",
-    "image4": ""
-  },
-  {
-    "disabled": false,
-    "hidden": false,
-    "name": "Présidence BDE MMI",
-    "description": "J'ai fondé le Bureau Des Étudiants en Métiers du Multimédia et de l'Internet à Troyes en 2024.",
-    "button": "Site web de l'association",
-    "image": "bde.png",
-    "lien": "https://bde.mmi-troyes.fr/",
-    "image1": "",
-    "image2": "",
-    "image3": "",
-    "image4": ""
-  },
-  {
-    "disabled": false,
-    "hidden": false,
-    "name": "Organisation Nuit Campus 3",
-    "description": "Responsable de la House Stage lors de la Nuit Campus 3 2025",
-    "button": "Site web du festival",
-    "image": "nc3.jpg",
-    "lien": "https://nc3.campus3.fr/",
-    "image1": "",
-    "image2": "",
-    "image3": "",
-    "image4": ""
-  },
-  {
-    "disabled": true,
-    "hidden": false,
-    "name": "Serveur Auto Hébergé",
-    "description": "Un serveur sous Debian 12 CLI, redondance des données (RA...",
-    "button": "Rien à visualiser pour ce projet..",
-    "image": "serveur.png",
-    "lien": "https://google.fr/",
-    "image1": "",
-    "image2": "",
-    "image3": "",
-    "image4": ""
-  },
-  {
-    "disabled": false,
-    "hidden": false,
-    "name": "La SAÉ 105",
-    "description": "Un projet réalisé dans le cadre de mes études en Bachelor Un...",
-    "button": "Je suis un super projet !",
-    "image": "sae105.png",
-    "lien": "https://mmi23a02.sae105.ovh/",
-    "image1": "",
-    "image2": "",
-    "image3": "",
-    "image4": ""
-  },
-  {
-    "disabled": false,
-    "hidden": false,
-    "name": "Results",
-    "description": "Un projet pour visualiser les différences dans les résultats éle...",
-    "button": "Venez en voir plus !",
-    "image": "results.png",
-    "lien": "https://results.beauget.fr/",
-    "image1": "",
-    "image2": "",
-    "image3": "",
-    "image4": ""
-  },
-  {
-    "disabled": true,
-    "hidden": true,
-    "name": "Lorem ipsum",
-    "description": "Lorem ipsum dolor sit amet. Sit repellat ipsam in nostrum lab...",
-    "button": "Il faut cliquer là !",
-    "image": "lorem1.png",
-    "lien": "https://google.fr/",
-    "image1": "",
-    "image2": "",
-    "image3": "",
-    "image4": ""
-  },
-  {
-    "disabled": true,
-    "hidden": true,
-    "name": "Lorem ipsum",
-    "description": "Lorem ipsum dolor sit amet. Sit repellat ipsam in nostrum lab...",
-    "button": "Ce bouton est vraiment génial !",
-    "image": "lorem2.png",
-    "lien": "https://google.fr/",
-    "image1": "",
-    "image2": "",
-    "image3": "",
-    "image4": ""
+    "title": "BledMarket",
+    "shortDesc": "Un moyen de stocker ses fichiers sur Internet et les partager.",
+    "description": "Une plateforme de stockage et de partage de fichiers en ligne.\n\nCe projet personnel m'a permis d'explorer les problématiques de stockage cloud et de partage sécurisé.",
+    "images": ["/images/bledmarket.png"],
+    "stack": ["Node.js", "Express", "MongoDB"],
+    "status": "En développement",
+    "category": "SaaS",
+    "year": "2024",
+    "links": [
+      { "label": "Accéder", "url": "https://bledmarket.fr/" }
+    ],
+    "features": [
+      "Upload de fichiers",
+      "Partage sécurisé",
+      "Gestion des utilisateurs"
+    ]
   }
 ]

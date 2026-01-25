@@ -1,192 +1,658 @@
 <template>
-  <div class="relative">
-    <div
-      class="video-mask w-screen h-screen blur brightness-75 fixed"
-      ref="videoContainer"
-      :style="{ transform: `translateY(${parallaxOffset}px)` }"
+  <div
+    class="min-h-screen flex flex-col bg-gray-50 text-slate-800 dark:bg-dark-bg dark:text-slate-100 transition-colors duration-300 font-sans"
+  >
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 w-full z-40 border-b border-gray-200 dark:border-dark-border admin-glass transition-colors"
     >
-      <video
-        class="w-screen h-screen object-cover"
-        src="/bg-video.mp4"
-        muted
-        autoplay
-        loop
-      ></video>
-    </div>
-    <div class="absolute">
-      <div id="home_anchor" class="h-screen">
-        <div class="w-screen flex flex-row-reverse">
-          <Socials></Socials>
-        </div>
-        <div
-          class="flex flex-col items-center w-10/12 mx-auto mt-10 md:mt-6 xl:mt-2"
-        >
-          <h1
-            class="font-title uppercase w-full mb-4 text-5xl md:text-7xl xl:text-8xl"
-          >
-            Valentin BEAUGET
-          </h1>
-          <h2
-            class="font-title text-vlightblue w-full text-right text-4xl md:text-5xl xl:text-6xl mb-4 mix-blend-difference"
-          >
-            Fullstack Developer
-          </h2>
-          <p class="text-vgray w-full text-justify text-2xl">
-            Développeur autodidacte depuis mes 15 ans, j'ai intégré la formation
-            MMI à Troyes, en alternance chez Gravity Media.
-          </p>
-          <CircularTextLink link="#projects_anchor">
-            Par ici la suite • Par ici la suite •
-          </CircularTextLink>
-        </div>
-      </div>
-      <div id="projects_anchor"></div>
-      <ProjectModal
-        v-if="showProjectsModal"
-        :project="selectedProject"
-        @close="closeProjectsModal"
-      ></ProjectModal>
-      <div
-        class="p-6 md:p-7 xl:p-8 my-24 grid justify-items-center gap-7 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 max-w-screen-xl mx-auto border-vgray border-y-2 xl:border-2 bg-vblack"
-      >
-        <div
-          v-for="project in projects"
-          :key="project.name"
-          class="bg-vblack w-full max-w-md h-80 flex flex-col-reverse overflow-hidden border-2 border-white hover:-translate-x-2 hover:-translate-y-2 transition hover:shadow-vgray"
-          style="box-shadow: 15px 15px 0px -5px var(--tw-shadow-color)"
-        >
-          <div class="bg-vblack w-full flex flex-col-reverse px-6 py-5">
-            <button
-              v-if="!project.disabled"
-              @click="openProjectsModal(project)"
-              :class="[
-                'text-sm font-title border-2 border-white py-3 w-full mx-auto text-center',
-                'hover:bg-white hover:text-vblack transition-colors active:underline active:decoration-vlightblue active:transition-none',
-              ]"
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <div class="flex items-center gap-2">
+            <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+            <span class="font-mono font-bold text-lg tracking-tight"
+              >VB_DEV</span
             >
-              {{ project.button }}
-            </button>
-            <button
-              v-else
-              :class="[
-                'text-sm font-title border-2 border-white py-3 w-full mx-auto text-center',
-                'text-vgray cursor-not-allowed',
-              ]"
-            >
-              {{ project.button }}
-            </button>
-            <p
-              class="text-ellipsis overflow-hidden whitespace-nowrap w-full text-base text-vgray pt-1 pb-2"
-            >
-              {{ project.description }}
-            </p>
-            <h3 class="font-title text-vlightblue text-2xl">
-              {{ project.name }}
-            </h3>
           </div>
-          <img
-            class="flex-1 w-full object-cover h-4/6"
-            :src="`/images/${project.image}`"
-            :alt="project.name"
-          />
+
+          <div class="hidden md:flex items-center space-x-8 font-mono text-sm">
+            <a
+              href="#home"
+              class="hover:text-primary-600 dark:hover:text-primary-500 transition-colors"
+              >~/home</a
+            >
+            <a
+              href="#projects"
+              class="hover:text-primary-600 dark:hover:text-primary-500 transition-colors"
+              >./projects</a
+            >
+            <a
+              href="#skills"
+              class="hover:text-primary-600 dark:hover:text-primary-500 transition-colors"
+              >./skills</a
+            >
+            <a
+              href="#contact"
+              class="hover:text-primary-600 dark:hover:text-primary-500 transition-colors"
+              >./contact</a
+            >
+          </div>
+
+          <div class="flex items-center gap-4">
+            <!-- Theme Toggle -->
+            <button
+              @click="toggleTheme"
+              class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+              aria-label="Toggle theme"
+            >
+              <svg
+                v-if="isDark"
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="5" />
+                <path
+                  d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"
+                />
+              </svg>
+              <svg
+                v-else
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="min-h-screen pt-16 flex items-center justify-center relative overflow-hidden"
+    >
+      <!-- Background Decoration -->
       <div
-        class="mx-auto my-24 w-9/12 md:w-10/12 xl:w-11/12 max-w-screen-xl border-2 border-vgray bg-vblack flex flex-col md:flex-row"
+        class="absolute inset-0 z-0 opacity-10 dark:opacity-20 pointer-events-none"
       >
-        <div class="p-4 w-full">
-          <div>
+        <div
+          class="absolute top-20 left-10 w-64 h-64 bg-primary-500 rounded-full filter blur-[100px]"
+        ></div>
+        <div
+          class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500 rounded-full filter blur-[120px]"
+        ></div>
+        <!-- Grid lines -->
+        <div
+          class="absolute inset-0"
+          style="
+            background-image: radial-gradient(#64748b 1px, transparent 1px);
+            background-size: 40px 40px;
+          "
+        ></div>
+      </div>
+
+      <div
+        class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left w-full"
+      >
+        <div
+          class="flex flex-col sm:flex-row items-center justify-between gap-12"
+        >
+          <div class="flex-1 space-y-6">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs font-mono border border-primary-200 dark:border-primary-700/50"
+            >
+              <span class="w-2 h-2 rounded-full bg-primary-500"></span>
+              Disponible pour missions
+            </div>
+            <h1
+              class="text-5xl sm:text-7xl font-bold tracking-tight leading-tight"
+            >
+              Valentin BEAUGET<span class="text-primary-600">.</span>
+            </h1>
             <h2
-              class="font-title text-vlightblue text-3xl md:text-2xl xl:text-3xl text-center text-balance m-4"
+              class="text-xl sm:text-2xl text-slate-500 dark:text-slate-400 font-light"
             >
-              Pour me contacter ⬇️
+              Fullstack Developer
             </h2>
-            <div class="w-10/12 h-px bg-vgray mx-auto my-8"></div>
-            <form
-              @submit.prevent="handleSubmit"
-              class="w-full border-2 border-vgray mb-4"
+            <p
+              class="max-w-xl text-lg text-slate-600 dark:text-slate-300 leading-relaxed"
             >
-              <div class="flex">
-                <input
-                  v-model="formData.lastName"
-                  class="h-20 bg-vblack w-1/2 border-vgray border-r-2 px-7 flex items-center text-xl outline-none focus:underline decoration-vlightblue caret-vlightblue"
-                  type="text"
-                  placeholder="Nom"
-                  required
-                />
-                <input
-                  v-model="formData.firstName"
-                  class="h-20 bg-vblack w-1/2 px-7 flex items-center text-xl outline-none focus:underline decoration-vlightblue caret-vlightblue"
-                  type="text"
-                  placeholder="Prénom"
-                  required
-                />
-              </div>
+              Développeur autodidacte depuis mes 15 ans, j'ai intégré la
+              formation MMI à Troyes, en alternance chez Gravity Media.
+            </p>
+            <div
+              class="flex flex-wrap gap-4 pt-4 justify-center sm:justify-start"
+            >
+              <a
+                href="#projects"
+                class="px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium rounded-lg hover:bg-slate-700 dark:hover:bg-slate-200 transition shadow-lg shadow-primary-500/20"
+              >
+                Voir les projets
+              </a>
+              <a
+                href="#contact"
+                class="px-6 py-3 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-slate-800 transition"
+              >
+                Me contacter
+              </a>
+            </div>
+          </div>
 
-              <input
-                v-model="formData.email"
-                class="h-20 bg-vblack w-full px-7 flex items-center text-xl border-vgray border-y-2 invalid:text-vgray outline-none focus:underline decoration-vlightblue caret-vlightblue"
-                type="email"
-                placeholder="Adresse E-mail"
-                required
-              />
-              <textarea
-                v-model="formData.message"
-                class="bg-vblack w-full px-7 py-6 flex items-center text-xl h-fit min-h-72 max-h-96 resize-none overflow-y-auto outline-none focus:underline decoration-vlightblue caret-vlightblue"
-                @input="autoResize"
-                placeholder="Message..."
-                required
-              ></textarea>
-              <input
-                class="h-20 bg-vblack w-full border-vgray border-t-2 font-title text-2xl text-center hover:bg-white hover:text-vblack transition-colors hover:border-white hover:cursor-pointer active:underline active:decoration-vlightblue active:transition-none"
-                type="submit"
-                value="Envoyer"
-                :disabled="isSubmitting"
-              />
-            </form>
+          <!-- Abstract Visualization -->
+          <div class="flex-1 w-full max-w-md">
+            <div class="relative aspect-square">
+              <div
+                class="absolute inset-0 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-slate-700 p-6 flex flex-col gap-4 transform rotate-3 hover:rotate-0 transition-transform duration-500"
+              >
+                <!-- Fake Metrics -->
+                <div
+                  class="flex justify-between items-center border-b border-gray-100 dark:border-slate-700 pb-4"
+                >
+                  <div class="flex gap-2">
+                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                  </div>
+                  <span class="font-mono text-xs text-slate-400"
+                    >status: coding</span
+                  >
+                </div>
+                <div class="flex-1 flex gap-4">
+                  <div
+                    class="w-1/3 bg-gray-50 dark:bg-slate-900 rounded-xl flex flex-col justify-end p-2 relative overflow-hidden group"
+                  >
+                    <div
+                      class="absolute bottom-0 left-0 right-0 bg-primary-500/20 h-[70%] group-hover:h-[80%] transition-all duration-500"
+                    ></div>
+                    <span
+                      class="relative z-10 font-mono text-xs font-bold text-center"
+                      >FRONT</span
+                    >
+                  </div>
+                  <div
+                    class="w-1/3 bg-gray-50 dark:bg-slate-900 rounded-xl flex flex-col justify-end p-2 relative overflow-hidden group"
+                  >
+                    <div
+                      class="absolute bottom-0 left-0 right-0 bg-purple-500/20 h-[85%] group-hover:h-[90%] transition-all duration-500"
+                    ></div>
+                    <span
+                      class="relative z-10 font-mono text-xs font-bold text-center"
+                      >BACK</span
+                    >
+                  </div>
+                  <div
+                    class="w-1/3 bg-gray-50 dark:bg-slate-900 rounded-xl flex flex-col justify-end p-2 relative overflow-hidden group"
+                  >
+                    <div
+                      class="absolute bottom-0 left-0 right-0 bg-emerald-500/20 h-[60%] group-hover:h-[70%] transition-all duration-500"
+                    ></div>
+                    <span
+                      class="relative z-10 font-mono text-xs font-bold text-center"
+                      >DEVOPS</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="h-12 bg-gray-50 dark:bg-slate-900 rounded-lg flex items-center px-4 font-mono text-xs text-primary-500"
+                >
+                  > npm run dev
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <footer
-        class="border-t-2 border-vgray bg-vblack grid grid-cols-1 md:grid-cols-[450px_1fr]"
-      >
-        <div
-          class="flex flex-col items-center md:border-r-2 md:border-vgray pb-12"
-        >
-          <Socials></Socials>
-          <CircularTextLink link="#home_anchor" direction="up">
-            Revenir en haut • Accueil • Up •
-          </CircularTextLink>
+    </section>
+
+    <!-- Projects Section -->
+    <section
+      id="projects"
+      class="py-24 bg-white dark:bg-dark-bg transition-colors"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-12">
+          <h2 class="text-3xl font-bold mb-4">Dashboard Projets</h2>
+          <p class="text-slate-500 dark:text-slate-400 max-w-2xl">
+            Une sélection de mes projets récents, du développement web à la
+            gestion de projets.
+          </p>
         </div>
 
-        <div class="flex flex-col items-center justify-center pb-12">
-          <p
-            class="w-10/12 mx-auto my-10 text-xl text-center text-balance max-w-screen-md"
+        <!-- Admin Panel Container -->
+        <div
+          class="bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-sm flex flex-col md:flex-row h-auto md:h-[600px]"
+        >
+          <!-- Sidebar -->
+          <div
+            class="w-full md:w-64 bg-white dark:bg-slate-800 border-b md:border-b-0 md:border-r border-gray-200 dark:border-slate-700 flex flex-col"
           >
-            Hormis le formulaire de contact, ce site web ne récolte aucune
-            donnée personnelle.<br />Les cookies utilisés sont strictement
-            esthétique
-            <span class="text-nowrap">(ex: mémorisation du thème)</span> et ne
-            servent aucunement de traceur.
-          </p>
-          <a
-            href="https://github.com/valentinbgt/v.beauget.fr/"
-            target="_blank"
-            class="text-xl font-title border-2 border-vgray py-3 px-4 mt-4 text-center hover:bg-white hover:text-vblack transition-colors hover:border-white active:underline active:decoration-vlightblue active:transition-none"
-            >Code Source</a
-          >
+            <div class="p-4 border-b border-gray-200 dark:border-slate-700">
+              <span
+                class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider"
+                >Workspace</span
+              >
+              <div class="mt-2 flex items-center gap-2 font-medium">
+                <div
+                  class="w-5 h-5 rounded bg-primary-600 flex items-center justify-center text-white text-xs"
+                >
+                  V
+                </div>
+                Portfolio
+              </div>
+            </div>
+            <div
+              class="p-4 space-y-1 overflow-x-auto md:overflow-visible flex md:block gap-4 md:gap-0"
+            >
+              <div
+                class="flex items-center gap-3 px-3 py-2 bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 rounded-md text-sm font-medium cursor-pointer whitespace-nowrap"
+              >
+                <svg
+                  class="w-4 h-4 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                  ></path>
+                </svg>
+                Tous les projets
+              </div>
+              <div
+                class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700/50 rounded-md text-sm cursor-not-allowed opacity-60 whitespace-nowrap"
+              >
+                <svg
+                  class="w-4 h-4 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                Récents
+              </div>
+              <div
+                class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700/50 rounded-md text-sm cursor-not-allowed opacity-60 whitespace-nowrap"
+              >
+                <svg
+                  class="w-4 h-4 flex-shrink-0"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+                  ></path>
+                </svg>
+                Archivés
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Content Area -->
+          <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Top Bar -->
+            <div
+              class="h-14 border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-between px-6"
+            >
+              <div class="flex items-center gap-2 text-sm text-slate-500">
+                <span>Projects</span>
+                <span class="text-gray-300">/</span>
+                <span class="text-slate-900 dark:text-slate-100 font-medium"
+                  >Production</span
+                >
+              </div>
+              <div class="flex gap-2">
+                <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                <span class="text-xs font-mono text-slate-500"
+                  >System Online</span
+                >
+              </div>
+            </div>
+
+            <!-- Scrollable Grid -->
+            <div
+              class="flex-1 overflow-y-auto p-6 bg-gray-50 dark:bg-slate-900/50"
+            >
+              <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                <!-- Project Card -->
+                <article
+                  v-for="project in visibleProjects"
+                  :key="project.id"
+                  @click="openProject(project)"
+                  class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 overflow-hidden cursor-pointer hover:shadow-xl hover:border-primary-400 dark:hover:border-primary-500 transition-all duration-300 flex flex-col"
+                >
+                  <!-- Header Image -->
+                  <div class="relative h-48 overflow-hidden bg-slate-200">
+                    <img
+                      :src="project.images[0]"
+                      :alt="project.title"
+                      class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div
+                      class="absolute top-2 right-2 bg-black/70 backdrop-blur-md text-white text-[10px] font-mono px-2 py-1 rounded"
+                    >
+                      {{ project.id }}
+                    </div>
+                  </div>
+
+                  <!-- Content -->
+                  <div class="p-4 flex flex-col flex-1">
+                    <div class="flex justify-between items-start mb-2">
+                      <h3
+                        class="font-bold text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors"
+                      >
+                        {{ project.title }}
+                      </h3>
+                      <span
+                        class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
+                      >
+                        {{ project.status }}
+                      </span>
+                    </div>
+                    <p
+                      class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4 flex-1"
+                    >
+                      {{ project.shortDesc }}
+                    </p>
+                    <div
+                      class="flex items-center gap-2 pt-3 border-t border-gray-100 dark:border-slate-700"
+                    >
+                      <span
+                        v-for="tech in project.stack.slice(0, 3)"
+                        :key="tech"
+                        class="text-[10px] font-mono text-slate-400 bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded"
+                      >
+                        {{ tech }}
+                      </span>
+                      <span
+                        v-if="project.stack.length > 3"
+                        class="text-[10px] text-slate-400"
+                        >+{{ project.stack.length - 3 }}</span
+                      >
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
         </div>
-      </footer>
-    </div>
+      </div>
+    </section>
+
+    <!-- Project Modal -->
+    <ProjectModal
+      v-if="selectedProject"
+      :project="selectedProject"
+      @close="closeProject"
+    />
+
+    <!-- Skills Section -->
+    <section
+      id="skills"
+      class="py-24 bg-gray-50 dark:bg-slate-900/50 relative overflow-hidden"
+    >
+      <!-- Decorative background text -->
+      <div
+        class="absolute right-0 bottom-0 text-[10rem] font-bold text-gray-200 dark:text-slate-800 opacity-20 pointer-events-none select-none"
+      >
+        STACK
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <h2 class="text-3xl font-bold mb-12">Compétences Techniques</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <!-- Frontend Panel -->
+          <div
+            class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-slate-700"
+          >
+            <div class="flex items-center gap-3 mb-6">
+              <div
+                class="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg text-blue-600 dark:text-blue-400"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="font-bold text-lg">Frontend Development</h3>
+            </div>
+            <div class="space-y-4">
+              <div v-for="skill in skills.frontend" :key="skill.name" class="group">
+                <div class="flex justify-between text-sm mb-1">
+                  <span class="font-mono font-medium">{{ skill.name }}</span>
+                  <span
+                    class="text-xs text-slate-400 group-hover:text-primary-500 transition-colors"
+                    >{{ skill.version }}</span
+                  >
+                </div>
+                <div
+                  class="h-2 w-full bg-gray-100 dark:bg-slate-700 rounded-full overflow-hidden"
+                >
+                  <div
+                    class="h-full rounded-full transition-all duration-1000 ease-out"
+                    :class="skill.color"
+                    :style="{ width: skill.level + '%' }"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Backend Panel -->
+          <div
+            class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-slate-700"
+          >
+            <div class="flex items-center gap-3 mb-6">
+              <div
+                class="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg text-purple-600 dark:text-purple-400"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="font-bold text-lg">Backend & DevOps</h3>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <div
+                v-for="skill in skills.backend"
+                :key="skill.name"
+                class="px-4 py-3 rounded-lg border border-gray-100 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 flex items-center gap-2 hover:-translate-y-1 transition-transform duration-300"
+              >
+                <div class="w-2 h-2 rounded-full" :class="skill.color"></div>
+                <span class="font-mono text-sm">{{ skill.name }}</span>
+              </div>
+            </div>
+
+            <!-- Soft Skills Badge -->
+            <div
+              class="mt-8 p-4 bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-900/10 dark:to-amber-900/10 rounded-xl border border-orange-100 dark:border-orange-900/30"
+            >
+              <h4
+                class="font-bold text-orange-800 dark:text-orange-400 text-sm uppercase mb-2"
+              >
+                Soft Skills
+              </h4>
+              <div class="flex gap-2 flex-wrap">
+                <span
+                  class="text-xs px-2 py-1 bg-white dark:bg-slate-800 rounded text-slate-600 dark:text-slate-300 shadow-sm"
+                  >Gestion de projet</span
+                >
+                <span
+                  class="text-xs px-2 py-1 bg-white dark:bg-slate-800 rounded text-slate-600 dark:text-slate-300 shadow-sm"
+                  >Travail d'équipe</span
+                >
+                <span
+                  class="text-xs px-2 py-1 bg-white dark:bg-slate-800 rounded text-slate-600 dark:text-slate-300 shadow-sm"
+                  >Communication</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-white dark:bg-dark-bg">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-bold mb-8">Démarrons un projet</h2>
+
+        <form
+          @submit.prevent="handleSubmit"
+          class="text-left bg-gray-50 dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-800"
+        >
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label
+                class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                >Nom</label
+              >
+              <input
+                v-model="formData.lastName"
+                type="text"
+                required
+                class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition text-slate-900 dark:text-slate-100"
+              />
+            </div>
+            <div>
+              <label
+                class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                >Prénom</label
+              >
+              <input
+                v-model="formData.firstName"
+                type="text"
+                required
+                class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition text-slate-900 dark:text-slate-100"
+              />
+            </div>
+          </div>
+          <div class="mb-6">
+            <label
+              class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+              >Email</label
+            >
+            <input
+              v-model="formData.email"
+              type="email"
+              required
+              class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition text-slate-900 dark:text-slate-100"
+            />
+          </div>
+          <div class="mb-6">
+            <label
+              class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+              >Message</label
+            >
+            <textarea
+              v-model="formData.message"
+              rows="4"
+              required
+              class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition resize-none text-slate-900 dark:text-slate-100"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            :disabled="isSubmitting"
+            class="w-full py-4 bg-slate-900 dark:bg-primary-600 text-white font-bold rounded-lg hover:bg-slate-800 dark:hover:bg-primary-700 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {{ isSubmitting ? 'Envoi en cours...' : 'Envoyer le message' }}
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="py-8 text-center border-t border-gray-100 dark:border-slate-800 text-slate-400 text-sm font-mono"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p>&copy; {{ new Date().getFullYear() }} Valentin BEAUGET. Made with Nuxt & Tailwind.</p>
+          <div class="flex items-center gap-4">
+            <a
+              href="https://github.com/valentinbgt"
+              target="_blank"
+              class="hover:text-primary-500 transition-colors"
+              >GitHub</a
+            >
+            <a
+              href="https://linkedin.com/in/valentin-beauget"
+              target="_blank"
+              class="hover:text-primary-500 transition-colors"
+              >LinkedIn</a
+            >
+            <a
+              href="https://github.com/valentinbgt/v.beauget.fr/"
+              target="_blank"
+              class="hover:text-primary-500 transition-colors"
+              >Source</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Notification -->
     <Transition name="fade">
       <div
         v-if="notification.show"
         :class="[
-          'fixed top-8 right-8 z-50 p-4 border-2 font-title text-xl',
+          'fixed top-24 right-8 z-50 p-4 rounded-lg shadow-lg font-medium',
           'backdrop-blur-md transition-all duration-300',
           notification.type === 'success'
-            ? 'border-vlightblue bg-vblack/80'
-            : 'border-red-500 bg-vblack/80',
+            ? 'bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-200 border border-green-200 dark:border-green-800'
+            : 'bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-200 border border-red-200 dark:border-red-800',
         ]"
       >
         {{ notification.message }}
@@ -195,154 +661,147 @@
   </div>
 </template>
 
-<script>
-import { ref, onMounted, reactive, computed, onUnmounted } from "vue";
+<script setup>
+import { ref, reactive, computed, onMounted, onUnmounted } from "vue";
 import projectsData from "~/assets/data/projects.json";
 
-export default {
-  setup() {
-    const projects = ref(projectsData);
-    const isSubmitting = ref(false);
-    const formData = reactive({
-      firstName: "",
-      lastName: "",
-      email: "",
-      message: "",
-    });
-    const notification = ref({
-      show: false,
-      message: "",
-      type: "success",
-    });
+// Theme
+const isDark = ref(false);
 
-    const parallaxOffset = ref(0);
-    const videoContainer = ref(null);
-
-    const visibleProjects = computed(() => {
-      return projects.value.filter((project) => !project.hidden);
-    });
-
-    const selectedProject = ref(null);
-    const showProjectsModal = ref(false);
-
-    const autoResize = (e) => {
-      e.target.style.height = "";
-      e.target.style.height = e.target.scrollHeight + "px";
-    };
-
-    const config = useRuntimeConfig();
-
-    const handleSubmit = async () => {
-      try {
-        isSubmitting.value = true;
-
-        const response = await fetch(config.public.formUrl, {
-          method: "POST",
-          body: JSON.stringify(formData),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to send message");
-        }
-
-        formData.firstName = "";
-        formData.lastName = "";
-        formData.email = "";
-        formData.message = "";
-
-        notification.value = {
-          show: true,
-          message: "Message envoyé avec succès !",
-          type: "success",
-        };
-      } catch (error) {
-        console.error("Error saving message:", error);
-        notification.value = {
-          show: true,
-          message: "Une erreur est survenue lors de l'envoi du message.",
-          type: "error",
-        };
-      } finally {
-        isSubmitting.value = false;
-        setTimeout(() => {
-          notification.value.show = false;
-        }, 10000);
-      }
-    };
-
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      parallaxOffset.value = scrollPosition * -0.5; // parallax intensity
-    };
-
-    onMounted(async () => {
-      window.addEventListener("scroll", handleScroll);
-    });
-
-    onUnmounted(() => {
-      window.removeEventListener("scroll", handleScroll);
-    });
-
-    const openProjectsModal = (project) => {
-      selectedProject.value = project;
-      showProjectsModal.value = true;
-    };
-
-    const closeProjectsModal = () => {
-      showProjectsModal.value = false;
-      selectedProject.value = null;
-    };
-
-    return {
-      projects: visibleProjects,
-      isSubmitting,
-      formData,
-      handleSubmit,
-      autoResize,
-      notification,
-      parallaxOffset,
-      videoContainer,
-      selectedProject,
-      showProjectsModal,
-      openProjectsModal,
-      closeProjectsModal,
-    };
-  },
+const toggleTheme = () => {
+  isDark.value = !isDark.value;
+  if (isDark.value) {
+    document.documentElement.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+    localStorage.setItem("theme", "light");
+  }
 };
+
+// Initialize theme
+onMounted(() => {
+  if (
+    localStorage.getItem("theme") === "dark" ||
+    (!localStorage.getItem("theme") &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    isDark.value = true;
+    document.documentElement.classList.add("dark");
+  }
+});
+
+// Projects
+const projects = ref(projectsData);
+const selectedProject = ref(null);
+
+const visibleProjects = computed(() => {
+  return projects.value.filter((project) => !project.hidden);
+});
+
+const openProject = (project) => {
+  selectedProject.value = project;
+  document.body.style.overflow = "hidden";
+};
+
+const closeProject = () => {
+  selectedProject.value = null;
+  document.body.style.overflow = "auto";
+};
+
+// Skills
+const skills = {
+  frontend: [
+    { name: "Vue.js / Nuxt", version: "v3", level: 90, color: "bg-green-500" },
+    { name: "TypeScript", version: "v5", level: 85, color: "bg-blue-500" },
+    { name: "Tailwind CSS", version: "v3", level: 95, color: "bg-cyan-500" },
+    { name: "React", version: "v18", level: 70, color: "bg-blue-400" },
+  ],
+  backend: [
+    { name: "Node.js", color: "bg-green-500" },
+    { name: "Express", color: "bg-gray-500" },
+    { name: "PostgreSQL", color: "bg-blue-600" },
+    { name: "Docker", color: "bg-blue-500" },
+    { name: "Linux", color: "bg-orange-500" },
+    { name: "Git", color: "bg-red-500" },
+  ],
+};
+
+// Contact Form
+const config = useRuntimeConfig();
+const isSubmitting = ref(false);
+const formData = reactive({
+  firstName: "",
+  lastName: "",
+  email: "",
+  message: "",
+});
+const notification = ref({
+  show: false,
+  message: "",
+  type: "success",
+});
+
+const handleSubmit = async () => {
+  try {
+    isSubmitting.value = true;
+
+    const response = await fetch(config.public.formUrl, {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to send message");
+    }
+
+    formData.firstName = "";
+    formData.lastName = "";
+    formData.email = "";
+    formData.message = "";
+
+    notification.value = {
+      show: true,
+      message: "Message envoyé avec succès !",
+      type: "success",
+    };
+  } catch (error) {
+    console.error("Error saving message:", error);
+    notification.value = {
+      show: true,
+      message: "Une erreur est survenue lors de l'envoi du message.",
+      type: "error",
+    };
+  } finally {
+    isSubmitting.value = false;
+    setTimeout(() => {
+      notification.value.show = false;
+    }, 5000);
+  }
+};
+
+// Keyboard navigation for modal
+const handleKeydown = (event) => {
+  if (event.key === "Escape" && selectedProject.value) {
+    closeProject();
+  }
+};
+
+onMounted(() => {
+  window.addEventListener("keydown", handleKeydown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("keydown", handleKeydown);
+});
 </script>
 
 <style>
-/* reset */
-* {
-  @apply p-0 m-0 box-border text-vwhite font-text scroll-smooth select-none;
-}
-
 html {
   scroll-behavior: smooth;
-}
-
-body {
-  @apply bg-vblack overflow-x-hidden;
-}
-
-.video-mask {
-  -webkit-mask-image: url("/vmask.png");
-  mask-image: url("/vmask.png");
-  mask-repeat: no-repeat;
-  mask-size: cover;
-  mask-position: center;
-}
-
-.social-icon:hover {
-  filter: drop-shadow(0px 3px 0px white);
-  @apply transition;
-}
-.social-icon:active {
-  transform: translateY(3px);
-  filter: drop-shadow(0px 0px 0px white);
 }
 
 .fade-enter-active,
@@ -354,5 +813,12 @@ body {
 .fade-leave-to {
   opacity: 0;
   transform: translateX(30px);
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 </style>
