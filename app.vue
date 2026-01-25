@@ -419,7 +419,7 @@
     <!-- Skills Section -->
     <section
       id="skills"
-      class="relative bg-gray-50 dark:bg-slate-900/50 overflow-hidden min-h-[200px] sm:min-h-[300px] md:min-h-[400px]"
+      class="relative bg-gray-50 dark:bg-slate-900/50 overflow-hidden min-h-[400px]"
     >
       <!-- Decorative background text -->
       <div
