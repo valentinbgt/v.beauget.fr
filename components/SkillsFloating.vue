@@ -181,14 +181,17 @@ const initPhysics = () => {
       skill.width = el.offsetWidth;
       skill.height = el.offsetHeight;
 
+      // Vitesse de base individuelle avec variation (80% à 120% de la baseSpeed)
+      skill.baseSpeed = CONFIG.baseSpeed * (0.8 + Math.random() * 0.4);
+
       // Position aléatoire (en évitant de toucher les bords au spawn)
       skill.x = Math.random() * (containerBounds.width - skill.width);
       skill.y = Math.random() * (containerBounds.height - skill.height);
 
       // Direction aléatoire
       const angle = Math.random() * Math.PI * 2;
-      skill.vx = Math.cos(angle) * CONFIG.baseSpeed;
-      skill.vy = Math.sin(angle) * CONFIG.baseSpeed;
+      skill.vx = Math.cos(angle) * skill.baseSpeed;
+      skill.vy = Math.sin(angle) * skill.baseSpeed;
     }
   });
 };
@@ -214,10 +217,10 @@ const update = () => {
 
     // 2. Application de la friction (pour revenir doucement à une vitesse normale après un boost)
     const speed = Math.sqrt(skill.vx * skill.vx + skill.vy * skill.vy);
-    if (speed > CONFIG.baseSpeed) {
+    if (speed > skill.baseSpeed) {
       skill.vx *= CONFIG.friction;
       skill.vy *= CONFIG.friction;
-    } else if (speed < CONFIG.baseSpeed * 0.5) {
+    } else if (speed < skill.baseSpeed * 0.5) {
       // Relance un peu si ça s'arrête
       skill.vx *= 1.01;
       skill.vy *= 1.01;
