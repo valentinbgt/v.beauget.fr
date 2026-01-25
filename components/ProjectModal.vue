@@ -399,18 +399,16 @@ const slideDirection = ref<"slide-left" | "slide-right">("slide-left");
 // Current project
 const currentProject = computed(() => props.projects[currentIndex.value]);
 
-// Previous project (circular)
+// Previous project
 const prevProject = computed(() => {
-  if (props.projects.length <= 1) return null;
-  const prevIdx = (currentIndex.value - 1 + props.projects.length) % props.projects.length;
-  return props.projects[prevIdx];
+  if (currentIndex.value <= 0) return null;
+  return props.projects[currentIndex.value - 1];
 });
 
-// Next project (circular)
+// Next project
 const nextProject = computed(() => {
-  if (props.projects.length <= 1) return null;
-  const nextIdx = (currentIndex.value + 1) % props.projects.length;
-  return props.projects[nextIdx];
+  if (currentIndex.value >= props.projects.length - 1) return null;
+  return props.projects[currentIndex.value + 1];
 });
 
 // Limit to 4 images in the grid
@@ -434,14 +432,14 @@ const getGridClass = (count: number): string => {
 const goToNext = () => {
   if (!nextProject.value) return;
   slideDirection.value = "slide-left";
-  currentIndex.value = (currentIndex.value + 1) % props.projects.length;
+  currentIndex.value++;
   emit("update:index", currentIndex.value);
 };
 
 const goToPrev = () => {
   if (!prevProject.value) return;
   slideDirection.value = "slide-right";
-  currentIndex.value = (currentIndex.value - 1 + props.projects.length) % props.projects.length;
+  currentIndex.value--;
   emit("update:index", currentIndex.value);
 };
 
