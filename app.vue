@@ -409,9 +409,11 @@
 
     <!-- Project Modal -->
     <ProjectModal
-      v-if="selectedProject"
-      :project="selectedProject"
+      v-if="isModalOpen"
+      :projects="visibleProjects"
+      :initial-index="selectedProjectIndex"
       @close="closeProject"
+      @update:index="updateProjectIndex"
     />
 
     <!-- Skills Section -->
@@ -700,20 +702,27 @@ onMounted(() => {
 
 // Projects
 const projects = ref(projectsData);
-const selectedProject = ref(null);
+const selectedProjectIndex = ref(null);
 
 const visibleProjects = computed(() => {
   return projects.value.filter((project) => !project.hidden);
 });
 
+const isModalOpen = computed(() => selectedProjectIndex.value !== null);
+
 const openProject = (project) => {
-  selectedProject.value = project;
+  const index = visibleProjects.value.findIndex((p) => p.id === project.id);
+  selectedProjectIndex.value = index >= 0 ? index : 0;
   document.body.style.overflow = "hidden";
 };
 
 const closeProject = () => {
-  selectedProject.value = null;
+  selectedProjectIndex.value = null;
   document.body.style.overflow = "auto";
+};
+
+const updateProjectIndex = (index) => {
+  selectedProjectIndex.value = index;
 };
 
 // Skills
@@ -792,7 +801,7 @@ const handleSubmit = async () => {
 
 // Keyboard navigation for modal
 const handleKeydown = (event) => {
-  if (event.key === "Escape" && selectedProject.value) {
+  if (event.key === "Escape" && isModalOpen.value) {
     closeProject();
   }
 };
