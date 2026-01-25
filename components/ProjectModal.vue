@@ -344,27 +344,36 @@ const prevImage = () => {
 };
 
 const handleKeydown = (event: KeyboardEvent) => {
-  if (event.key === "Escape") {
-    if (lightboxIndex.value !== null) {
+  // Si le lightbox est ouvert, on gère les touches pour le lightbox
+  if (lightboxIndex.value !== null) {
+    if (event.key === "Escape") {
+      event.stopPropagation();
+      event.preventDefault();
       closeLightbox();
-    } else {
-      emit("close");
-    }
-  } else if (lightboxIndex.value !== null) {
-    if (event.key === "ArrowRight") {
+      return;
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
       nextImage();
+      return;
     } else if (event.key === "ArrowLeft") {
+      event.preventDefault();
       prevImage();
+      return;
     }
+  }
+  
+  // Si le lightbox n'est pas ouvert, on gère Échap pour fermer la modal
+  if (event.key === "Escape") {
+    emit("close");
   }
 };
 
 onMounted(() => {
-  window.addEventListener("keydown", handleKeydown);
+  window.addEventListener("keydown", handleKeydown, true);
 });
 
 onUnmounted(() => {
-  window.removeEventListener("keydown", handleKeydown);
+  window.removeEventListener("keydown", handleKeydown, true);
 });
 </script>
 
