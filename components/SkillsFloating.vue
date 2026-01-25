@@ -196,69 +196,105 @@ const initPhysics = () => {
   });
 };
 
-// La boucle physique (exécutée à chaque frame, ~60fps)
 const update = () => {
   const { width, height } = containerBounds;
+  const minAngleRad = 2 * (Math.PI / 180); // 2 degrés
 
   skills.value.forEach((skill, i) => {
-    // 1. Calcul de la répulsion souris (Vecteurs)
+    // --- 1. Répulsion Souris ---
     const dx = skill.x + skill.width / 2 - mousePos.value.x;
     const dy = skill.y + skill.height / 2 - mousePos.value.y;
     const dist = Math.sqrt(dx * dx + dy * dy);
+    let isAffectedByMouse = false;
 
     if (dist < CONFIG.mouseRadius) {
-      const force = (CONFIG.mouseRadius - dist) / CONFIG.mouseRadius; // 0 à 1
+      isAffectedByMouse = true;
+      const force = (CONFIG.mouseRadius - dist) / CONFIG.mouseRadius;
       const angle = Math.atan2(dy, dx);
 
-      // On ajoute une force à la vélocité actuelle (C'est ça qui donne le "boost")
+      // On ajoute la force
       skill.vx += Math.cos(angle) * force * CONFIG.mouseRepulsion;
       skill.vy += Math.sin(angle) * force * CONFIG.mouseRepulsion;
     }
 
-    // 2. Application de la friction (pour revenir doucement à une vitesse normale après un boost)
-    const speed = Math.sqrt(skill.vx * skill.vx + skill.vy * skill.vy);
-    if (speed > skill.baseSpeed) {
+    // --- 2. Calcul de la vitesse actuelle ---
+    let currentSpeed = Math.sqrt(skill.vx * skill.vx + skill.vy * skill.vy);
+
+    // --- 3. Friction (Ralentissement) ---
+    // Si on va plus vite que la vitesse de base, on freine
+    if (currentSpeed > skill.baseSpeed) {
+      // Astuce : On applique la friction directement
       skill.vx *= CONFIG.friction;
       skill.vy *= CONFIG.friction;
-    } else if (speed < skill.baseSpeed * 0.5) {
-      // Relance un peu si ça s'arrête
-      skill.vx *= 1.01;
-      skill.vy *= 1.01;
+
+      // IMPORTANT : On met à jour currentSpeed pour la suite des calculs
+      currentSpeed *= CONFIG.friction;
+    }
+    // Si on est trop lent (cas rare), on relance un peu
+    else if (currentSpeed < skill.baseSpeed * 0.5) {
+      skill.vx *= 1.02;
+      skill.vy *= 1.02;
+      currentSpeed *= 1.02;
     }
 
-    // Cap la vitesse max pour éviter que ça ne parte dans l'hyperespace
-    if (speed > CONFIG.maxSpeed) {
-      skill.vx = (skill.vx / speed) * CONFIG.maxSpeed;
-      skill.vy = (skill.vy / speed) * CONFIG.maxSpeed;
+    // --- 4. Plafond Vitesse Max ---
+    if (currentSpeed > CONFIG.maxSpeed) {
+      skill.vx = (skill.vx / currentSpeed) * CONFIG.maxSpeed;
+      skill.vy = (skill.vy / currentSpeed) * CONFIG.maxSpeed;
+      currentSpeed = CONFIG.maxSpeed; // Mise à jour forcée
     }
 
-    // 3. Mise à jour position
+    // --- 5. Correction d'Angle (Anti-blocage) ---
+    // On utilise 'currentSpeed' qui est maintenant à jour (après friction)
+    if (!isAffectedByMouse && currentSpeed > 0.1) {
+      const minComponent = currentSpeed * Math.sin(minAngleRad);
+
+      // Correction Axe X (Trop horizontal)
+      if (Math.abs(skill.vy) < minComponent) {
+        const signVy = skill.vy >= 0 ? 1 : -1;
+        // On force un vy minimum
+        skill.vy = signVy * minComponent;
+
+        // On recalcule vx pour que la vitesse totale reste exactement 'currentSpeed'
+        // vx = sqrt(speed^2 - vy^2) * signe_original
+        const signVx = skill.vx >= 0 ? 1 : -1;
+        const remainingSq = currentSpeed * currentSpeed - skill.vy * skill.vy;
+        skill.vx = signVx * Math.sqrt(Math.max(0, remainingSq));
+      }
+
+      // Correction Axe Y (Trop vertical)
+      else if (Math.abs(skill.vx) < minComponent) {
+        const signVx = skill.vx >= 0 ? 1 : -1;
+        skill.vx = signVx * minComponent;
+
+        const signVy = skill.vy >= 0 ? 1 : -1;
+        const remainingSq = currentSpeed * currentSpeed - skill.vx * skill.vx;
+        skill.vy = signVy * Math.sqrt(Math.max(0, remainingSq));
+      }
+    }
+
+    // --- 6. Mouvement ---
     skill.x += skill.vx;
     skill.y += skill.vy;
 
-    // 4. Gestion des collisions (Murs)
-    // Droite
+    // --- 7. Collisions Murs ---
     if (skill.x + skill.width >= width) {
       skill.x = width - skill.width;
       skill.vx *= -1;
-    }
-    // Gauche
-    else if (skill.x <= 0) {
+    } else if (skill.x <= 0) {
       skill.x = 0;
       skill.vx *= -1;
     }
-    // Bas
+
     if (skill.y + skill.height >= height) {
       skill.y = height - skill.height;
       skill.vy *= -1;
-    }
-    // Haut
-    else if (skill.y <= 0) {
+    } else if (skill.y <= 0) {
       skill.y = 0;
       skill.vy *= -1;
     }
 
-    // 5. Rendu visuel optimisé via GSAP quickSetter
+    // --- 8. Rendu ---
     if (skillSetters[i]) {
       skillSetters[i]({ x: skill.x, y: skill.y });
     }
