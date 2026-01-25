@@ -419,130 +419,27 @@
     <!-- Skills Section -->
     <section
       id="skills"
-      class="py-24 bg-gray-50 dark:bg-slate-900/50 relative overflow-hidden"
+      class="relative bg-gray-50 dark:bg-slate-900/50 overflow-hidden min-h-[200px] sm:min-h-[300px] md:min-h-[400px]"
     >
       <!-- Decorative background text -->
       <div
-        class="absolute right-0 bottom-0 text-[10rem] font-bold text-gray-200 dark:text-slate-800 opacity-20 pointer-events-none select-none"
+        class="absolute right-0 bottom-0 text-[10rem] font-bold text-gray-200 dark:text-slate-800 opacity-20 pointer-events-none select-none z-0"
       >
         STACK
       </div>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <h2 class="text-3xl font-bold mb-12">Compétences Techniques</h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <!-- Frontend Panel -->
-          <div
-            class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-slate-700"
-          >
-            <div class="flex items-center gap-3 mb-6">
-              <div
-                class="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg text-blue-600 dark:text-blue-400"
-              >
-                <svg
-                  class="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                  ></path>
-                </svg>
-              </div>
-              <h3 class="font-bold text-lg">Frontend Development</h3>
-            </div>
-            <div class="space-y-4">
-              <div
-                v-for="skill in skills.frontend"
-                :key="skill.name"
-                class="group"
-              >
-                <div class="flex justify-between text-sm mb-1">
-                  <span class="font-mono font-medium">{{ skill.name }}</span>
-                  <span
-                    class="text-xs text-slate-400 group-hover:text-primary-500 transition-colors"
-                    >{{ skill.version }}</span
-                  >
-                </div>
-                <div
-                  class="h-2 w-full bg-gray-100 dark:bg-slate-700 rounded-full overflow-hidden"
-                >
-                  <div
-                    class="h-full rounded-full transition-all duration-1000 ease-out"
-                    :class="skill.color"
-                    :style="{ width: skill.level + '%' }"
-                  ></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Backend Panel -->
-          <div
-            class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-slate-700"
-          >
-            <div class="flex items-center gap-3 mb-6">
-              <div
-                class="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg text-purple-600 dark:text-purple-400"
-              >
-                <svg
-                  class="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                  ></path>
-                </svg>
-              </div>
-              <h3 class="font-bold text-lg">Backend & DevOps</h3>
-            </div>
-            <div class="flex flex-wrap gap-3">
-              <div
-                v-for="skill in skills.backend"
-                :key="skill.name"
-                class="px-4 py-3 rounded-lg border border-gray-100 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 flex items-center gap-2 hover:-translate-y-1 transition-transform duration-300"
-              >
-                <div class="w-2 h-2 rounded-full" :class="skill.color"></div>
-                <span class="font-mono text-sm">{{ skill.name }}</span>
-              </div>
-            </div>
-
-            <!-- Soft Skills Badge -->
-            <div
-              class="mt-8 p-4 bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-900/10 dark:to-amber-900/10 rounded-xl border border-orange-100 dark:border-orange-900/30"
-            >
-              <h4
-                class="font-bold text-orange-800 dark:text-orange-400 text-sm uppercase mb-2"
-              >
-                Soft Skills
-              </h4>
-              <div class="flex gap-2 flex-wrap">
-                <span
-                  class="text-xs px-2 py-1 bg-white dark:bg-slate-800 rounded text-slate-600 dark:text-slate-300 shadow-sm"
-                  >Gestion de projet</span
-                >
-                <span
-                  class="text-xs px-2 py-1 bg-white dark:bg-slate-800 rounded text-slate-600 dark:text-slate-300 shadow-sm"
-                  >Travail d'équipe</span
-                >
-                <span
-                  class="text-xs px-2 py-1 bg-white dark:bg-slate-800 rounded text-slate-600 dark:text-slate-300 shadow-sm"
-                  >Communication</span
-                >
-              </div>
-            </div>
-          </div>
+      <!-- Titre positionné au-dessus -->
+      <div class="absolute top-8 left-0 right-0 z-20 pointer-events-none">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-3xl font-bold text-center md:text-left">
+            Compétences Techniques
+          </h2>
         </div>
+      </div>
+
+      <!-- Canvas qui prend tout l'espace -->
+      <div class="absolute inset-0 z-10">
+        <SkillsFloating />
       </div>
     </section>
 
