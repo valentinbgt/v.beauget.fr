@@ -11,7 +11,7 @@
           <div class="flex items-center gap-2">
             <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
             <span class="font-mono font-bold text-lg tracking-tight"
-              >VB_DEV</span
+              >v.beauget.fr</span
             >
           </div>
 
@@ -19,17 +19,17 @@
             <a
               href="#home"
               class="hover:text-primary-600 dark:hover:text-primary-500 transition-colors"
-              >~/home</a
+              >~/accueil</a
             >
             <a
               href="#projects"
               class="hover:text-primary-600 dark:hover:text-primary-500 transition-colors"
-              >./projects</a
+              >./projets</a
             >
             <a
               href="#skills"
               class="hover:text-primary-600 dark:hover:text-primary-500 transition-colors"
-              >./skills</a
+              >./compétences</a
             >
             <a
               href="#contact"
