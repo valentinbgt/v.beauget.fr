@@ -192,7 +192,7 @@
                     <span
                       class="w-2 h-2 rounded-full bg-green-500 animate-pulse"
                     ></span>
-                    <span class="font-mono text-xs text-slate-400">live</span>
+                    <span class="font-mono text-xs text-slate-600 dark:text-slate-400">live</span>
                   </div>
                 </div>
                 <!-- Terminal Content - Real Network Requests -->
@@ -205,7 +205,7 @@
                       :key="index"
                       class="flex gap-2 whitespace-nowrap"
                     >
-                      <span class="text-slate-400">{{ log.time }}</span>
+                      <span class="text-slate-600 dark:text-slate-400">{{ log.time }}</span>
                       <span
                         :class="{
                           'text-green-500': log.method === 'GET',
@@ -215,7 +215,7 @@
                         >{{ log.method }}</span
                       >
                       <span
-                        class="text-slate-600 dark:text-slate-300 truncate"
+                        class="text-slate-700 dark:text-slate-300 truncate"
                         >{{ log.path }}</span
                       >
                       <span
@@ -227,7 +227,7 @@
                         }"
                         >{{ log.status }}</span
                       >
-                      <span class="text-slate-400">{{ log.duration }}ms</span>
+                      <span class="text-slate-600 dark:text-slate-400">{{ log.duration }}ms</span>
                     </div>
                   </div>
                 </div>
@@ -235,7 +235,7 @@
                   class="h-10 bg-gray-50 dark:bg-slate-900 rounded-lg flex items-center px-4 font-mono text-xs text-green-500"
                 >
                   <span class="animate-pulse">●</span>
-                  <span class="ml-2 text-slate-400"
+                  <span class="ml-2 text-slate-600 dark:text-slate-400"
                     >{{ $t("terminal.serverActive") }} {{ currentHost }}</span
                   >
                 </div>
@@ -272,7 +272,7 @@
           >
             <div class="p-4 border-b border-gray-200 dark:border-slate-700">
               <span
-                class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider"
+                class="text-xs font-mono font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider"
                 >{{ $t("projects.workspace") }}</span
               >
               <div class="mt-2 flex items-center gap-2 font-medium">
@@ -351,16 +351,16 @@
             <div
               class="h-14 border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-between px-6"
             >
-              <div class="flex items-center gap-2 text-sm text-slate-500">
+              <div class="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300">
                 <span>Valentin</span>
-                <span class="text-gray-300">/</span>
+                <span class="text-gray-400 dark:text-gray-500">/</span>
                 <span class="text-slate-900 dark:text-slate-100 font-medium">{{
                   $t("nav.projects").replace("./", "")
                 }}</span>
               </div>
               <div class="flex gap-2 items-center">
                 <span class="w-2 h-2 rounded-full bg-green-500"></span>
-                <span class="text-xs font-mono text-slate-500">{{
+                <span class="text-xs font-mono text-slate-700 dark:text-slate-300">{{
                   $t("projects.systemOnline")
                 }}</span>
               </div>
@@ -411,7 +411,7 @@
                       </span>
                     </div>
                     <p
-                      class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4 flex-1"
+                      class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2 mb-4 flex-1"
                     >
                       {{ project.shortDesc[locale] }}
                     </p>
@@ -421,13 +421,13 @@
                       <span
                         v-for="tech in project.stack[locale].slice(0, 3)"
                         :key="tech"
-                        class="text-[10px] font-mono text-slate-400 bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded"
+                        class="text-[10px] font-mono text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded"
                       >
                         {{ tech }}
                       </span>
                       <span
                         v-if="project.stack[locale].length > 3"
-                        class="text-[10px] text-slate-400"
+                        class="text-[10px] text-slate-600 dark:text-slate-400"
                         >+{{ project.stack[locale].length - 3 }}</span
                       >
                     </div>
@@ -561,7 +561,7 @@
 
     <!-- Footer -->
     <footer
-      class="py-8 text-center border-t border-gray-100 dark:border-slate-800 text-slate-400 text-sm font-mono"
+      class="py-8 text-center border-t border-gray-100 dark:border-slate-800 text-slate-600 dark:text-slate-400 text-sm font-mono"
       role="contentinfo"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

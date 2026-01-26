@@ -91,7 +91,7 @@
                     {{ project.category[locale] }}
                   </span>
                 </div>
-                <p class="text-slate-500 text-sm font-mono mt-1">
+                <p class="text-slate-600 dark:text-slate-400 text-sm font-mono mt-1">
                   {{ project.id }} • {{ project.year }}
                 </p>
               </div>
@@ -100,7 +100,7 @@
                 v-if="project === currentProject"
                 class="flex items-center gap-2 flex-shrink-0"
               >
-                <span class="text-xs font-mono text-slate-400 hidden sm:block">
+                <span class="text-xs font-mono text-slate-600 dark:text-slate-400 hidden sm:block">
                   {{ currentIndex + 1 }} / {{ projects.length }}
                 </span>
                 <button
@@ -187,7 +187,7 @@
 
                     <template v-if="project.features?.[locale]?.length">
                       <h4
-                        class="font-bold text-sm uppercase tracking-wide text-slate-400 mt-6"
+                        class="font-bold text-sm uppercase tracking-wide text-slate-600 dark:text-slate-400 mt-6"
                       >
                         {{ $t("projects.keyPoints") }}
                       </h4>
@@ -207,7 +207,7 @@
                   <div class="space-y-6">
                     <div v-if="project.links && project.links.length > 0">
                       <h4
-                        class="font-bold text-sm uppercase tracking-wide text-slate-400 mb-3"
+                        class="font-bold text-sm uppercase tracking-wide text-slate-600 dark:text-slate-400 mb-3"
                       >
                         {{ $t("projects.links") }}
                       </h4>
@@ -241,7 +241,7 @@
 
                     <div v-if="project.stack?.[locale]?.length">
                       <h4
-                        class="font-bold text-sm uppercase tracking-wide text-slate-400 mb-3"
+                        class="font-bold text-sm uppercase tracking-wide text-slate-600 dark:text-slate-400 mb-3"
                       >
                         {{ $t("projects.technologies") }}
                       </h4>
@@ -258,7 +258,7 @@
 
                     <div>
                       <h4
-                        class="font-bold text-sm uppercase tracking-wide text-slate-400 mb-3"
+                        class="font-bold text-sm uppercase tracking-wide text-slate-600 dark:text-slate-400 mb-3"
                       >
                         {{ $t("projects.status") }}
                       </h4>
