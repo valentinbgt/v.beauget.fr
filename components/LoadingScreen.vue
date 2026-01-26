@@ -137,14 +137,14 @@ import { ref, onMounted } from "vue";
 const emit = defineEmits(["complete"]);
 
 const logs = [
-  { text: "> Mounting network drives...", delay: 400 },
-  { text: "> Loading environment variables...", delay: 600 },
-  { text: "> Fetching projects from portfolio.json", delay: 300 },
-  { text: "> Initializing i18n [FR/EN]...", delay: 500 },
-  { text: "> Applying Tailwind system theme...", delay: 400 },
-  { text: "> Optimizing assets & shaders...", delay: 700 },
-  { text: "> Establishing secure connection...", delay: 400 },
-  { text: "> READY. Starting GUI...", delay: 200 },
+  { text: "> Mounting network drives...", delay: 200 },
+  { text: "> Loading environment variables...", delay: 100 },
+  { text: "> Fetching projects from portfolio.json", delay: 200 },
+  { text: "> Initializing i18n [FR/EN]...", delay: 100 },
+  { text: "> Applying Tailwind system theme...", delay: 200 },
+  { text: "> Optimizing assets & shaders...", delay: 100 },
+  { text: "> Establishing secure connection...", delay: 300 },
+  { text: "> READY. Starting GUI...", delay: 400 },
 ];
 
 const terminalLogs = ref([]);
@@ -163,9 +163,9 @@ async function runLoader() {
     currentTask.value = log.text.replace("> ", "");
 
     // Add to terminal history with fixed line number
-    terminalLogs.value.push({ 
+    terminalLogs.value.push({
       text: log.text,
-      lineNumber: i + 1 
+      lineNumber: i + 1,
     });
 
     // Update progress
@@ -177,8 +177,6 @@ async function runLoader() {
     await new Promise((resolve) => setTimeout(resolve, log.delay));
   }
 
-  return; //do not close the loading screen for dev purposes
-
   // Start fade out
   setTimeout(() => {
     isFadingOut.value = true;
@@ -188,9 +186,9 @@ async function runLoader() {
       // Emit complete after fade out transition completes
       setTimeout(() => {
         emit("complete");
-      }, 1200); // Match the transition duration (700ms + buffer)
+      }, 200); // Match the transition duration (700ms + buffer)
     }, 300); // Start content fade slightly after backdrop starts fading
-  }, 500);
+  }, 100);
 }
 
 onMounted(() => {
@@ -236,8 +234,8 @@ onMounted(() => {
 
 .loader-fade-leave-active {
   transition:
-    opacity 1.2s ease-out,
-    transform 1.2s ease-out;
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
 }
 
 .loader-fade-enter-from {
