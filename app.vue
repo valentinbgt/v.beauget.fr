@@ -114,12 +114,12 @@
           class="flex flex-col sm:flex-row items-center justify-between gap-12"
         >
           <div class="flex-1 space-y-6">
-            <div
+            <!--             <div
               class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs font-mono border border-primary-200 dark:border-primary-700/50"
             >
               <span class="w-2 h-2 rounded-full bg-primary-500"></span>
               Disponible pour missions
-            </div>
+            </div> -->
             <h1
               class="text-5xl sm:text-7xl font-bold tracking-tight leading-tight"
             >
@@ -128,13 +128,16 @@
             <h2
               class="text-xl sm:text-2xl text-slate-500 dark:text-slate-400 font-light"
             >
-              Fullstack Developer
+              Développeur Fullstack
             </h2>
             <p
-              class="max-w-xl text-lg text-slate-600 dark:text-slate-300 leading-relaxed"
+              class="max-w-lg text-lg text-slate-600 dark:text-slate-300 leading-relaxed indent-8"
             >
-              Développeur autodidacte depuis mes 15 ans, j'ai intégré la
-              formation MMI à Troyes, en alternance chez Gravity Media.
+              Développeur depuis 2019, je suis actuellement en formation en MMI
+              à l'IUT de Troyes.
+              <br />
+              Je suis aussi apprenti alternant chez Gravity Media où de
+              développe des applications sur mesure pour la télévision.
             </p>
             <div
               class="flex flex-wrap gap-4 pt-4 justify-center sm:justify-start"
