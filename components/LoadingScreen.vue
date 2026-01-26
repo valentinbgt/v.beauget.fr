@@ -48,19 +48,19 @@
 
         <!-- Terminal Box -->
         <div
-          class="bg-white/80 dark:bg-dark-surface/80 backdrop-blur-xl border border-gray-200 dark:border-dark-border rounded-xl p-6 shadow-2xl mb-8 font-mono text-sm h-[210px] flex flex-col"
+          class="bg-white/80 dark:bg-dark-surface/80 backdrop-blur-xl border border-gray-200 dark:border-dark-border rounded-xl px-6 py-4 shadow-2xl mb-8 font-mono text-sm h-[210px] flex flex-col"
         >
           <div
             id="terminal-content"
-            class="space-y-1.5 overflow-y-hidden flex-1 pr-2 flex-col-reverse"
+            class="flex flex-col justify-end space-y-1.5 overflow-hidden flex-1 pr-2"
           >
             <div
-              v-for="(log, index) in terminalLogs"
-              :key="index"
+              v-for="(log, index) in terminalLogs.slice(-6)"
+              :key="log.lineNumber"
               class="text-slate-500 dark:text-slate-400 line-fade flex gap-3"
             >
               <span class="text-slate-400 dark:text-slate-600">{{
-                String(index + 1).padStart(2, "0")
+                String(log.lineNumber).padStart(2, "0")
               }}</span>
               <span>{{ log.text }}</span>
             </div>
@@ -162,8 +162,11 @@ async function runLoader() {
     // Update text
     currentTask.value = log.text.replace("> ", "");
 
-    // Add to terminal history
-    terminalLogs.value.push({ text: log.text });
+    // Add to terminal history with fixed line number
+    terminalLogs.value.push({ 
+      text: log.text,
+      lineNumber: i + 1 
+    });
 
     // Update progress
     progress += Math.floor(100 / logs.length);
