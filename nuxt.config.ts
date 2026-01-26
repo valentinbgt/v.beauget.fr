@@ -33,6 +33,10 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: false, // Reduce bundle size
   },
+  // Fix for i18n compatibility with Nuxt 4
+  build: {
+    transpile: ['@nuxtjs/i18n'],
+  },
   nitro: {
     compressPublicAssets: true, // Enable compression
     minify: true,
@@ -53,15 +57,8 @@ export default defineNuxtConfig({
   vite: {
     build: {
       cssCodeSplit: true, // Split CSS for better caching
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            'vendor-vue': ['vue', 'vue-router'],
-            'vendor-i18n': ['@nuxtjs/i18n'],
-            'vendor-gsap': ['gsap'],
-          },
-        },
-      },
+      // Removed manual chunks to avoid i18n compatibility issues with Nuxt 4
+      // Vite will handle code splitting automatically
     },
   },
   app: {
