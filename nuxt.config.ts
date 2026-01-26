@@ -1,4 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
+// Debug: Log environment variables at build time
+if (process.env.NUXT_PUBLIC_FORM_URL) {
+  console.log("[Nuxt Config] ✓ NUXT_PUBLIC_FORM_URL is set:", process.env.NUXT_PUBLIC_FORM_URL.substring(0, 30) + "...");
+} else if (process.env.FORM_URL) {
+  console.log("[Nuxt Config] ✓ FORM_URL is set (fallback):", process.env.FORM_URL.substring(0, 30) + "...");
+} else {
+  console.warn("[Nuxt Config] ⚠️ WARNING: Neither NUXT_PUBLIC_FORM_URL nor FORM_URL is set!");
+  console.warn("[Nuxt Config] The contact form will not work. Set NUXT_PUBLIC_FORM_URL in your .env file or environment variables.");
+}
+
 export default defineNuxtConfig({
   css: ["~/assets/css/main.css"],
   postcss: {
@@ -25,6 +36,8 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
   runtimeConfig: {
+    // Note: In Nuxt 3, empty string defaults don't get replaced by env vars
+    // We must explicitly reference process.env for it to work
     public: {
       formUrl: process.env.NUXT_PUBLIC_FORM_URL || process.env.FORM_URL || "",
     },
