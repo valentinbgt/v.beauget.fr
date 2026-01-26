@@ -163,7 +163,7 @@
               <div
                 class="absolute inset-0 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-slate-700 p-6 flex flex-col gap-4 transform rotate-3 hover:rotate-0 transition-transform duration-500"
               >
-                <!-- Fake Metrics -->
+                <!-- Terminal Header -->
                 <div
                   class="flex justify-between items-center border-b border-gray-100 dark:border-slate-700 pb-4"
                 >
@@ -172,49 +172,56 @@
                     <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
                     <div class="w-3 h-3 rounded-full bg-green-400"></div>
                   </div>
-                  <span class="font-mono text-xs text-slate-400"
-                    >status: coding</span
-                  >
+                  <div class="flex items-center gap-2">
+                    <span
+                      class="w-2 h-2 rounded-full bg-green-500 animate-pulse"
+                    ></span>
+                    <span class="font-mono text-xs text-slate-400">live</span>
+                  </div>
                 </div>
-                <div class="flex-1 flex gap-4">
-                  <div
-                    class="w-1/3 bg-gray-50 dark:bg-slate-900 rounded-xl flex flex-col justify-end p-2 relative overflow-hidden group"
-                  >
+                <!-- Terminal Content - Real Network Requests -->
+                <div
+                  class="flex-1 bg-gray-50 dark:bg-slate-900 rounded-xl p-3 font-mono text-[10px] leading-relaxed overflow-hidden"
+                >
+                  <div class="space-y-1">
                     <div
-                      class="absolute bottom-0 left-0 right-0 bg-primary-500/20 h-[70%] group-hover:h-[80%] transition-all duration-500"
-                    ></div>
-                    <span
-                      class="relative z-10 font-mono text-xs font-bold text-center"
-                      >FRONT</span
+                      v-for="(log, index) in terminalLogs"
+                      :key="index"
+                      class="flex gap-2 whitespace-nowrap"
                     >
-                  </div>
-                  <div
-                    class="w-1/3 bg-gray-50 dark:bg-slate-900 rounded-xl flex flex-col justify-end p-2 relative overflow-hidden group"
-                  >
-                    <div
-                      class="absolute bottom-0 left-0 right-0 bg-purple-500/20 h-[85%] group-hover:h-[90%] transition-all duration-500"
-                    ></div>
-                    <span
-                      class="relative z-10 font-mono text-xs font-bold text-center"
-                      >BACK</span
-                    >
-                  </div>
-                  <div
-                    class="w-1/3 bg-gray-50 dark:bg-slate-900 rounded-xl flex flex-col justify-end p-2 relative overflow-hidden group"
-                  >
-                    <div
-                      class="absolute bottom-0 left-0 right-0 bg-emerald-500/20 h-[60%] group-hover:h-[70%] transition-all duration-500"
-                    ></div>
-                    <span
-                      class="relative z-10 font-mono text-xs font-bold text-center"
-                      >DEVOPS</span
-                    >
+                      <span class="text-slate-400">{{ log.time }}</span>
+                      <span
+                        :class="{
+                          'text-green-500': log.method === 'GET',
+                          'text-blue-500': log.method === 'POST',
+                          'text-yellow-500': log.method === 'PUT',
+                        }"
+                        >{{ log.method }}</span
+                      >
+                      <span
+                        class="text-slate-600 dark:text-slate-300 truncate"
+                        >{{ log.path }}</span
+                      >
+                      <span
+                        :class="{
+                          'text-green-500': log.status < 300,
+                          'text-yellow-500':
+                            log.status >= 300 && log.status < 400,
+                          'text-red-500': log.status >= 400,
+                        }"
+                        >{{ log.status }}</span
+                      >
+                      <span class="text-slate-400">{{ log.duration }}ms</span>
+                    </div>
                   </div>
                 </div>
                 <div
-                  class="h-12 bg-gray-50 dark:bg-slate-900 rounded-lg flex items-center px-4 font-mono text-xs text-primary-500"
+                  class="h-10 bg-gray-50 dark:bg-slate-900 rounded-lg flex items-center px-4 font-mono text-xs text-green-500"
                 >
-                  > npm run dev
+                  <span class="animate-pulse">●</span>
+                  <span class="ml-2 text-slate-400"
+                    >Serveur actif sur {{ currentHost }}</span
+                  >
                 </div>
               </div>
             </div>
@@ -592,7 +599,7 @@ const toggleTheme = () => {
   }
 };
 
-// Initialize theme
+// Initialize theme and terminal
 onMounted(() => {
   if (
     localStorage.getItem("theme") === "dark" ||
@@ -602,6 +609,16 @@ onMounted(() => {
     isDark.value = true;
     document.documentElement.classList.add("dark");
   }
+
+  // Start capturing real network requests
+  startNetworkCapture();
+
+  // Set current host
+  currentHost.value = window.location.host;
+});
+
+onUnmounted(() => {
+  stopNetworkCapture();
 });
 
 // Projects
@@ -627,6 +644,106 @@ const closeProject = () => {
 
 const updateProjectIndex = (index) => {
   selectedProjectIndex.value = index;
+};
+
+// Real Terminal Logs - Captures actual network requests
+const terminalLogs = ref([]);
+const currentHost = ref("v.beauget.fr:443");
+let performanceObserver = null;
+let originalFetch = null;
+
+const formatTime = (date) => {
+  return `${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}:${String(date.getSeconds()).padStart(2, "0")}`;
+};
+
+const getPathFromUrl = (url) => {
+  try {
+    const urlObj = new URL(url, window.location.origin);
+    // Only show path for same-origin, full URL for external
+    if (urlObj.origin === window.location.origin) {
+      return urlObj.pathname + urlObj.search;
+    }
+    return urlObj.hostname + urlObj.pathname;
+  } catch {
+    return url;
+  }
+};
+
+const addLog = (log) => {
+  terminalLogs.value.push(log);
+  // Keep only last 8 logs
+  if (terminalLogs.value.length > 8) {
+    terminalLogs.value.shift();
+  }
+};
+
+const startNetworkCapture = () => {
+  // 1. Capture resource timing (images, scripts, CSS, etc.)
+  performanceObserver = new PerformanceObserver((list) => {
+    for (const entry of list.getEntries()) {
+      if (entry.entryType === "resource") {
+        const path = getPathFromUrl(entry.name);
+        // Skip very long data URIs or blob URLs
+        if (path.startsWith("data:") || path.startsWith("blob:")) continue;
+
+        addLog({
+          time: formatTime(new Date()),
+          method: "GET",
+          path: path.length > 35 ? path.substring(0, 32) + "..." : path,
+          status: 200, // Resource timing doesn't give status, assume 200 if loaded
+          duration: Math.round(entry.duration),
+        });
+      }
+    }
+  });
+
+  performanceObserver.observe({ entryTypes: ["resource"] });
+
+  // 2. Intercept fetch for API calls with actual status codes
+  originalFetch = window.fetch;
+  window.fetch = async (...args) => {
+    const startTime = performance.now();
+    const url = typeof args[0] === "string" ? args[0] : args[0]?.url || "";
+    const method = args[1]?.method || "GET";
+
+    try {
+      const response = await originalFetch(...args);
+      const duration = Math.round(performance.now() - startTime);
+      const path = getPathFromUrl(url);
+
+      addLog({
+        time: formatTime(new Date()),
+        method: method.toUpperCase(),
+        path: path.length > 35 ? path.substring(0, 32) + "..." : path,
+        status: response.status,
+        duration,
+      });
+
+      return response;
+    } catch (error) {
+      const duration = Math.round(performance.now() - startTime);
+      const path = getPathFromUrl(url);
+
+      addLog({
+        time: formatTime(new Date()),
+        method: method.toUpperCase(),
+        path: path.length > 35 ? path.substring(0, 32) + "..." : path,
+        status: 0,
+        duration,
+      });
+
+      throw error;
+    }
+  };
+};
+
+const stopNetworkCapture = () => {
+  if (performanceObserver) {
+    performanceObserver.disconnect();
+  }
+  if (originalFetch) {
+    window.fetch = originalFetch;
+  }
 };
 
 // Skills
