@@ -11,7 +11,9 @@
       ></div>
 
       <!-- Background Decoration (behind backdrop) -->
-      <div class="absolute inset-0 z-0 opacity-10 dark:opacity-20 pointer-events-none">
+      <div
+        class="absolute inset-0 z-0 opacity-10 dark:opacity-20 pointer-events-none"
+      >
         <div
           class="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-500 rounded-full filter blur-[120px]"
         ></div>
@@ -21,9 +23,11 @@
       </div>
 
       <!-- Content Container -->
-      <div 
+      <div
         class="relative z-10 text-slate-800 dark:text-slate-100 w-full max-w-lg px-6 transition-all duration-700"
-        :class="isFadingOut ? 'opacity-0 scale-[0.98]' : 'opacity-100 scale-100'"
+        :class="
+          isFadingOut ? 'opacity-0 scale-[0.98]' : 'opacity-100 scale-100'
+        "
       >
         <!-- Top Identity -->
         <div class="flex flex-col items-center mb-12">
@@ -44,19 +48,26 @@
 
         <!-- Terminal Box -->
         <div
-          class="bg-white/80 dark:bg-dark-surface/80 backdrop-blur-xl border border-gray-200 dark:border-dark-border rounded-xl p-6 shadow-2xl mb-8 font-mono text-sm overflow-hidden min-h-[160px]"
+          class="bg-white/80 dark:bg-dark-surface/80 backdrop-blur-xl border border-gray-200 dark:border-dark-border rounded-xl p-6 shadow-2xl mb-8 font-mono text-sm h-[210px] flex flex-col"
         >
-          <div id="terminal-content" class="space-y-1.5">
+          <div
+            id="terminal-content"
+            class="space-y-1.5 overflow-y-hidden flex-1 pr-2 flex-col-reverse"
+          >
             <div
               v-for="(log, index) in terminalLogs"
               :key="index"
               class="text-slate-500 dark:text-slate-400 line-fade flex gap-3"
             >
-              <span class="text-slate-400 dark:text-slate-600">{{ String(index + 1).padStart(2, '0') }}</span>
+              <span class="text-slate-400 dark:text-slate-600">{{
+                String(index + 1).padStart(2, "0")
+              }}</span>
               <span>{{ log.text }}</span>
             </div>
           </div>
-          <div class="mt-2 text-primary-600 dark:text-primary-500 terminal-cursor">
+          <div
+            class="mt-2 text-primary-600 dark:text-primary-500 terminal-cursor flex-shrink-0"
+          >
             {{ currentTask }}
           </div>
         </div>
@@ -83,19 +94,35 @@
           <div class="grid grid-cols-4 gap-1">
             <div
               class="h-1 rounded-full transition-colors"
-              :class="progressPercent > 25 ? 'bg-primary-500/40 dark:bg-primary-500/40' : 'bg-gray-200 dark:bg-slate-800'"
+              :class="
+                progressPercent > 25
+                  ? 'bg-primary-500/40 dark:bg-primary-500/40'
+                  : 'bg-gray-200 dark:bg-slate-800'
+              "
             ></div>
             <div
               class="h-1 rounded-full transition-colors"
-              :class="progressPercent > 50 ? 'bg-primary-500/40 dark:bg-primary-500/40' : 'bg-gray-200 dark:bg-slate-800'"
+              :class="
+                progressPercent > 50
+                  ? 'bg-primary-500/40 dark:bg-primary-500/40'
+                  : 'bg-gray-200 dark:bg-slate-800'
+              "
             ></div>
             <div
               class="h-1 rounded-full transition-colors"
-              :class="progressPercent > 75 ? 'bg-primary-500/40 dark:bg-primary-500/40' : 'bg-gray-200 dark:bg-slate-800'"
+              :class="
+                progressPercent > 75
+                  ? 'bg-primary-500/40 dark:bg-primary-500/40'
+                  : 'bg-gray-200 dark:bg-slate-800'
+              "
             ></div>
             <div
               class="h-1 rounded-full transition-colors"
-              :class="progressPercent >= 100 ? 'bg-primary-500/40 dark:bg-primary-500/40' : 'bg-gray-200 dark:bg-slate-800'"
+              :class="
+                progressPercent >= 100
+                  ? 'bg-primary-500/40 dark:bg-primary-500/40'
+                  : 'bg-gray-200 dark:bg-slate-800'
+              "
             ></div>
           </div>
         </div>
@@ -146,6 +173,8 @@ async function runLoader() {
 
     await new Promise((resolve) => setTimeout(resolve, log.delay));
   }
+
+  return; //do not close the loading screen for dev purposes
 
   // Start fade out
   setTimeout(() => {
@@ -203,7 +232,9 @@ onMounted(() => {
 }
 
 .loader-fade-leave-active {
-  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+  transition:
+    opacity 1.2s ease-out,
+    transform 1.2s ease-out;
 }
 
 .loader-fade-enter-from {
