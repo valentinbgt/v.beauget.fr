@@ -143,7 +143,7 @@
                 href="#projects"
                 class="px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium rounded-lg hover:bg-slate-700 dark:hover:bg-slate-200 transition shadow-lg shadow-primary-500/20"
               >
-                Voir les projets
+                Voir mes projets
               </a>
               <a
                 href="#contact"
@@ -227,10 +227,10 @@
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-12">
-          <h2 class="text-3xl font-bold mb-4">Dashboard Projets</h2>
-          <p class="text-slate-500 dark:text-slate-400 max-w-2xl">
-            Une sélection de mes projets récents, du développement web à la
-            gestion de projets.
+          <h2 class="text-3xl font-bold mb-4">Mes projets - Tableau de bord</h2>
+          <p class="text-slate-500 dark:text-slate-400 max-w-3xl">
+            Voici une sélection de certains de mes projets, du développement web
+            à la gestion de projets.
           </p>
         </div>
 
@@ -277,7 +277,7 @@
                 </svg>
                 Tous les projets
               </div>
-              <div
+              <!--               <div
                 class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700/50 rounded-md text-sm cursor-not-allowed opacity-60 whitespace-nowrap"
               >
                 <svg
@@ -312,7 +312,7 @@
                   ></path>
                 </svg>
                 Archivés
-              </div>
+              </div> -->
             </div>
           </div>
 
@@ -323,16 +323,16 @@
               class="h-14 border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-between px-6"
             >
               <div class="flex items-center gap-2 text-sm text-slate-500">
-                <span>Projects</span>
+                <span>Valentin</span>
                 <span class="text-gray-300">/</span>
                 <span class="text-slate-900 dark:text-slate-100 font-medium"
-                  >Production</span
+                  >Projets</span
                 >
               </div>
-              <div class="flex gap-2">
+              <div class="flex gap-2 items-center">
                 <span class="w-2 h-2 rounded-full bg-green-500"></span>
                 <span class="text-xs font-mono text-slate-500"
-                  >System Online</span
+                  >Système en ligne</span
                 >
               </div>
             </div>
@@ -446,7 +446,10 @@
     <!-- Contact Section -->
     <section id="contact" class="py-24 bg-white dark:bg-dark-bg">
       <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold mb-8">Démarrons un projet</h2>
+        <h2 class="text-3xl font-bold mb-2">Des questions ?</h2>
+        <p class="text-slate-500 dark:text-slate-400 max-w-3xl mb-8">
+          Laissez-moi un petit message, ça coûte rien :)
+        </p>
 
         <form
           @submit.prevent="handleSubmit"
@@ -460,6 +463,7 @@
               >
               <input
                 v-model="formData.lastName"
+                placeholder="Bruel"
                 type="text"
                 required
                 class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition text-slate-900 dark:text-slate-100"
@@ -472,6 +476,7 @@
               >
               <input
                 v-model="formData.firstName"
+                placeholder="Patrick"
                 type="text"
                 required
                 class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition text-slate-900 dark:text-slate-100"
@@ -485,6 +490,7 @@
             >
             <input
               v-model="formData.email"
+              placeholder="email-pour-que-je-puisse-repondre@gmail.com"
               type="email"
               required
               class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition text-slate-900 dark:text-slate-100"
@@ -497,6 +503,7 @@
             >
             <textarea
               v-model="formData.message"
+              placeholder="Bonjour Valentin, j'adore ton portfolio, il est vraiment incroyable..."
               rows="4"
               required
               class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition resize-none text-slate-900 dark:text-slate-100"
@@ -521,10 +528,7 @@
         <div
           class="flex flex-col sm:flex-row items-center justify-between gap-4"
         >
-          <p>
-            &copy; {{ new Date().getFullYear() }} Valentin BEAUGET. Made with
-            Nuxt & Tailwind.
-          </p>
+          <p>&copy; {{ new Date().getFullYear() }} | Valentin BEAUGET</p>
           <div class="flex items-center gap-4">
             <a
               href="https://github.com/valentinbgt"
