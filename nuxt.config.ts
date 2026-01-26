@@ -26,7 +26,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   runtimeConfig: {
     public: {
-      formUrl: process.env.NUXT_PUBLIC_FORM_URL || "",
+      formUrl: process.env.NUXT_PUBLIC_FORM_URL || process.env.FORM_URL || "",
     },
   },
   // Performance optimizations
