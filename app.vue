@@ -439,7 +439,7 @@
     <!-- Skills Section -->
     <section
       id="skills"
-      class="relative overflow-hidden min-h-[800px] md:min-h-[500px] 2xl:min-h-[400px]"
+      class="relative overflow-hidden min-h-[700px] md:min-h-[500px] 2xl:min-h-[400px]"
     >
       <!-- Titre positionné au-dessus -->
       <div class="absolute top-8 left-0 right-0 z-20 pointer-events-none">
