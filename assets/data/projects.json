@@ -1,6 +1,6 @@
 [
   {
-    "id": "#PRJ-001",
+    "id": "#BDE-MMI-TROYES",
     "hidden": false,
     "title": "Présidence du BDE MMI Troyes",
     "shortDesc": "Fondateur du Bureau Des Étudiants de ma formation.",
@@ -22,7 +22,7 @@
     ]
   },
   {
-    "id": "#PRJ-002",
+    "id": "#NC3-2025",
     "hidden": false,
     "title": "Organisation Nuit Campus 3",
     "shortDesc": "Gestion des artistes lors de la Nuit Campus 3 2025.",
@@ -43,7 +43,7 @@
     ]
   },
   {
-    "id": "#PRJ-003",
+    "id": "#SERVER1",
     "hidden": false,
     "title": "Serveur Auto Hébergé",
     "shortDesc": "Un serveur sous Debian 12 CLI avec redondance des données.",
@@ -62,7 +62,7 @@
     ]
   },
   {
-    "id": "#PRJ-004",
+    "id": "#WS105",
     "hidden": false,
     "title": "La SAÉ 105",
     "shortDesc": "Premier site web réalisé dans le cadre de mes études en MMI.",
@@ -82,7 +82,7 @@
     ]
   },
   {
-    "id": "#PRJ-005",
+    "id": "#WS-303",
     "hidden": false,
     "title": "Results",
     "shortDesc": "Un projet de visualisation de données électorales.",
@@ -103,7 +103,7 @@
     ]
   },
   {
-    "id": "#PRJ-006",
+    "id": "#SECRET",
     "hidden": true,
     "title": "BledMarket",
     "shortDesc": "",
@@ -120,9 +120,9 @@
     ]
   },
   {
-    "id": "#PRJ-006",
+    "id": "#NDS-2025",
     "hidden": true,
-    "title": "NDS 2025",
+    "title": "Nuit Des SAÉ - 1ère édition",
     "shortDesc": "",
     "description": "",
     "images": [],
@@ -136,9 +136,9 @@
     ]
   },
   {
-    "id": "#PRJ-006",
+    "id": "#NDS-2026",
     "hidden": true,
-    "title": "NDS 2026",
+    "title": "Nuit Des SAÉ - 2ème édition",
     "shortDesc": "",
     "description": "",
     "images": [],
@@ -152,9 +152,9 @@
     ]
   },
   {
-    "id": "#PRJ-006",
+    "id": "#NDS-2026-DMX",
     "hidden": true,
-    "title": "DMX NDS 2026",
+    "title": "DMX Nuit Des SAÉ - 2026",
     "shortDesc": "",
     "description": "",
     "images": [],
