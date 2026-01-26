@@ -108,7 +108,7 @@
       </div>
 
       <div
-        class="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 text-center md:text-left w-full"
+        class="relative z-10 max-w-7xl mx-auto px-6 md:px-8 lg:px-10 text-center md:text-left w-full"
       >
         <div
           class="flex flex-col md:flex-row items-center justify-between gap-12"
