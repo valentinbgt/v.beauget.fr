@@ -10,17 +10,17 @@ export default defineNuxtConfig({
   modules: ["@nuxtjs/tailwindcss", "@nuxtjs/i18n"],
   i18n: {
     locales: [
-      { code: 'fr', name: 'Français', file: 'fr.json' },
-      { code: 'en', name: 'English', file: 'en.json' }
+      { code: "fr", name: "Français", file: "fr.json" },
+      { code: "en", name: "English", file: "en.json" },
     ],
-    langDir: 'locales',
-    defaultLocale: 'fr',
-    strategy: 'no_prefix',
+    langDir: "locales",
+    defaultLocale: "fr",
+    strategy: "no_prefix",
     detectBrowserLanguage: {
       useCookie: true,
-      cookieKey: 'i18n_locale',
-      fallbackLocale: 'fr'
-    }
+      cookieKey: "i18n_locale",
+      fallbackLocale: "fr",
+    },
   },
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
@@ -39,6 +39,12 @@ export default defineNuxtConfig({
         {
           name: "description",
           content: "Portfolio de Valentin BEAUGET - Développeur Fullstack",
+        },
+      ],
+      script: [
+        {
+          innerHTML: `(function(){try{const theme=localStorage.getItem('theme');const shouldBeDark=theme!=='light';if(shouldBeDark){document.documentElement.classList.add('dark');if(document.body){document.body.classList.add('dark');}else{document.addEventListener('DOMContentLoaded',function(){document.body.classList.add('dark');});}}}catch(e){document.documentElement.classList.add('dark');if(document.body){document.body.classList.add('dark');}else{document.addEventListener('DOMContentLoaded',function(){document.body.classList.add('dark');});}}})();`,
+          type: "text/javascript",
         },
       ],
     },

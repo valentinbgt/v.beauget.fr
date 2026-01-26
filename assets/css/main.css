@@ -6,6 +6,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme colors on html and body - Dark mode by default */
+html,
+body {
+  @apply bg-dark-bg text-slate-100 transition-colors duration-300;
+  min-height: 100%;
+}
+
+html:not(.dark),
+body:not(.dark) {
+  @apply bg-gray-50 text-slate-800;
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

@@ -606,22 +606,32 @@ const toggleTheme = () => {
   isDark.value = !isDark.value;
   if (isDark.value) {
     document.documentElement.classList.add("dark");
+    document.body.classList.add("dark");
     localStorage.setItem("theme", "dark");
   } else {
     document.documentElement.classList.remove("dark");
+    document.body.classList.remove("dark");
     localStorage.setItem("theme", "light");
   }
 };
 
 // Initialize theme and terminal
 onMounted(() => {
-  if (
-    localStorage.getItem("theme") === "dark" ||
-    (!localStorage.getItem("theme") &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    isDark.value = true;
+  // Theme is already initialized by inline script in head
+  // Just sync the reactive state
+  const theme = localStorage.getItem("theme");
+  // Dark mode by default, unless explicitly set to 'light'
+  const shouldBeDark = theme !== "light";
+  
+  isDark.value = shouldBeDark;
+  
+  // Ensure classes are applied (should already be done by inline script)
+  if (shouldBeDark) {
     document.documentElement.classList.add("dark");
+    document.body.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+    document.body.classList.remove("dark");
   }
 
   // Start capturing real network requests
