@@ -132,7 +132,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 
 const emit = defineEmits(["complete"]);
 
@@ -152,10 +152,55 @@ const currentTask = ref("Initializing...");
 const progressPercent = ref(0);
 const isVisible = ref(true);
 const isFadingOut = ref(false);
+const isPageReady = ref(false);
+const animationComplete = ref(false);
+
+// Check if page is fully loaded
+function checkPageReady() {
+  if (typeof window === "undefined") return false;
+  
+  // Check if document is ready
+  if (document.readyState === "complete") {
+    // Check if all images are loaded
+    const images = document.querySelectorAll("img");
+    const allImagesLoaded = Array.from(images).every((img) => {
+      return img.complete && img.naturalHeight !== 0;
+    });
+    
+    return allImagesLoaded;
+  }
+  return false;
+}
+
+// Wait for page to be fully loaded
+function waitForPageReady() {
+  return new Promise((resolve) => {
+    // If already ready, resolve immediately
+    if (checkPageReady()) {
+      resolve();
+      return;
+    }
+
+    // Wait for window load event
+    const handleLoad = () => {
+      // Give a small delay to ensure everything is rendered
+      setTimeout(() => {
+        resolve();
+      }, 100);
+    };
+
+    if (document.readyState === "complete") {
+      handleLoad();
+    } else {
+      window.addEventListener("load", handleLoad, { once: true });
+    }
+  });
+}
 
 async function runLoader() {
   let progress = 0;
 
+  // Start animation immediately
   for (let i = 0; i < logs.length; i++) {
     const log = logs[i];
 
@@ -177,6 +222,12 @@ async function runLoader() {
     await new Promise((resolve) => setTimeout(resolve, log.delay));
   }
 
+  animationComplete.value = true;
+
+  // Wait for page to be fully loaded before starting fade out
+  await waitForPageReady();
+  isPageReady.value = true;
+
   // Start fade out
   setTimeout(() => {
     isFadingOut.value = true;
@@ -192,6 +243,7 @@ async function runLoader() {
 }
 
 onMounted(() => {
+  // Start loader immediately
   runLoader();
 });
 </script>
