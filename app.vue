@@ -691,15 +691,21 @@ onMounted(() => {
   console.log("[Contact Form] Initialization check:");
   console.log("[Contact Form] - Form URL:", formUrl || "(empty or undefined)");
   console.log("[Contact Form] - Form URL type:", typeof formUrl);
+  console.log("[Contact Form] - Form URL length:", formUrl?.length || 0);
   console.log("[Contact Form] - Full public config:", config.public);
+  console.log("[Contact Form] - All public config keys:", Object.keys(config.public || {}));
   
   if (!formUrl || formUrl.trim() === "") {
     console.warn("[Contact Form] ⚠️ WARNING: NUXT_PUBLIC_FORM_URL is not set or empty!");
     console.warn("[Contact Form] The contact form will not work until this is configured.");
+    console.warn("[Contact Form] Note: This variable must be set at BUILD TIME, not runtime.");
+    console.warn("[Contact Form] Make sure NUXT_PUBLIC_FORM_URL is defined before running 'npm run build' or 'nuxt build'.");
   } else {
     try {
       const url = new URL(formUrl);
       console.log("[Contact Form] ✓ Form URL is valid:", url.href);
+      console.log("[Contact Form] - URL hostname:", url.hostname);
+      console.log("[Contact Form] - URL pathname:", url.pathname);
     } catch (urlError) {
       console.error("[Contact Form] ✗ Form URL is invalid:", formUrl, urlError);
     }
@@ -923,8 +929,10 @@ const handleSubmit = async () => {
     console.log("[Contact Form] Config object:", config.public);
 
     if (!formUrl || formUrl.trim() === "") {
-      const errorMsg = "Form URL is not configured. Please set NUXT_PUBLIC_FORM_URL environment variable.";
+      const errorMsg = "Form URL is not configured. Please set NUXT_PUBLIC_FORM_URL environment variable at build time.";
       console.error("[Contact Form] Configuration error:", errorMsg);
+      console.error("[Contact Form] Note: NUXT_PUBLIC_FORM_URL must be defined BEFORE building the application.");
+      console.error("[Contact Form] Rebuild the application after setting the environment variable.");
       throw new Error(errorMsg);
     }
 
