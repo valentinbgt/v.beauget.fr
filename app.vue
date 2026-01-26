@@ -136,7 +136,7 @@
             <h2
               class="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-light"
             >
-              {{ $t("hero.subtitle") }} TODO: compétences et carroussel des
+              {{ $t("hero.subtitle") }}
               projets
             </h2>
             <p
@@ -884,7 +884,6 @@ const handleSubmit = async () => {
     }, 5000);
   }
 };
-
 </script>
 
 <style>
@@ -918,7 +917,9 @@ html {
 
 .modal-enter-active .modal-content,
 .modal-leave-active .modal-content {
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .modal-enter-from,
