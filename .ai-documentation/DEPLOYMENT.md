@@ -35,13 +35,13 @@ npm run dev
 
 ### Available Scripts
 
-| Script | Command | Description |
-|--------|---------|-------------|
-| `dev` | `nuxt dev` | Development server with HMR |
-| `build` | `nuxt build` | Production build |
-| `generate` | `nuxt generate` | Static site generation |
-| `preview` | `nuxt preview` | Preview production build |
-| `postinstall` | `nuxt prepare` | Prepare Nuxt (auto-runs after install) |
+| Script       | Command         | Description                              |
+|--------------|-----------------|------------------------------------------|
+| `dev`        | `nuxt dev`      | Development server with HMR              |
+| `build`      | `nuxt build`    | Production build                         |
+| `generate`   | `nuxt generate` | Static site generation                   |
+| `preview`    | `nuxt preview`  | Preview production build                 |
+| `postinstall` | `nuxt prepare` | Prepare Nuxt (auto-runs after install)  |
 
 ---
 
@@ -49,13 +49,13 @@ npm run dev
 
 ### Required Variables
 
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `FORM_URL` | n8n webhook URL | `https://n8n.beauget.fr/webhook/abc123` |
+| Variable   | Description      | Example                                    |
+|------------|------------------|--------------------------------------------|
+| `FORM_URL` | n8n webhook URL   | `https://n8n.beauget.fr/webhook/abc123`    |
 
 ### .env.example
 
-```
+```env
 FORM_URL=https://n8n.beauget.fr/webhook/WEBHOOK_TOKEN
 ```
 
@@ -148,7 +148,7 @@ docker run -d \
 
 ## Production Architecture
 
-```
+```text
 Internet
     │
     ▼
@@ -267,10 +267,10 @@ After `npm run build`, the output is in `.output/`:
 
 ## Ports
 
-| Port | Service | Environment |
-|------|---------|-------------|
-| 3000 | Nuxt Server | Development & Production |
-| 443 | HTTPS (via proxy) | Production |
+| Port | Service      | Environment              |
+|------|--------------|--------------------------|
+| 3000 | Nuxt Server  | Development & Production  |
+| 443  | HTTPS (via proxy) | Production          |
 
 ---
 
@@ -285,14 +285,18 @@ docker logs v-beauget-fr
 ```
 
 **Contact form not working**:
+
 - Verify `FORM_URL` is set correctly
 - Check n8n webhook is active
 - Test webhook URL directly with curl
 
 **CV download fails**:
+
 - Check Nextcloud share link is valid
 - Verify `https://drive.beauget.fr/s/cv/download` is accessible
 
-**Video not playing**:
-- Ensure `bg-video.mp4` exists in `/public/`
-- Check video codec compatibility (H.264 recommended)
+**Theme not working**:
+
+- Check browser localStorage for theme preference
+- Verify dark mode classes are applied correctly
+- Check system preference detection

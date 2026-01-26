@@ -14,17 +14,21 @@ The application uses a JSON file to store project data. This document describes 
 
 ```typescript
 interface Project {
-  disabled: boolean;    // Button interactivity
-  hidden: boolean;      // Visibility in grid
-  name: string;         // Project title
-  description: string;  // Short description
-  button: string;       // Button text
-  image: string;        // Filename in /public/images/
-  lien: string;         // External URL
-  image1: string;       // Reserved for gallery (unused)
-  image2: string;       // Reserved for gallery (unused)
-  image3: string;       // Reserved for gallery (unused)
-  image4: string;       // Reserved for gallery (unused)
+  id: string;                                    // Unique project identifier
+  hidden: boolean;                                // Visibility in grid
+  title: { fr: string; en: string };             // Project title (i18n)
+  shortDesc: { fr: string; en: string };         // Short description for cards (i18n)
+  description: { fr: string; en: string };      // Full description for modal (i18n)
+  images: string[];                              // Array of image paths (gallery)
+  stack: { fr: string[]; en: string[] };         // Technologies used (i18n)
+  status: { fr: string; en: string };            // Project status (i18n)
+  category: { fr: string; en: string };          // Project category (i18n)
+  year: string;                                  // Year or date range
+  links: Array<{                                 // External links
+    label: { fr: string; en: string };           // Link label (i18n)
+    url: string;                                  // Link URL
+  }>;
+  features: { fr: string[]; en: string[] };      // Key features/points (i18n)
 }
 
 type ProjectsData = Project[];
@@ -32,110 +36,104 @@ type ProjectsData = Project[];
 
 ### Field Descriptions
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `disabled` | `boolean` | Yes | If `true`, button is grayed out and non-clickable |
-| `hidden` | `boolean` | Yes | If `true`, project is not rendered in the grid |
-| `name` | `string` | Yes | Display name shown on card and modal |
-| `description` | `string` | Yes | Short description (truncated on card, full in modal) |
-| `button` | `string` | Yes | Call-to-action text on the button |
-| `image` | `string` | Yes | Filename of image in `/public/images/` |
-| `lien` | `string` | Yes | Destination URL when action is clicked |
-| `image1-4` | `string` | No | Reserved for future gallery feature |
+| Field        | Type                        | Required | Description                                    |
+|--------------|-----------------------------|----------|------------------------------------------------|
+| `id`         | `string`                    | Yes      | Unique identifier (e.g., `"#BDE-MMI-TROYES"`)  |
+| `hidden`     | `boolean`                   | Yes      | If `true`, project is not rendered in the grid |
+| `title`      | `{fr: string, en: string}`  | Yes      | Project title in both languages                |
+| `shortDesc`  | `{fr: string, en: string}`  | Yes      | Short description shown on project card        |
+| `description` | `{fr: string, en: string}` | Yes      | Full description shown in modal                |
+| `images`     | `string[]`                  | Yes      | Array of image paths (e.g., `["/images/bde.png"]`) |
+| `stack`      | `{fr: string[], en: string[]}` | Yes   | Technologies/tools used                        |
+| `status`     | `{fr: string, en: string}`  | Yes      | Project status (e.g., "Terminé" / "Completed") |
+| `category`   | `{fr: string, en: string}` | Yes      | Project category (e.g., "Associatif" / "Non-profit") |
+| `year`       | `string`                    | Yes      | Year or date range (e.g., `"2024-2025"`)      |
+| `links`      | `Array<{label, url}>`       | Yes      | External links with i18n labels                |
+| `features`   | `{fr: string[], en: string[]}` | Yes   | Key features or highlights                      |
 
-### State Matrix
+### Visibility Logic
 
-| `disabled` | `hidden` | Result |
-|------------|----------|--------|
-| `false` | `false` | Visible, clickable |
-| `true` | `false` | Visible, grayed out button |
-| `false` | `true` | Not rendered |
-| `true` | `true` | Not rendered |
+| `hidden` | Result                                    |
+|---------|-------------------------------------------|
+| `false` | Visible in grid, clickable to open modal  |
+| `true`  | Not rendered in grid (hidden projects)    |
 
 ---
 
-## Current Projects
+## Current Projects Example
 
 ```json
 [
   {
-    "disabled": false,
-    "hidden": true,
-    "name": "BledMarket",
-    "description": "Un moyen de stocker ses fichier sur Internet et les partager p...",
-    "button": "Cliquez ici c'est super !",
-    "image": "bledmarket.png",
-    "lien": "https://bledmarket.fr/"
-  },
-  {
-    "disabled": false,
+    "id": "#BDE-MMI-TROYES",
     "hidden": false,
-    "name": "Présidence BDE MMI",
-    "description": "J'ai fondé le Bureau Des Étudiants en Métiers du Multimédia et de l'Internet à Troyes en 2024.",
-    "button": "Site web de l'association",
-    "image": "bde.png",
-    "lien": "https://bde.mmi-troyes.fr/"
-  },
-  {
-    "disabled": false,
-    "hidden": false,
-    "name": "Organisation Nuit Campus 3",
-    "description": "Responsable de la House Stage lors de la Nuit Campus 3 2025",
-    "button": "Site web du festival",
-    "image": "nc3.jpg",
-    "lien": "https://nc3.campus3.fr/"
-  },
-  {
-    "disabled": true,
-    "hidden": false,
-    "name": "Serveur Auto Hébergé",
-    "description": "Un serveur sous Debian 12 CLI, redondance des données (RA...",
-    "button": "Rien à visualiser pour ce projet..",
-    "image": "serveur.png",
-    "lien": "https://google.fr/"
-  },
-  {
-    "disabled": false,
-    "hidden": false,
-    "name": "La SAÉ 105",
-    "description": "Un projet réalisé dans le cadre de mes études en Bachelor Un...",
-    "button": "Je suis un super projet !",
-    "image": "sae105.png",
-    "lien": "https://mmi23a02.sae105.ovh/"
-  },
-  {
-    "disabled": false,
-    "hidden": false,
-    "name": "Results",
-    "description": "Un projet pour visualiser les différences dans les résultats éle...",
-    "button": "Venez en voir plus !",
-    "image": "results.png",
-    "lien": "https://results.beauget.fr/"
+    "title": {
+      "fr": "Présidence du BDE MMI Troyes",
+      "en": "MMI Troyes Student Union Presidency"
+    },
+    "shortDesc": {
+      "fr": "Fondateur du Bureau Des Étudiants de ma formation.",
+      "en": "Founder of the Student Union of my program."
+    },
+    "description": {
+      "fr": "En Juin 2024, j'ai fondé le Bureau Des Étudiants...",
+      "en": "In June 2024, I founded the Student Union..."
+    },
+    "images": ["/images/bde.png", "/images/nds.jpg", "/images/pull_bde_2025.jpg"],
+    "stack": {
+      "fr": ["Organisation", "Vision", "Autonomie"],
+      "en": ["Organization", "Vision", "Autonomy"]
+    },
+    "status": {
+      "fr": "Terminé",
+      "en": "Completed"
+    },
+    "category": {
+      "fr": "Associatif",
+      "en": "Non-profit"
+    },
+    "year": "2024-2025",
+    "links": [
+      {
+        "label": { "fr": "Instagram", "en": "Instagram" },
+        "url": "https://www.instagram.com/bde.mmi.troyes/"
+      },
+      {
+        "label": { "fr": "Site web", "en": "Website" },
+        "url": "https://bde.mmi-troyes.fr/"
+      }
+    ],
+    "features": {
+      "fr": ["Création de structure", "Vision et stratégie", "Organisation d'événements"],
+      "en": ["Structure creation", "Vision and strategy", "Event organization"]
+    }
   }
 ]
 ```
 
 ### Project Status Summary
 
-| Project | Visible | Interactive |
-|---------|---------|-------------|
-| BledMarket | No (WIP) | Yes |
-| Présidence BDE MMI | Yes | Yes |
-| Organisation Nuit Campus 3 | Yes | Yes |
-| Serveur Auto Hébergé | Yes | No (disabled) |
-| La SAÉ 105 | Yes | Yes |
-| Results | Yes | Yes |
+| Project ID       | Visible      | Images Count |
+|------------------|--------------|--------------|
+| #BDE-MMI-TROYES  | Yes          | 3            |
+| #NC3-2025        | Yes          | 4            |
+| #SERVER1         | Yes          | 3            |
+| #WS105           | Yes          | 3            |
+| #WS-303          | Yes          | 3            |
+| #SECRET          | No (hidden)  | 1            |
 
 ---
 
 ## Adding a New Project
 
-### Step 1: Add Image
+### Step 1: Add Images
 
-Place project image in `/public/images/`:
-- Recommended size: 800x600px or similar aspect ratio
-- Formats: PNG, JPG, WebP
-- Name without spaces: `my-project.png`
+Place project images in `/public/images/`:
+
+- Recommended size: 1200x800px or similar aspect ratio
+- Formats: PNG, JPG, JPEG, WebP
+- Name without spaces: `my-project-1.png`, `my-project-2.png`, etc.
+- You can add multiple images for the gallery (up to 4 displayed in modal)
 
 ### Step 2: Add JSON Entry
 
@@ -143,17 +141,51 @@ Add to `assets/data/projects.json`:
 
 ```json
 {
-  "disabled": false,
+  "id": "#MY-PROJECT",
   "hidden": false,
-  "name": "My New Project",
-  "description": "A brief description of the project that explains what it does.",
-  "button": "View Project",
-  "image": "my-project.png",
-  "lien": "https://example.com/",
-  "image1": "",
-  "image2": "",
-  "image3": "",
-  "image4": ""
+  "title": {
+    "fr": "Mon Nouveau Projet",
+    "en": "My New Project"
+  },
+  "shortDesc": {
+    "fr": "Une brève description du projet.",
+    "en": "A brief description of the project."
+  },
+  "description": {
+    "fr": "Description complète du projet avec détails...",
+    "en": "Full project description with details..."
+  },
+  "images": [
+    "/images/my-project-1.png",
+    "/images/my-project-2.png"
+  ],
+  "stack": {
+    "fr": ["Vue.js", "TypeScript", "Tailwind CSS"],
+    "en": ["Vue.js", "TypeScript", "Tailwind CSS"]
+  },
+  "status": {
+    "fr": "En cours",
+    "en": "In Progress"
+  },
+  "category": {
+    "fr": "Site web",
+    "en": "Website"
+  },
+  "year": "2025",
+  "links": [
+    {
+      "label": { "fr": "Site web", "en": "Website" },
+      "url": "https://example.com/"
+    },
+    {
+      "label": { "fr": "Code source", "en": "Source code" },
+      "url": "https://github.com/user/repo"
+    }
+  ],
+  "features": {
+    "fr": ["Feature 1", "Feature 2", "Feature 3"],
+    "en": ["Feature 1", "Feature 2", "Feature 3"]
+  }
 }
 ```
 
@@ -203,24 +235,16 @@ return {
 
 ---
 
-## Future: Gallery Feature
+## Image Gallery
 
-The `image1-4` fields are reserved for a future gallery feature in the modal:
+The `images` array supports multiple images per project. The modal displays up to 4 images in a responsive grid layout:
 
-```typescript
-// Planned structure
-interface ProjectWithGallery extends Project {
-  image1: string;  // Gallery image 1
-  image2: string;  // Gallery image 2
-  image3: string;  // Gallery image 3
-  image4: string;  // Gallery image 4
-}
-```
+- **1 image**: Full width display
+- **2 images**: 2-column grid
+- **3 images**: Large image on left (2 rows) + 2 small images on right
+- **4+ images**: Large image on left (2 rows) + 3 small images on right (first 4 shown)
 
-**Planned Usage**:
-- Display multiple images in ProjectModal
-- Image carousel or grid in modal
-- Currently empty strings in all projects
+All images are clickable to open in a lightbox with navigation between images.
 
 ---
 
@@ -262,12 +286,12 @@ interface Notification {
 
 ### States
 
-| Event | show | message | type |
-|-------|------|---------|------|
-| Initial | `false` | `""` | `"success"` |
-| Success | `true` | `"Message envoyé avec succès !"` | `"success"` |
-| Error | `true` | `"Une erreur est survenue..."` | `"error"` |
-| After 10s | `false` | (previous) | (previous) |
+| Event      | show    | message                              | type      |
+|------------|---------|--------------------------------------|-----------|
+| Initial    | `false` | `""`                                 | `"success"` |
+| Success    | `true`  | `"Message envoyé avec succès !"`     | `"success"` |
+| Error      | `true`  | `"Une erreur est survenue..."`       | `"error"`   |
+| After 10s  | `false` | (previous)                           | (previous) |
 
 ---
 
@@ -279,14 +303,14 @@ All project images are stored in `/public/images/`
 
 ### Current Images
 
-| Filename | Project |
-|----------|---------|
-| `bde.png` | Présidence BDE MMI |
-| `bledmarket.png` | BledMarket (hidden) |
-| `nc3.jpg` | Organisation Nuit Campus 3 |
-| `serveur.png` | Serveur Auto Hébergé |
-| `sae105.png` | La SAÉ 105 |
-| `results.png` | Results |
+| Filename        | Project                    |
+|----------------|----------------------------|
+| `bde.png`      | Présidence BDE MMI          |
+| `bledmarket.png` | BledMarket (hidden)        |
+| `nc3.jpg`      | Organisation Nuit Campus 3  |
+| `serveur.png`  | Serveur Auto Hébergé        |
+| `sae105.png`   | La SAÉ 105                 |
+| `results.png`  | Results                    |
 | `lorem1.png` | Placeholder (hidden) |
 | `lorem2.png` | Placeholder (hidden) |
 | `image.png` | Unused |
@@ -295,8 +319,10 @@ All project images are stored in `/public/images/`
 
 ```vue
 <!-- In app.vue (project card) -->
-<img :src="`/images/${project.image}`" :alt="project.name" />
+<img :src="project.images[0]" :alt="project.title[locale]" />
 
-<!-- In ProjectModal.vue -->
-<div :style="`background-image: url(/images/${project?.image ?? ''})`"></div>
+<!-- In ProjectModal.vue (gallery) -->
+<div v-for="(img, idx) in project.images.slice(0, 4)" :key="idx">
+  <img :src="img" :alt="`${project.title[locale]} - Image ${idx + 1}`" />
+</div>
 ```

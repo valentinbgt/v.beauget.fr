@@ -2,13 +2,12 @@
 
 ## Overview
 
-The application uses three reusable Vue components plus the main `app.vue` which serves as the single-page application container.
+The application uses two reusable Vue components plus the main `app.vue` which serves as the single-page application container.
 
-```
+```text
 components/
-├── CircularTextLink.vue   # Animated circular navigation link
-├── ProjectModal.vue       # Project detail modal overlay
-└── Socials.vue            # Social media icon links
+├── ProjectModal.vue       # Project detail modal with image gallery
+└── SkillsFloating.vue     # Interactive floating skills visualization
 ```
 
 ---
@@ -21,126 +20,89 @@ The main application file containing all page sections. Acts as a single-page ap
 
 ### Template Structure
 
-```
-<div class="relative">
-  ├── Video Background (parallax, masked)
+```text
+<div class="min-h-screen">
+  ├── Navigation Bar (fixed top)
+  │   ├── Logo
+  │   ├── Navigation links
+  │   └── Theme/Language toggles
   │
-  └── <div class="absolute">
-      ├── Hero Section (#home_anchor)
-      │   ├── Socials
-      │   ├── Name + Title
-      │   ├── Bio text
-      │   └── CircularTextLink → #projects_anchor
-      │
-      ├── Projects Section (#projects_anchor)
-      │   ├── ProjectModal (conditional)
-      │   └── Projects Grid (v-for)
-      │
-      ├── Contact Section
-      │   └── Contact Form
-      │
-      ├── Footer
-      │   ├── Socials
-      │   ├── CircularTextLink → #home_anchor
-      │   └── Privacy notice + Source link
-      │
-      └── Notification Toast (Transition)
+  ├── Hero Section (#home)
+  │   ├── Title + Subtitle
+  │   ├── Description
+  │   ├── CTA buttons
+  │   └── Terminal visualization (real-time network logs)
+  │
+  ├── Projects Section (#projects)
+  │   ├── Admin panel UI
+  │   ├── Projects Grid
+  │   └── ProjectModal (conditional, carousel)
+  │
+  ├── Skills Section (#skills)
+  │   └── SkillsFloating (interactive canvas)
+  │
+  ├── Contact Section (#contact)
+  │   └── Contact Form (n8n webhook)
+  │
+  ├── Footer
+  │   ├── Copyright
+  │   └── Social links (GitHub, LinkedIn, Source)
+  │
+  └── Notification Toast (Transition)
 </div>
 ```
 
 ### State
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `projects` | `ref<Array>` | `projectsData` | All projects from JSON |
-| `visibleProjects` | `computed` | - | Projects where `!hidden` |
-| `formData` | `reactive` | `{}` | Contact form fields |
-| `isSubmitting` | `ref<boolean>` | `false` | Form submission lock |
-| `notification` | `ref<Object>` | `{show, message, type}` | Toast state |
-| `parallaxOffset` | `ref<number>` | `0` | Video Y offset |
-| `selectedProject` | `ref<Object>` | `null` | Project for modal |
-| `showProjectsModal` | `ref<boolean>` | `false` | Modal visibility |
+| Property              | Type       | Default            | Description                           |
+|-----------------------|------------|--------------------|---------------------------------------|
+| `projects`            | `ref<Array>` | `projectsData`     | All projects from JSON                 |
+| `visibleProjects`     | `computed`  | -                  | Projects where `!hidden`              |
+| `selectedProjectIndex` | `ref<number>` | `null`           | Index of selected project for modal   |
+| `isModalOpen`         | `computed`  | -                  | `selectedProjectIndex !== null`       |
+| `formData`            | `reactive`  | `{}`               | Contact form fields                   |
+| `isSubmitting`        | `ref<boolean>` | `false`          | Form submission lock                  |
+| `notification`        | `ref<Object>` | `{show, message, type}` | Toast state                    |
+| `locale`              | `ref<string>` | `"fr"`           | Current language (fr/en)              |
+| `isDark`              | `ref<boolean>` | `false`         | Dark mode state                       |
+| `terminalLogs`        | `ref<Array>` | `[]`             | Real-time network request logs         |
+| `currentHost`         | `ref<string>` | `""`            | Current hostname for terminal         |
 
 ### Methods
 
-| Method | Description |
-|--------|-------------|
-| `handleSubmit()` | Submit contact form to n8n webhook |
-| `autoResize(e)` | Auto-expand textarea on input |
-| `handleScroll()` | Update parallax offset on scroll |
-| `openProjectsModal(project)` | Open modal with project data |
-| `closeProjectsModal()` | Close modal and clear selection |
+| Method                  | Description                              |
+|-------------------------|------------------------------------------|
+| `handleSubmit()`        | Submit contact form to n8n webhook      |
+| `toggleLocale()`        | Switch between French and English        |
+| `toggleTheme()`         | Toggle dark/light mode                   |
+| `openProject(project)`  | Open modal with project (finds index)    |
+| `closeProject()`        | Close modal and restore body scroll      |
+| `updateProjectIndex(index)` | Update selected project index (carousel) |
+| `startNetworkCapture()` | Begin capturing real network requests   |
+| `stopNetworkCapture()`  | Stop network request capture             |
+| `addLog(log)`           | Add network log entry to terminal        |
 
 ### Lifecycle
 
 ```javascript
 onMounted(() => {
-  window.addEventListener("scroll", handleScroll);
+  // Initialize theme from localStorage or system preference
+  if (localStorage.getItem("theme") === "dark" || 
+      (!localStorage.getItem("theme") && 
+       window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+    isDark.value = true;
+    document.documentElement.classList.add("dark");
+  }
+  
+  // Start capturing real network requests for terminal
+  startNetworkCapture();
+  currentHost.value = window.location.host;
 });
 
 onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
+  stopNetworkCapture();
 });
 ```
-
----
-
-## CircularTextLink.vue
-
-**Location**: `/components/CircularTextLink.vue`
-
-Animated circular text navigation link with a directional arrow in the center.
-
-### Visual
-
-```
-      ╭──────────────╮
-     ╱  Par ici la   ╲
-    │    suite •      │
-    │       ↓         │
-    │   Par ici la    │
-     ╲    suite •    ╱
-      ╰──────────────╯
-```
-
-### Props
-
-| Prop | Type | Required | Default | Description |
-|------|------|----------|---------|-------------|
-| `link` | `String` | Yes | - | Target href (anchor or URL) |
-| `direction` | `String` | No | `"down"` | Arrow direction: `up`, `down`, `left`, `right` |
-
-### Slots
-
-| Slot | Default Content | Description |
-|------|-----------------|-------------|
-| `default` | `"Click to scroll • Click to scroll •"` | Circular text content |
-
-### Usage Examples
-
-```vue
-<!-- Scroll down to projects -->
-<CircularTextLink link="#projects_anchor">
-  Par ici la suite • Par ici la suite •
-</CircularTextLink>
-
-<!-- Scroll up to home -->
-<CircularTextLink link="#home_anchor" direction="up">
-  Revenir en haut • Accueil • Up •
-</CircularTextLink>
-```
-
-### Animation
-
-- **Duration**: 20 seconds
-- **Direction**: Counter-clockwise (`rotate(-360deg)`)
-- **Timing**: Linear, infinite loop
-
-### Implementation Details
-
-- Uses SVG `<textPath>` wrapped around a circular `<path>`
-- Arrow paths defined as SVG path data for each direction
-- Custom-built component (not from a library)
 
 ---
 
@@ -148,108 +110,108 @@ Animated circular text navigation link with a directional arrow in the center.
 
 **Location**: `/components/ProjectModal.vue`
 
-Full-screen modal overlay displaying project details with image and description.
+Full-screen modal overlay displaying project details with image gallery, carousel navigation, and lightbox. Supports i18n for all text content.
 
 ### Props
 
-| Prop | Type | Required | Default | Description |
-|------|------|----------|---------|-------------|
-| `project` | `Object` | No | `{}` | Project data object |
+| Prop          | Type     | Required | Default | Description                      |
+|---------------|----------|----------|---------|----------------------------------|
+| `projects`    | `Array`  | Yes      | `[]`    | Array of all visible projects    |
+| `initialIndex` | `Number` | No       | `0`     | Initial project index to display |
+| `locale`      | `String` | Yes      | `"fr"`  | Current locale (fr/en)           |
 
 ### Events
 
-| Event | Payload | Description |
-|-------|---------|-------------|
-| `close` | - | Emitted when modal should close |
+| Event          | Payload  | Description                              |
+|----------------|----------|------------------------------------------|
+| `close`       | -        | Emitted when modal should close          |
+| `update:index` | `number` | Emitted when navigating to different project |
 
-### Close Triggers
+### Features
 
-1. Click the `✕` button
-2. Press `Escape` key
-3. Click outside the modal (backdrop)
+- **Image Gallery**: Displays up to 4 images in responsive grid layout
+- **Carousel Navigation**: Navigate between projects with prev/next buttons
+- **Lightbox**: Click images to view full-size in lightbox with navigation
+- **i18n Support**: All text content adapts to current locale
+- **Keyboard Support**: Escape to close, arrow keys for navigation
 
 ### Layout
 
-```
+```text
 ┌────────────────────────────────────────────┐
 │ (backdrop blur)                            │
-│  ┌─────────────────┬──────────────────┐   │
-│  │                 │ Project Name   ✕ │   │
-│  │                 │                  │   │
-│  │   Project       │ Description...   │   │
-│  │   Image         │                  │   │
-│  │                 │                  │   │
-│  │                 │                  │   │
-│  ├─────────────────┼──────────────────┤   │
-│  │  [Button]       │                  │   │
-│  └─────────────────┴──────────────────┘   │
-│                                            │
+│  ┌──────────────────────────────────────┐ │
+│  │ Project Name | Category        [✕]  │ │
+│  │ ID • Year                          │ │
+│  ├──────────────────────────────────────┤ │
+│  │ [Image Gallery Grid (1-4 images)]   │ │
+│  ├──────────────────────────────────────┤ │
+│  │ About the project                   │ │
+│  │ Description text...                 │ │
+│  │                                     │ │
+│  │ Key Points:                        │ │
+│  │ • Feature 1                        │ │
+│  │ • Feature 2                        │ │
+│  │                                     │ │
+│  │ [Links] [Stack] [Status]           │ │
+│  └──────────────────────────────────────┘ │
+│  [← Prev]              [Next →]          │
 └────────────────────────────────────────────┘
 ```
 
-### Current Limitations
+### Image Gallery Layouts
 
-- No gallery support yet (image1-4 fields unused)
-- Fixed dimensions: 680x600px image container
+- **1 image**: Full width
+- **2 images**: 2 columns
+- **3 images**: Large left (2 rows) + 2 small right
+- **4 images**: Large left (2 rows) + 3 small right
 
 ### Usage
 
 ```vue
 <ProjectModal
-  v-if="showProjectsModal"
-  :project="selectedProject"
-  @close="closeProjectsModal"
+  v-if="isModalOpen"
+  :projects="visibleProjects"
+  :initial-index="selectedProjectIndex"
+  :locale="locale"
+  @close="closeProject"
+  @update:index="updateProjectIndex"
 />
 ```
 
 ---
 
-## Socials.vue
+## SkillsFloating.vue
 
-**Location**: `/components/Socials.vue`
+**Location**: `/components/SkillsFloating.vue`
 
-Horizontal list of social media icon links.
+Interactive floating skills visualization using Canvas API with physics-based animations. Skills float and react to mouse movement.
 
-### Links
+### Features
 
-| Icon | Destination | Target |
-|------|-------------|--------|
-| GitHub | `https://github.com/valentinbgt` | `_blank` |
-| LinkedIn | `https://v.beauget.fr/linkedin` (redirect) | `_blank` |
-| CV | `/cv` (PDF proxy) | `_blank` |
+- **Physics Simulation**: Skills move with velocity, friction, and collision detection
+- **Mouse Interaction**: Skills are repelled by mouse cursor
+- **Responsive**: Adapts to container size
+- **i18n Support**: Skill names adapt to current locale
 
-### Styling
+### Props
 
-- Responsive sizing: `w-10` (mobile) → `w-14` (desktop)
-- Hover effect: Drop shadow (defined in `app.vue`)
-- Active effect: `translateY(3px)` with shadow removed
+None (uses `useI18n()` composable internally)
 
-### CSS Classes (from app.vue)
+### Skills Displayed
 
-```css
-.social-icon:hover {
-  filter: drop-shadow(0px 3px 0px white);
-}
+Skills are defined internally and include:
 
-.social-icon:active {
-  transform: translateY(3px);
-  filter: drop-shadow(0px 0px 0px white);
-}
-```
+- Frontend: Vue.js, TypeScript, Tailwind CSS, React
+- Backend: Node.js, Express, PostgreSQL, Docker, Linux, Git
+- Infrastructure: Various DevOps tools
 
-### Usage
+### Implementation
 
-```vue
-<!-- In header -->
-<div class="w-screen flex flex-row-reverse">
-  <Socials />
-</div>
-
-<!-- In footer -->
-<div class="flex flex-col items-center">
-  <Socials />
-</div>
-```
+- Uses GSAP for animations
+- Canvas-based rendering for performance
+- Collision detection between skill elements
+- Mouse repulsion physics
 
 ---
 
@@ -259,14 +221,14 @@ Horizontal list of social media icon links.
 graph TD
     AppVue[app.vue]
     
-    AppVue -->|imports| CircularTextLink
     AppVue -->|imports| ProjectModal
-    AppVue -->|imports| Socials
+    AppVue -->|imports| SkillsFloating
     
     AppVue -->|data| ProjectsJSON[projects.json]
     AppVue -->|config| RuntimeConfig[useRuntimeConfig]
+    AppVue -->|i18n| I18n[useI18n]
     
-    CircularTextLink -->|slot| TextContent[Custom Text]
-    ProjectModal -->|prop| ProjectData[Project Object]
-    Socials -->|links| ExternalURLs[GitHub/LinkedIn/CV]
+    ProjectModal -->|props| ProjectsArray[Projects Array]
+    ProjectModal -->|i18n| I18n
+    SkillsFloating -->|i18n| I18n
 ```

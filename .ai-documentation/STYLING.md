@@ -2,7 +2,7 @@
 
 ## Overview
 
-The project uses Tailwind CSS with a custom theme, supplemented by scoped CSS for animations and special effects.
+The project uses Tailwind CSS with a modern design system supporting dark mode, supplemented by scoped CSS for animations and special effects. The design follows an admin-panel aesthetic with clean lines and interactive elements.
 
 ---
 
@@ -10,39 +10,29 @@ The project uses Tailwind CSS with a custom theme, supplemented by scoped CSS fo
 
 ### Color Palette
 
-| Name | Hex | Usage |
-|------|-----|-------|
-| `vblack` | `#1F1F1F` | Background, cards |
-| `vgray` | `#BFBFBF` | Borders, secondary text |
-| `vwhite` | `#F2F2F2` | Primary text |
-| `vlightblue` | `#8FA5FF` | Accents, highlights, links |
-| `vblue` | `#0020A0` | Reserved (unused currently) |
+The design uses Tailwind's default color system with dark mode support:
 
-### Color Usage Patterns
-
-```
-Background:     vblack (#1F1F1F)
-Primary Text:   vwhite (#F2F2F2)
-Secondary Text: vgray (#BFBFBF)
-Accent/Links:   vlightblue (#8FA5FF)
-Borders:        vgray or white
-```
+| Usage          | Light Mode      | Dark Mode          |
+|----------------|-----------------|--------------------|
+| Background     | `bg-gray-50`    | `bg-dark-bg` (#0f172a) |
+| Surface        | `bg-white`      | `bg-slate-800`     |
+| Primary Text   | `text-slate-800` | `text-slate-100`   |
+| Secondary Text | `text-slate-500` | `text-slate-400`   |
+| Accent/Links   | `text-primary-600` | `text-primary-400` |
+| Borders        | `border-gray-200` | `border-slate-700` |
 
 ### Typography
 
 | Class | Font Family | Usage |
 |-------|-------------|-------|
-| `font-title` | Krona One | Headings, buttons, navigation |
-| `font-text` | Kufam | Body text, descriptions |
+| Default | Inter | Body text, descriptions |
+| `font-mono` | JetBrains Mono | Code, terminal, labels |
 
-**Fallbacks**: Arial, sans-serif
-
-### Font Sources
+**Font Sources**:
 
 ```css
-/* main.css */
-@import url("https://fonts.googleapis.com/css2?family=Kufam:ital,wght@0,400..900;1,400..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap");
 ```
 
 ---
@@ -51,27 +41,38 @@ Borders:        vgray or white
 
 **File**: `tailwind.config.js`
 
+The configuration uses Tailwind's default theme with dark mode support via class strategy:
+
 ```javascript
 module.exports = {
+  darkMode: "class",
   content: [
     "./components/**/*.{vue,js}",
     "./layouts/**/*.vue",
     "./pages/**/*.vue",
     "./plugins/**/*.{js,ts}",
     "./nuxt.config.{js,ts}",
+    "./app.vue",
   ],
   theme: {
     extend: {
       colors: {
-        vblack: "#1F1F1F",
-        vgray: "#BFBFBF",
-        vwhite: "#F2F2F2",
-        vlightblue: "#8FA5FF",
-        vblue: "#0020A0",
+        primary: {
+          50: "#eff6ff",
+          100: "#dbeafe",
+          500: "#3b82f6",
+          600: "#2563eb",
+          700: "#1d4ed8",
+        },
+        dark: {
+          bg: "#0f172a",
+          surface: "#1e293b",
+          border: "#334155",
+        },
       },
       fontFamily: {
-        title: ["Krona One", "Arial", "sans-serif"],
-        text: ["Kufam", "Arial", "sans-serif"],
+        sans: ["Inter", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
       },
     },
   },
@@ -83,131 +84,81 @@ module.exports = {
 
 ## Global Styles
 
-**File**: `app.vue` (scoped to root)
+**File**: `app.vue` (scoped styles)
 
-### CSS Reset
+### Base Styles
 
 ```css
-* {
-  @apply p-0 m-0 box-border text-vwhite font-text scroll-smooth select-none;
-}
-
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  @apply bg-vblack overflow-x-hidden;
+  @apply bg-gray-50 text-slate-800 dark:bg-dark-bg dark:text-slate-100 transition-colors duration-300;
 }
 ```
 
-### Key Resets
+### Key Features
 
-- All elements use `font-text` (Kufam) by default
-- All text is `vwhite` by default
-- User selection disabled (`select-none`)
 - Smooth scroll enabled globally
-- Horizontal overflow hidden on body
+- Dark mode support with system preference detection
+- Color transitions for theme switching
+- Custom scrollbar styling for admin-panel feel
 
 ---
 
-## Video Background Effect
+## Hero Section - Terminal Visualization
 
-### Diagonal Mask
+The hero section features a real-time terminal that displays actual network requests captured from the browser.
 
-The background video uses a PNG mask (`vmask.png`) to create a diagonal line effect, not showing the full screen.
-
-```css
-.video-mask {
-  -webkit-mask-image: url("/vmask.png");
-  mask-image: url("/vmask.png");
-  mask-repeat: no-repeat;
-  mask-size: cover;
-  mask-position: center;
-}
-```
-
-**Visual Effect**:
-```
-┌─────────────────────────┐
-│ ████████████████░░░░░░░ │
-│ █████████████░░░░░░░░░░ │
-│ ██████████░░░░░░░░░░░░░ │
-│ ███████░░░░░░░░░░░░░░░░ │
-│ ████░░░░░░░░░░░░░░░░░░░ │
-│ █░░░░░░░░░░░░░░░░░░░░░░ │
-└─────────────────────────┘
-  █ = visible video
-  ░ = masked (transparent)
-```
-
-### Parallax Effect
+### Terminal Styling
 
 ```vue
-<div
-  class="video-mask w-screen h-screen blur brightness-75 fixed"
-  :style="{ transform: `translateY(${parallaxOffset}px)` }"
->
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-slate-700 p-6">
+  <div class="font-mono text-[10px] leading-relaxed">
+    <!-- Network logs displayed here -->
+  </div>
+</div>
 ```
 
-```javascript
-const handleScroll = () => {
-  const scrollPosition = window.scrollY;
-  parallaxOffset.value = scrollPosition * -0.5; // parallax intensity
-};
-```
+### Network Log Format
 
-**Effect**: Video moves at 50% of scroll speed (negative = opposite direction)
+Each log entry shows:
 
-### Video Filters
+- **Time**: HH:MM:SS format
+- **Method**: GET, POST, PUT (color-coded)
+- **Path**: Request path (truncated if long)
+- **Status**: HTTP status code (color-coded)
+- **Duration**: Response time in milliseconds
 
-| Filter | Value | Effect |
-|--------|-------|--------|
-| `blur` | Default | Slight blur for depth |
-| `brightness` | `75%` | Darkened for readability |
+### Color Coding
+
+- **GET requests**: Green (`text-green-500`)
+- **POST requests**: Blue (`text-blue-500`)
+- **PUT requests**: Yellow (`text-yellow-500`)
+- **Status codes**:
+  - 2xx: Green
+  - 3xx: Yellow
+  - 4xx/5xx: Red
 
 ---
 
 ## Animations
 
-### Circular Text Rotation
+### Modal Transitions
 
-**File**: `components/CircularTextLink.vue`
-
-```css
-.circular-text {
-  animation: rotate 20s linear infinite;
-}
-
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(-360deg); }
-}
-```
-
-- **Duration**: 20 seconds per rotation
-- **Direction**: Counter-clockwise
-- **Timing**: Linear (constant speed)
-
-### Social Icon Press Effect
+**ProjectModal carousel and lightbox**:
 
 ```css
-.social-icon:hover {
-  filter: drop-shadow(0px 3px 0px white);
-  @apply transition;
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.3s ease;
 }
 
-.social-icon:active {
-  transform: translateY(3px);
-  filter: drop-shadow(0px 0px 0px white);
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
 }
-```
-
-**Visual**:
-```
-Hover:          Active (pressed):
-  ○               ○
-  ▓ (shadow)      (no shadow, moved down)
 ```
 
 ### Notification Fade Transition
@@ -234,50 +185,40 @@ Hover:          Active (pressed):
 ### Project Cards
 
 ```vue
-<div
-  class="bg-vblack w-full max-w-md h-80 flex flex-col-reverse overflow-hidden 
-         border-2 border-white hover:-translate-x-2 hover:-translate-y-2 
-         transition hover:shadow-vgray"
-  style="box-shadow: 15px 15px 0px -5px var(--tw-shadow-color)"
->
+<article class="bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 
+                overflow-hidden cursor-pointer hover:shadow-xl hover:border-primary-400 
+                dark:hover:border-primary-500 transition-all duration-300">
 ```
 
-**Hover Effect**:
-```
-Normal:         Hovered:
-┌────────┐      ┌────────┐
-│        │  →   │        │ ↖ moves up-left
-│        │      │        │
-└────────┘      └────────┘
-                    ▓▓▓▓▓▓ (shadow appears)
-```
+**Hover Effect**: Card lifts with shadow and border color change
 
 ### Buttons
 
-**Standard Button**:
+**Primary Button**:
+
 ```vue
-<button class="text-sm font-title border-2 border-white py-3 w-full 
-               hover:bg-white hover:text-vblack transition-colors 
-               active:underline active:decoration-vlightblue">
+<button class="px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 
+               font-medium rounded-lg hover:bg-slate-700 dark:hover:bg-slate-200 
+               transition shadow-lg">
 ```
 
-**States**:
-| State | Background | Text | Border |
-|-------|------------|------|--------|
-| Default | `vblack` | `vwhite` | `white` |
-| Hover | `white` | `vblack` | `white` |
-| Active | `white` | `vblack` + underline | `vlightblue` decoration |
-| Disabled | `vblack` | `vgray` | `white` |
+**Secondary Button**:
+
+```vue
+<button class="px-6 py-3 border border-slate-300 dark:border-slate-600 
+               text-slate-700 dark:text-slate-300 font-medium rounded-lg 
+               hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+```
 
 ### Form Inputs
 
 ```vue
-<input class="h-20 bg-vblack w-full px-7 text-xl 
-              outline-none focus:underline decoration-vlightblue 
-              caret-vlightblue" />
+<input class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 
+              border border-gray-200 dark:border-slate-700 
+              focus:ring-2 focus:ring-primary-500 outline-none transition" />
 ```
 
-**Focus Indicator**: Underline with `vlightblue` color
+**Focus Indicator**: Ring with primary color
 
 ---
 
@@ -285,11 +226,11 @@ Normal:         Hovered:
 
 Using Tailwind's default breakpoints:
 
-| Prefix | Min Width | Usage |
-|--------|-----------|-------|
-| (none) | 0px | Mobile |
-| `md:` | 768px | Tablet |
-| `xl:` | 1280px | Desktop |
+| Prefix   | Min Width | Usage   |
+|----------|-----------|---------|
+| (none)   | 0px       | Mobile  |
+| `md:`    | 768px     | Tablet  |
+| `xl:`    | 1280px    | Desktop |
 
 ### Common Responsive Patterns
 
@@ -313,9 +254,10 @@ Using Tailwind's default breakpoints:
 
 | Layer | Z-Index | Element |
 |-------|---------|---------|
-| Background | - | Video (fixed, behind content) |
-| Content | `absolute` | Main content wrapper |
-| Modal | `z-[9999]` | ProjectModal overlay |
+| Navigation | `z-40` | Fixed navigation bar |
+| Content | `z-10` | Main content sections |
+| Modal | `z-50` | ProjectModal overlay |
+| Lightbox | `z-[60]` | Image lightbox |
 | Notification | `z-50` | Toast notification |
 
 ---
@@ -323,23 +265,23 @@ Using Tailwind's default breakpoints:
 ## Design Tokens Summary
 
 ```javascript
-// Colors
---vblack: #1F1F1F
---vgray: #BFBFBF
---vwhite: #F2F2F2
---vlightblue: #8FA5FF
---vblue: #0020A0
+// Colors (Tailwind)
+--primary-500: #3b82f6
+--primary-600: #2563eb
+--dark-bg: #0f172a
+--dark-surface: #1e293b
+--dark-border: #334155
 
 // Fonts
---font-title: "Krona One", Arial, sans-serif
---font-text: "Kufam", Arial, sans-serif
+--font-sans: "Inter", sans-serif
+--font-mono: "JetBrains Mono", monospace
 
 // Animations
---rotation-duration: 20s
 --transition-duration: 0.3s
---parallax-intensity: 0.5
+--transition-timing: ease
 
 // Shadows
---card-shadow: 15px 15px 0px -5px
---icon-shadow: 0px 3px 0px white
+--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1)
+--shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1)
+--shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25)
 ```

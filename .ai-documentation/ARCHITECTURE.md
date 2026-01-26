@@ -46,10 +46,11 @@ sequenceDiagram
     Browser->>Nuxt: Request /
     Nuxt->>AppVue: Render app.vue
     AppVue->>AppVue: Load projects.json
-    AppVue->>AppVue: Setup parallax listener
+    AppVue->>AppVue: Initialize theme (localStorage/system)
+    AppVue->>AppVue: Start network capture
     Nuxt-->>Browser: HTML + Hydration
     Browser->>Browser: Vue hydration
-    Browser->>Browser: Start video playback
+    Browser->>Browser: Initialize terminal logs
 ```
 
 ### Contact Form Flow
@@ -76,26 +77,26 @@ sequenceDiagram
 graph TD
     AppVue[app.vue]
     
+    AppVue --> Nav[Navigation Bar]
     AppVue --> Hero[Hero Section]
-    AppVue --> Projects[Projects Grid]
-    AppVue --> Contact[Contact Form]
+    AppVue --> Projects[Projects Section]
+    AppVue --> Skills[Skills Section]
+    AppVue --> Contact[Contact Section]
     AppVue --> Footer[Footer]
     
-    Hero --> Socials1[Socials]
-    Hero --> CircularText1[CircularTextLink]
+    Hero --> Terminal[Terminal Visualization]
     
-    Projects --> ProjectCards[Project Cards]
+    Projects --> ProjectCards[Project Cards Grid]
     Projects --> ProjectModal[ProjectModal]
     
-    Footer --> Socials2[Socials]
-    Footer --> CircularText2[CircularTextLink]
+    Skills --> SkillsFloating[SkillsFloating]
 ```
 
 ## Data Flow
 
 ### Projects Data
 
-```
+```text
 assets/data/projects.json
          │
          ▼
@@ -118,7 +119,7 @@ assets/data/projects.json
 
 ### Form Data
 
-```
+```text
 formData (reactive)
 ├── firstName: string
 ├── lastName: string
@@ -142,18 +143,18 @@ formData (reactive)
 
 ### Route Handlers
 
-| Route | Method | Handler | Purpose |
-|-------|--------|---------|---------|
-| `/cv` | GET | `cv.get.ts` | Proxy PDF from Nextcloud |
-| `/github` | GET | `github.get.ts` | 302 redirect to GitHub |
-| `/linkedin` | GET | `linkedin.get.ts` | 302 redirect to LinkedIn |
-| `/mmi` | GET | `mmi.get.ts` | 302 redirect to MMI project |
+| Route     | Method | Handler        | Purpose                          |
+|-----------|--------|----------------|----------------------------------|
+| `/cv`     | GET    | `cv.get.ts`    | Proxy PDF from Nextcloud         |
+| `/github` | GET    | `github.get.ts` | 302 redirect to GitHub           |
+| `/linkedin` | GET  | `linkedin.get.ts` | 302 redirect to LinkedIn       |
+| `/mmi`    | GET    | `mmi.get.ts`   | 302 redirect to MMI project       |
 
-### Deprecated Endpoints
+### Removed Endpoints
 
-| Route | Method | Handler | Status |
-|-------|--------|---------|--------|
-| `/api/contact` | POST | `contact.post.ts` | DEPRECATED - replaced by n8n |
+| Route          | Method | Handler            | Status                                          |
+|----------------|--------|--------------------|-------------------------------------------------|
+| `/api/contact` | POST   | `contact.post.ts`  | REMOVED - replaced by direct n8n webhook integration |
 
 ## External Service Integration
 
@@ -164,7 +165,7 @@ formData (reactive)
 - **Action**: Send Discord notification
 - **Configuration**: `FORM_URL` environment variable
 
-```
+```text
 Client Form
     │
     ▼
@@ -183,7 +184,7 @@ Discord Webhook → Channel Notification
 - **Source**: `https://drive.beauget.fr/s/cv/download`
 - **Benefit**: Auto-updates when new CV is uploaded to Nextcloud
 
-```
+```text
 Client Request: /cv
     │
     ▼
@@ -202,19 +203,24 @@ Headers: Content-Type: application/pdf
 
 The application uses Vue 3 Composition API with local component state:
 
-| State | Type | Purpose |
-|-------|------|---------|
-| `projects` | `ref` | Projects array from JSON |
-| `visibleProjects` | `computed` | Filtered projects (!hidden) |
-| `formData` | `reactive` | Contact form fields |
-| `isSubmitting` | `ref` | Form submission state |
-| `notification` | `ref` | Toast notification state |
-| `parallaxOffset` | `ref` | Video parallax position |
-| `selectedProject` | `ref` | Currently opened project |
-| `showProjectsModal` | `ref` | Modal visibility |
+| State                | Type       | Purpose                                                      |
+|----------------------|------------|--------------------------------------------------------------|
+| `projects`           | `ref`      | Projects array from JSON                                     |
+| `visibleProjects`    | `computed` | Filtered projects (!hidden)                                  |
+| `selectedProjectIndex` | `ref`    | Index of selected project for modal                          |
+| `isModalOpen`        | `computed` | `selectedProjectIndex !== null`                              |
+| `formData`           | `reactive` | Contact form fields (firstName, lastName, email, message)    |
+| `isSubmitting`       | `ref`      | Form submission state                                        |
+| `notification`       | `ref`      | Toast notification state                                     |
+| `locale`             | `ref`      | Current language (fr/en)                                     |
+| `isDark`             | `ref`      | Dark mode state                                              |
+| `terminalLogs`       | `ref`      | Real-time network request logs                               |
+| `currentHost`        | `ref`      | Current hostname for terminal display                        |
 
 ## Rendering Strategy
 
 - **Mode**: Universal (SSR + Client Hydration)
 - **Single Page**: All content in `app.vue`
-- **No Router**: Anchor-based navigation (`#home_anchor`, `#projects_anchor`)
+- **No Router**: Anchor-based navigation (`#home`, `#projects`, `#skills`, `#contact`)
+- **Theme**: Dark mode with system preference detection
+- **i18n**: French/English language support via Nuxt i18n module

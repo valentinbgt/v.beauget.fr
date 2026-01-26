@@ -2,13 +2,11 @@
 
 ## Overview
 
-The Nuxt server provides route handlers for redirects and file proxying. The API endpoint for contact form is deprecated in favor of n8n webhooks.
+The Nuxt server provides route handlers for redirects and file proxying. The contact form now submits directly to n8n webhooks (no server-side API endpoint required).
 
-```
+```text
 server/
-├── api/
-│   └── contact.post.ts    # [DEPRECATED]
-├── routes/
+└── routes/
 │   ├── cv.get.ts          # PDF proxy
 │   ├── github.get.ts      # Redirect
 │   ├── linkedin.get.ts    # Redirect
@@ -47,6 +45,7 @@ export default defineEventHandler(async (event) => {
 ```
 
 **Behavior**:
+
 - Fetches PDF from Nextcloud share link
 - Streams response body to client
 - Sets headers for inline PDF viewing
@@ -108,63 +107,27 @@ export default defineEventHandler((event) => {
 
 ---
 
-## Deprecated API
+## Removed API
 
 ### POST /api/contact
 
-**File**: `server/api/contact.post.ts`
+**Status**: REMOVED (file deleted)
 
-**Status**: DEPRECATED - Not used in production
+**Previous File**: `server/api/contact.post.ts` (no longer exists)
 
-**Reason**: Replaced by n8n webhook for Discord notifications
+**Reason**: Replaced by direct n8n webhook integration. The contact form now submits directly to the n8n webhook URL configured via `FORM_URL` environment variable.
 
-```typescript
-// useless file for current production
+**Previous Implementation** (for reference):
 
-export default defineEventHandler(async (event) => {
-  try {
-    const body = await readBody(event);
-    const messageData = {
-      ...body,
-      timestamp: new Date().toISOString(),
-      id: crypto.randomUUID(),
-    };
+- Accepted contact form submissions
+- Added timestamp and UUID
+- Saved to `server/data/messages.json` on disk
 
-    const dataDir = resolve("./server/data");
-    const filePath = resolve(dataDir, "messages.json");
+**Current Implementation**:
 
-    if (!existsSync(dataDir)) {
-      await mkdir(dataDir, { recursive: true });
-    }
-
-    let messages = [];
-    try {
-      const fileContent = await readFile(filePath, "utf-8");
-      messages = JSON.parse(fileContent);
-    } catch (error) {}
-
-    messages.push(messageData);
-    await writeFile(filePath, JSON.stringify(messages, null, 2));
-
-    return { success: true };
-  } catch (error) {
-    throw createError({
-      statusCode: 500,
-      message: "Failed to save message",
-    });
-  }
-});
-```
-
-**Original Purpose**:
-- Accept contact form submissions
-- Add timestamp and UUID
-- Save to `server/data/messages.json`
-
-**Why Deprecated**:
-- Requires server-side file storage
-- No notification system
-- n8n provides better workflow (Discord notifications)
+- Contact form submits directly to n8n webhook
+- No server-side API endpoint required
+- n8n handles Discord notifications
 
 ---
 
@@ -208,13 +171,12 @@ const handleSubmit = async () => {
 
 ## Route Summary Table
 
-| Route | Method | Type | Destination | Status |
-|-------|--------|------|-------------|--------|
-| `/cv` | GET | Proxy | Nextcloud PDF | Active |
-| `/github` | GET | Redirect | github.com/valentinbgt | Active |
-| `/linkedin` | GET | Redirect | linkedin.com/in/valentin-beauget | Active |
-| `/mmi` | GET | Redirect | mmi23a02.mmi-troyes.fr | Active |
-| `/api/contact` | POST | API | Local JSON file | Deprecated |
+| Route      | Method | Type     | Destination                        | Status |
+|------------|--------|----------|-------------------------------------|--------|
+| `/cv`      | GET    | Proxy    | Nextcloud PDF                       | Active |
+| `/github`  | GET    | Redirect | github.com/valentinbgt              | Active |
+| `/linkedin` | GET  | Redirect | linkedin.com/in/valentin-beauget    | Active |
+| `/mmi`     | GET    | Redirect | mmi23a02.mmi-troyes.fr              | Active |
 
 ---
 
@@ -224,7 +186,7 @@ The contact form now submits directly to an n8n webhook instead of the local API
 
 ### Flow
 
-```
+```text
 User submits form
        │
        ▼
