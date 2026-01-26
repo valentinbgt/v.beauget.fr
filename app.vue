@@ -108,10 +108,10 @@
       </div>
 
       <div
-        class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left w-full"
+        class="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 text-center md:text-left w-full"
       >
         <div
-          class="flex flex-col sm:flex-row items-center justify-between gap-12"
+          class="flex flex-col md:flex-row items-center justify-between gap-12"
         >
           <div class="flex-1 space-y-6">
             <!--             <div
@@ -121,12 +121,12 @@
               Disponible pour missions
             </div> -->
             <h1
-              class="text-5xl sm:text-7xl font-bold tracking-tight leading-tight"
+              class="text-5xl md:text-7xl font-bold tracking-tight leading-tight"
             >
               Valentin BEAUGET<span class="text-primary-600">.</span>
             </h1>
             <h2
-              class="text-xl sm:text-2xl text-slate-500 dark:text-slate-400 font-light"
+              class="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-light"
             >
               Développeur Fullstack
             </h2>
@@ -140,7 +140,7 @@
               développe des applications sur mesure pour la télévision.
             </p>
             <div
-              class="flex flex-wrap gap-4 pt-4 justify-center sm:justify-start"
+              class="flex flex-wrap gap-4 pt-4 justify-center md:justify-start"
             >
               <a
                 href="#projects"
@@ -158,7 +158,7 @@
           </div>
 
           <!-- Abstract Visualization -->
-          <div class="flex-1 w-full max-w-md">
+          <div class="flex-1 w-full max-w-md hidden md:block">
             <div class="relative aspect-square">
               <div
                 class="absolute inset-0 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-slate-700 p-6 flex flex-col gap-4 transform rotate-3 hover:rotate-0 transition-transform duration-500"
@@ -181,7 +181,7 @@
                 </div>
                 <!-- Terminal Content - Real Network Requests -->
                 <div
-                  class="flex-1 bg-gray-50 dark:bg-slate-900 rounded-xl p-3 font-mono text-[10px] leading-relaxed overflow-hidden"
+                  class="flex-1 flex flex-col-reverse bg-gray-50 dark:bg-slate-900 rounded-xl p-3 font-mono text-[10px] leading-relaxed overflow-hidden"
                 >
                   <div class="space-y-1">
                     <div
@@ -671,13 +671,47 @@ const getPathFromUrl = (url) => {
 
 const addLog = (log) => {
   terminalLogs.value.push(log);
-  // Keep only last 8 logs
-  if (terminalLogs.value.length > 8) {
+  // Keep only last 18 logs
+  if (terminalLogs.value.length > 18) {
     terminalLogs.value.shift();
   }
 };
 
+const generateInitialLogs = () => {
+  const now = new Date();
+  const fakeLogs = [
+    { method: "GET", path: "/", status: 200, duration: 12 },
+    { method: "GET", path: "/_nuxt/entry.js", status: 200, duration: 45 },
+    { method: "GET", path: "/_nuxt/entry.css", status: 200, duration: 23 },
+    { method: "GET", path: "/api/projects", status: 200, duration: 89 },
+    { method: "GET", path: "/fonts/Inter.woff2", status: 200, duration: 156 },
+    { method: "GET", path: "/favicon.ico", status: 200, duration: 8 },
+    { method: "GET", path: "/_nuxt/chunks/vue.js", status: 200, duration: 67 },
+    { method: "GET", path: "/images/hero.webp", status: 200, duration: 234 },
+    {
+      method: "GET",
+      path: "/_nuxt/builds/meta.json",
+      status: 200,
+      duration: 15,
+    },
+    { method: "GET", path: "/api/skills", status: 200, duration: 42 },
+    { method: "POST", path: "/api/analytics", status: 201, duration: 78 },
+    { method: "GET", path: "/robots.txt", status: 200, duration: 5 },
+  ];
+
+  fakeLogs.forEach((log, i) => {
+    const time = new Date(now.getTime() - (fakeLogs.length - i) * 500);
+    terminalLogs.value.push({
+      time: formatTime(time),
+      ...log,
+    });
+  });
+};
+
 const startNetworkCapture = () => {
+  // Add initial fake logs so terminal isn't empty
+  generateInitialLogs();
+
   // 1. Capture resource timing (images, scripts, CSS, etc.)
   performanceObserver = new PerformanceObserver((list) => {
     for (const entry of list.getEntries()) {
