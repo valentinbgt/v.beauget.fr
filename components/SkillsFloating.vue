@@ -10,14 +10,14 @@
       :key="skill.id"
       :ref="(el) => setBrickRef(el, index)"
       class="absolute px-5 py-4 rounded-xl border-2 flex items-center justify-center gap-2 bg-white dark:bg-slate-800 shadow-sm select-none will-change-transform"
-      :class="skill.borderColor"
+      :class="getBorderColor(skill)"
     >
       <div
-        v-if="skill.image"
+        v-if="getImage(skill)"
         class="w-6 h-6 sm:w-8 sm:h-8 flex-shrink-0 flex items-center justify-center"
       >
         <img
-          :src="skill.image"
+          :src="getImage(skill)"
           :alt="skill.name[locale]"
           class="w-full h-full object-contain"
         />
@@ -36,6 +36,54 @@ import { ref, onMounted, onUnmounted, nextTick, computed } from "vue";
 import { gsap } from "gsap";
 
 const { locale } = useI18n();
+
+// Détection du thème avec réactivité
+const isDark = ref(false);
+
+const checkTheme = () => {
+  if (typeof document !== "undefined") {
+    isDark.value = document.documentElement.classList.contains("dark");
+  }
+};
+
+// Observer les changements de thème
+let themeObserver = null;
+
+onMounted(() => {
+  checkTheme();
+  themeObserver = new MutationObserver(() => {
+    checkTheme();
+  });
+  themeObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+});
+
+onUnmounted(() => {
+  if (themeObserver) {
+    themeObserver.disconnect();
+  }
+});
+
+// Fonctions pour obtenir l'image et la couleur selon le thème
+const getImage = (skill) => {
+  // En dark mode, utilise imageDark si disponible, sinon image par défaut
+  if (isDark.value && skill.imageDark) {
+    return skill.imageDark;
+  }
+  // En light mode, utilise image par défaut
+  return skill.image;
+};
+
+const getBorderColor = (skill) => {
+  // En dark mode, utilise borderColorDark si disponible, sinon borderColor par défaut
+  if (isDark.value && skill.borderColorDark) {
+    return skill.borderColorDark;
+  }
+  // En light mode, utilise borderColor par défaut
+  return skill.borderColor;
+};
 
 // --- Configuration Physique ---
 const CONFIG = {
@@ -58,7 +106,9 @@ const skillsData = ref([
     id: 1,
     name: { fr: "Vue.js", en: "Vue.js" },
     borderColor: "border-[#3fb984]",
+    borderColorDark: "border-[#3fb984]",
     image: "/icons/skills/vue.png",
+    imageDark: "/icons/skills/vue.png",
     x: 0,
     y: 0,
     vx: 0,
@@ -70,7 +120,9 @@ const skillsData = ref([
     id: 2,
     name: { fr: "TypeScript", en: "TypeScript" },
     borderColor: "border-[#2d79c7]",
+    borderColorDark: "border-[#2d79c7]",
     image: "/icons/skills/typescript.png",
+    imageDark: "/icons/skills/typescript.png",
     x: 0,
     y: 0,
     vx: 0,
@@ -82,7 +134,9 @@ const skillsData = ref([
     id: 3,
     name: { fr: "Tailwind CSS", en: "Tailwind CSS" },
     borderColor: "border-[#39bef8]",
+    borderColorDark: "border-[#39bef8]",
     image: "/icons/skills/tailwind.png",
+    imageDark: "/icons/skills/tailwind.png",
     x: 0,
     y: 0,
     vx: 0,
@@ -94,7 +148,23 @@ const skillsData = ref([
     id: 4,
     name: { fr: "Nuxt", en: "Nuxt" },
     borderColor: "border-[#00dc82]",
+    borderColorDark: "border-[#00dc82]",
     image: "/icons/skills/nuxt.svg",
+    imageDark: "/icons/skills/nuxt.svg",
+    x: 0,
+    y: 0,
+    vx: 0,
+    vy: 0,
+    width: 0,
+    height: 0,
+  },
+  {
+    id: 5,
+    name: { fr: "Debian", en: "Debian" },
+    borderColor: "border-red-600",
+    borderColorDark: "border-red-600",
+    image: "/icons/skills/debian.png",
+    imageDark: "/icons/skills/debian.png",
     x: 0,
     y: 0,
     vx: 0,
@@ -104,8 +174,11 @@ const skillsData = ref([
   },
   {
     id: 6,
-    name: { fr: "Debian", en: "Debian" },
-    borderColor: "border-red-600",
+    name: { fr: "Docker", en: "Docker" },
+    borderColor: "border-[#5b87a9]",
+    borderColorDark: "border-[#5b87a9]",
+    image: "/icons/skills/docker.png",
+    imageDark: "/icons/skills/docker.png",
     x: 0,
     y: 0,
     vx: 0,
@@ -115,9 +188,11 @@ const skillsData = ref([
   },
   {
     id: 7,
-    name: { fr: "Docker", en: "Docker" },
-    borderColor: "border-[#5b87a9]",
-    image: "/icons/skills/docker.png",
+    name: { fr: "Git", en: "Git" },
+    borderColor: "border-[#f05030]",
+    borderColorDark: "border-[#f05030]",
+    image: "/icons/skills/git.png",
+    imageDark: "/icons/skills/git.png",
     x: 0,
     y: 0,
     vx: 0,
@@ -127,9 +202,11 @@ const skillsData = ref([
   },
   {
     id: 8,
-    name: { fr: "Git", en: "Git" },
-    borderColor: "border-[#f05030]",
-    image: "/icons/skills/git.png",
+    name: { fr: "Réseau", en: "Network" },
+    borderColor: "border-[#54c3f1]",
+    borderColorDark: "border-[#54c3f1]",
+    image: "/icons/skills/network.png",
+    imageDark: "/icons/skills/network.png",
     x: 0,
     y: 0,
     vx: 0,
@@ -139,9 +216,10 @@ const skillsData = ref([
   },
   {
     id: 9,
-    name: { fr: "Réseau", en: "Network" },
-    borderColor: "border-[#54c3f1]",
-    image: "/icons/skills/network.png",
+    name: { fr: "Gestion d'équipe", en: "Team Management" },
+    borderColor: "border-[#3a3a3a]",
+    borderColorDark: "border-white-900",
+    //image silhouette
     x: 0,
     y: 0,
     vx: 0,
@@ -151,8 +229,10 @@ const skillsData = ref([
   },
   {
     id: 10,
-    name: { fr: "Gestion d'équipe", en: "Team Management" },
-    borderColor: "border-[#3a3a3a]",
+    name: { fr: "Gestion de projets", en: "Project Management" },
+    borderColor: "border-yellow-500",
+    borderColorDark: "border-yellow-500",
+    //image folder
     x: 0,
     y: 0,
     vx: 0,
@@ -162,8 +242,11 @@ const skillsData = ref([
   },
   {
     id: 11,
-    name: { fr: "Gestion de projets", en: "Project Management" },
-    borderColor: "border-yellow-500",
+    name: { fr: "Dokploy", en: "Dokploy" },
+    borderColor: "border-[#3a3a3a]",
+    borderColorDark: "border-white-900",
+    image: "/icons/skills/dokploy.png",
+    imageDark: "/icons/skills/dokploy.png",
     x: 0,
     y: 0,
     vx: 0,
@@ -173,9 +256,10 @@ const skillsData = ref([
   },
   {
     id: 12,
-    name: { fr: "Dokploy", en: "Dokploy" },
-    borderColor: "border-[#3a3a3a]",
-    image: "/icons/skills/dokploy.png",
+    name: { fr: "CI/CD", en: "CI/CD" },
+    borderColor: "border-red-500",
+    borderColorDark: "border-red-500",
+    //image pipeline or infinite
     x: 0,
     y: 0,
     vx: 0,
@@ -185,8 +269,10 @@ const skillsData = ref([
   },
   {
     id: 13,
-    name: { fr: "Gestion des risques", en: "Risk Management" },
+    name: { fr: "Autonomie", en: "Autonomy" },
     borderColor: "border-red-500",
+    borderColorDark: "border-red-500",
+    //image flèche
     x: 0,
     y: 0,
     vx: 0,
@@ -196,8 +282,11 @@ const skillsData = ref([
   },
   {
     id: 14,
-    name: { fr: "CI/CD", en: "CI/CD" },
-    borderColor: "border-red-500",
+    name: { fr: "Son", en: "Sound" },
+    borderColor: "border-[#3a3a3a]",
+    borderColorDark: "border-white-900",
+    image: "/icons/skills/xlr.jpg",
+    imageDark: "/icons/skills/xlr.jpg",
     x: 0,
     y: 0,
     vx: 0,
@@ -207,32 +296,11 @@ const skillsData = ref([
   },
   {
     id: 15,
-    name: { fr: "Autonomie", en: "Autonomy" },
-    borderColor: "border-red-500",
-    x: 0,
-    y: 0,
-    vx: 0,
-    vy: 0,
-    width: 0,
-    height: 0,
-  },
-  {
-    id: 16,
-    name: { fr: "Son", en: "Sound" },
-    borderColor: "border-black-900",
-    image: "/icons/skills/xlr.jpg",
-    x: 0,
-    y: 0,
-    vx: 0,
-    vy: 0,
-    width: 0,
-    height: 0,
-  },
-  {
-    id: 17,
     name: { fr: "DMX", en: "DMX" },
-    borderColor: "border-white-900",
+    borderColor: "border-[#3a3a3a]",
+    borderColorDark: "border-white-900",
     image: "/icons/skills/dmx.png",
+    imageDark: "/icons/skills/dmx.png",
     x: 0,
     y: 0,
     vx: 0,
