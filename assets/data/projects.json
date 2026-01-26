@@ -14,7 +14,11 @@
       "fr": "En Juin 2024, j'ai fondé le Bureau Des Étudiants en Métiers du Multimédia et de l'Internet à Troyes.\n\nCette expérience m'a appris des compétences comme le leadership bénévole, la capacité à fédérer, la gestion d'équipe et de projets ainsi que la communication.\n\nNous sommes parti, sans structure, de quelques étudiants motivés pour arriver un an après, à environ 25 étudians investis, une structure solide et une trésorerie digne d'une association étudiante.",
       "en": "In June 2024, I founded the Student Union for Multimedia and Internet Professions in Troyes.\n\nThis experience taught me skills such as volunteer leadership, the ability to unite people, team and project management, as well as communication.\n\nWe started from scratch, with a few motivated students, to arrive a year later with about 25 invested students, a solid structure and a treasury worthy of a student association."
     },
-    "images": ["/images/bde.png", "/images/nds.jpg", "/images/pull_bde_2025.jpg"],
+    "images": [
+      "/images/bde.png",
+      "/images/nds.jpg",
+      "/images/pull_bde_2025.jpg"
+    ],
     "stack": {
       "fr": ["Organisation", "Vision", "Autonomie"],
       "en": ["Organization", "Vision", "Autonomy"]
@@ -29,8 +33,14 @@
     },
     "year": "2024-2025",
     "links": [
-      { "label": { "fr": "Instagram", "en": "Instagram" }, "url": "https://www.instagram.com/bde.mmi.troyes/" },
-      { "label": { "fr": "Site web", "en": "Website" }, "url": "https://bde.mmi-troyes.fr/" }
+      {
+        "label": { "fr": "Instagram", "en": "Instagram" },
+        "url": "https://www.instagram.com/bde.mmi.troyes/"
+      },
+      {
+        "label": { "fr": "Site web", "en": "Website" },
+        "url": "https://bde.mmi-troyes.fr/"
+      }
     ],
     "features": {
       "fr": [
@@ -62,7 +72,12 @@
       "fr": "Responsable de la House Stage lors de la Nuit Campus 3 2025, un festival étudiant regroupant plusieurs milliers de participants pour une soirée festive.\n\nPour cet événement, je me suis occupé de la gestion des artistes de la House Stage et j'ai prêté main forte pour la Diamond Stage.\n\nJ'ai beaucoup appris sur le monde de l'événementiel et en Son et Lumières.",
       "en": "Responsible for the House Stage during Night Campus 3 2025, a student festival bringing together several thousand participants for a festive evening.\n\nFor this event, I managed the artists of the House Stage and helped out with the Diamond Stage.\n\nI learned a lot about the event industry and Sound & Lighting."
     },
-    "images": ["/images/nc3.jpg", "/images/nc3_2.png", "/images/nc3_3.JPEG", "/images/nc3_4.JPEG"],
+    "images": [
+      "/images/nc3.jpg",
+      "/images/nc3_2.png",
+      "/images/nc3_3.JPEG",
+      "/images/nc3_4.JPEG"
+    ],
     "stack": {
       "fr": ["Événementiel", "Relations", "Coordination", "S&L"],
       "en": ["Event Management", "Relations", "Coordination", "S&L"]
@@ -77,20 +92,18 @@
     },
     "year": "2025",
     "links": [
-      { "label": { "fr": "Site du festival", "en": "Festival website" }, "url": "https://nc3.campus3.fr/" },
-      { "label": { "fr": "Instagram", "en": "Instagram" }, "url": "https://instagram.com/nuitcampus3/" }
+      {
+        "label": { "fr": "Site du festival", "en": "Festival website" },
+        "url": "https://nc3.campus3.fr/"
+      },
+      {
+        "label": { "fr": "Instagram", "en": "Instagram" },
+        "url": "https://instagram.com/nuitcampus3/"
+      }
     ],
     "features": {
-      "fr": [
-        "Programmation artistique",
-        "Coordination",
-        "Réponse aux besoins"
-      ],
-      "en": [
-        "Artist programming",
-        "Coordination",
-        "Needs response"
-      ]
+      "fr": ["Programmation artistique", "Coordination", "Réponse aux besoins"],
+      "en": ["Artist programming", "Coordination", "Needs response"]
     }
   },
   {
@@ -108,7 +121,11 @@
       "fr": "Pour répondre aux besoins en hébergement que nécessitent mes différents projets web et mon drive personnel, j'ai vite eu besoin de mon propre serveur.\nCe projet m'a permis d'en apprendre beaucoup sur l'hébergement, en administration système et DevOps.\n\nJ'ai d'abord commencé avec du matériel de récupération bricolé mais j'ai récemment pu investir dans du matériel performant qui m'a permis d'étendre les possibilités.\n\nPour ce projet, j'ai mis l'accent sur la sécurité et la fiabilité. Le système est configuré avec une redondance des données (RAID1) et est en permanence sauvegardé par un Raspberry Pi et un HDD situés dans une autre ville pour un maximum de sécurité.",
       "en": "To meet the hosting needs of my various web projects and personal drive, I quickly needed my own server.\nThis project allowed me to learn a lot about hosting, system administration and DevOps.\n\nI first started with salvaged DIY hardware but I recently invested in high-performance equipment that allowed me to expand possibilities.\n\nFor this project, I emphasized security and reliability. The system is configured with data redundancy (RAID1) and is constantly backed up by a Raspberry Pi and HDD located in another city for maximum security."
     },
-    "images": ["/images/serveur.png", "/images/dokploy.png", "/images/beszel.png"],
+    "images": [
+      "/images/serveur.png",
+      "/images/dokploy.png",
+      "/images/beszel.png"
+    ],
     "stack": {
       "fr": ["Debian", "RAID", "Dokploy", "CI/CD"],
       "en": ["Debian", "RAID", "Dokploy", "CI/CD"]
@@ -123,7 +140,10 @@
     },
     "year": "2020-2026",
     "links": [
-      { "label": { "fr": "Disponibilité", "en": "Availability" }, "url": "https://status.beauget.fr/status/default" }
+      {
+        "label": { "fr": "Disponibilité", "en": "Availability" },
+        "url": "https://status.beauget.fr/status/default"
+      }
     ],
     "features": {
       "fr": [
@@ -155,7 +175,11 @@
       "fr": "Pour ce projet nous devions réaliser un site web avec un front-end, une gestion d'au moins 50 entrées données et un back-end en PHP avec upload et visualisation d'images.\n\nIl s'agit du premier site web réalisé dans le cadre de mes études en BUT MMI.\nCe projet a été l'occasion de mettre a exécution les compétences que j'ai acquis en autodidacte avant d'intégrer la formation.",
       "en": "For this project we had to create a website with a front-end, management of at least 50 data entries and a PHP back-end with image upload and visualization.\n\nThis is the first website created as part of my BUT MMI studies.\nThis project was an opportunity to put into practice the skills I acquired self-taught before joining the program."
     },
-    "images": ["/images/sae105.png", "/images/sae105_2.png", "/images/sae105_3.png"],
+    "images": [
+      "/images/sae105.png",
+      "/images/sae105_2.png",
+      "/images/sae105_3.png"
+    ],
     "stack": {
       "fr": ["PHP", "HTML", "CSS", "JavaScript"],
       "en": ["PHP", "HTML", "CSS", "JavaScript"]
@@ -170,18 +194,18 @@
     },
     "year": "2023",
     "links": [
-      { "label": { "fr": "Site web", "en": "Website" }, "url": "https://mmi23a02.sae105.ovh/" },
-      { "label": { "fr": "Code source", "en": "Source code" }, "url": "https://github.com/valentinbgt/sae105" }
+      {
+        "label": { "fr": "Site web", "en": "Website" },
+        "url": "https://mmi23a02.sae105.ovh/"
+      },
+      {
+        "label": { "fr": "Code source", "en": "Source code" },
+        "url": "https://github.com/valentinbgt/sae105"
+      }
     ],
     "features": {
-      "fr": [
-        "Gestion de données et backend PHP",
-        "Intégration HTML/CSS/JS"
-      ],
-      "en": [
-        "Data management and PHP backend",
-        "HTML/CSS/JS integration"
-      ]
+      "fr": ["Gestion de données et backend PHP", "Intégration HTML/CSS/JS"],
+      "en": ["Data management and PHP backend", "HTML/CSS/JS integration"]
     }
   },
   {
@@ -199,10 +223,30 @@
       "fr": "Dans le cadre de nos études, nous avons réalisé en binôme, avec un camarade, un site web permettant la visualisation d'un jeu important de données.\nLe sujet a mis l'accent sur le front-end et nous avons choisis l'analyse de données électorale car, vu les enjeux, nous estimons important que ces informations soient accessible à tous.\n\nNous avons appris à manipuler des données et les exposer en front via des graphiques et dataviz interactifs.",
       "en": "As part of our studies, we created a website in pairs with a classmate that allows visualization of a large dataset.\nThe subject emphasized front-end and we chose electoral data analysis because, given the stakes, we believe it is important that this information be accessible to everyone.\n\nWe learned how to manipulate data and display it on the front-end via interactive charts and dataviz."
     },
-    "images": ["/images/results.png", "/images/results_2.png", "/images/results_3.png"],
+    "images": [
+      "/images/results.png",
+      "/images/results_2.png",
+      "/images/results_3.png"
+    ],
     "stack": {
-      "fr": ["SPA", "Vue.js", "Vite", "Tailwind CSS", "D3.js", "ApexCharts", "Chart.js"],
-      "en": ["SPA", "Vue.js", "Vite", "Tailwind CSS", "D3.js", "ApexCharts", "Chart.js"]
+      "fr": [
+        "SPA",
+        "Vue.js",
+        "Vite",
+        "Tailwind CSS",
+        "D3.js",
+        "ApexCharts",
+        "Chart.js"
+      ],
+      "en": [
+        "SPA",
+        "Vue.js",
+        "Vite",
+        "Tailwind CSS",
+        "D3.js",
+        "ApexCharts",
+        "Chart.js"
+      ]
     },
     "status": {
       "fr": "Terminé",
@@ -214,8 +258,14 @@
     },
     "year": "2025",
     "links": [
-      { "label": { "fr": "Site web", "en": "Website" }, "url": "https://results.beauget.fr/" },
-      { "label": { "fr": "Code source", "en": "Source code" }, "url": "https://github.com/valentinbgt/results" }
+      {
+        "label": { "fr": "Site web", "en": "Website" },
+        "url": "https://results.beauget.fr/"
+      },
+      {
+        "label": { "fr": "Code source", "en": "Source code" },
+        "url": "https://github.com/valentinbgt/results"
+      }
     ],
     "features": {
       "fr": [
@@ -260,7 +310,10 @@
     },
     "year": "2019",
     "links": [
-      { "label": { "fr": "Accéder", "en": "Access" }, "url": "https://bledmarket.fr/" }
+      {
+        "label": { "fr": "Accéder", "en": "Access" },
+        "url": "https://bledmarket.fr/"
+      }
     ],
     "features": {
       "fr": [],
@@ -343,6 +396,41 @@
     "title": {
       "fr": "DMX Nuit Des SAÉ - 2026",
       "en": "DMX SAÉ Night - 2026"
+    },
+    "shortDesc": {
+      "fr": "",
+      "en": ""
+    },
+    "description": {
+      "fr": "",
+      "en": ""
+    },
+    "images": [],
+    "stack": {
+      "fr": [],
+      "en": []
+    },
+    "status": {
+      "fr": "",
+      "en": ""
+    },
+    "category": {
+      "fr": "",
+      "en": ""
+    },
+    "year": "",
+    "links": [],
+    "features": {
+      "fr": [],
+      "en": []
+    }
+  },
+  {
+    "id": "#MUSIC-ANYWHERE",
+    "hidden": true,
+    "title": {
+      "fr": "Music Anywhere",
+      "en": "Music Anywhere"
     },
     "shortDesc": {
       "fr": "",
