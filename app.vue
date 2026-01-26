@@ -688,15 +688,16 @@ const generateInitialLogs = () => {
     { method: "GET", path: "/favicon.ico", status: 200, duration: 8 },
     { method: "GET", path: "/_nuxt/chunks/vue.js", status: 200, duration: 67 },
     { method: "GET", path: "/images/hero.webp", status: 200, duration: 234 },
-    {
-      method: "GET",
-      path: "/_nuxt/builds/meta.json",
-      status: 200,
-      duration: 15,
-    },
+    { method: "GET", path: "/_nuxt/builds/meta.json", status: 200, duration: 15 },
     { method: "GET", path: "/api/skills", status: 200, duration: 42 },
     { method: "POST", path: "/api/analytics", status: 201, duration: 78 },
     { method: "GET", path: "/robots.txt", status: 200, duration: 5 },
+    { method: "GET", path: "/_nuxt/components.js", status: 200, duration: 38 },
+    { method: "GET", path: "/images/projects/bde.png", status: 200, duration: 189 },
+    { method: "GET", path: "/_nuxt/composables.js", status: 200, duration: 29 },
+    { method: "GET", path: "/api/contact", status: 200, duration: 56 },
+    { method: "GET", path: "/fonts/Mono.woff2", status: 200, duration: 112 },
+    { method: "GET", path: "/_nuxt/utils.js", status: 200, duration: 21 },
   ];
 
   fakeLogs.forEach((log, i) => {
