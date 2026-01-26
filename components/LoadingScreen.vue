@@ -1,15 +1,15 @@
 <template>
   <Transition name="loader-fade">
     <div
-      class="fixed inset-0 z-50 bg-slate-950 text-slate-100 flex items-center justify-center overflow-hidden"
+      class="fixed inset-0 z-50 bg-gray-50 dark:bg-dark-bg text-slate-800 dark:text-slate-100 flex items-center justify-center overflow-hidden transition-colors duration-300"
     >
       <!-- Background Decoration -->
-      <div class="absolute inset-0 z-0 opacity-20">
+      <div class="absolute inset-0 z-0 opacity-10 dark:opacity-20">
         <div
-          class="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-500 rounded-full filter blur-[120px]"
+          class="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-500 rounded-full filter blur-[120px]"
         ></div>
         <div
-          class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600 rounded-full filter blur-[150px]"
+          class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500 rounded-full filter blur-[150px]"
         ></div>
       </div>
 
@@ -19,15 +19,14 @@
         <div class="flex flex-col items-center mb-12">
           <div class="flex items-center gap-3 mb-4">
             <div
-              class="w-4 h-4 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_15px_rgba(16,185,129,0.5)]"
+              class="w-4 h-4 bg-green-500 rounded-full animate-pulse shadow-[0_0_15px_rgba(34,197,94,0.5)]"
             ></div>
-            <h1 class="font-mono font-bold text-2xl tracking-tighter" style="font-family: 'Fira Code', monospace;">
+            <h1 class="font-mono font-bold text-2xl tracking-tighter">
               v.beauget.fr
             </h1>
           </div>
           <p
-            class="text-slate-400 font-mono text-xs uppercase tracking-[0.2em]"
-            style="font-family: 'Fira Code', monospace;"
+            class="text-slate-500 dark:text-slate-400 font-mono text-xs uppercase tracking-[0.2em]"
           >
             System Initialization
           </p>
@@ -35,20 +34,19 @@
 
         <!-- Terminal Box -->
         <div
-          class="bg-slate-900/80 backdrop-blur-xl border border-slate-800 rounded-xl p-6 shadow-2xl mb-8 font-mono text-sm overflow-hidden min-h-[160px]"
-          style="font-family: 'Fira Code', monospace;"
+          class="bg-white/80 dark:bg-dark-surface/80 backdrop-blur-xl border border-gray-200 dark:border-dark-border rounded-xl p-6 shadow-2xl mb-8 font-mono text-sm overflow-hidden min-h-[160px]"
         >
           <div id="terminal-content" class="space-y-1.5">
             <div
               v-for="(log, index) in terminalLogs"
               :key="index"
-              class="text-slate-500 line-fade flex gap-3"
+              class="text-slate-500 dark:text-slate-400 line-fade flex gap-3"
             >
-              <span class="text-slate-700">{{ String(index + 1).padStart(2, '0') }}</span>
+              <span class="text-slate-400 dark:text-slate-600">{{ String(index + 1).padStart(2, '0') }}</span>
               <span>{{ log.text }}</span>
             </div>
           </div>
-          <div class="mt-2 text-emerald-500 terminal-cursor">
+          <div class="mt-2 text-primary-600 dark:text-primary-500 terminal-cursor">
             {{ currentTask }}
           </div>
         </div>
@@ -56,8 +54,7 @@
         <!-- Progress Bar Section -->
         <div class="space-y-3">
           <div
-            class="flex justify-between font-mono text-[10px] text-slate-500 uppercase tracking-widest"
-            style="font-family: 'Fira Code', monospace;"
+            class="flex justify-between font-mono text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-widest"
           >
             <span>Kernel Status: OK</span>
             <span>{{ progressPercent }}%</span>
@@ -65,10 +62,10 @@
 
           <!-- The Bar -->
           <div
-            class="h-2 w-full bg-slate-800 rounded-full overflow-hidden p-[2px]"
+            class="h-2 w-full bg-gray-200 dark:bg-slate-800 rounded-full overflow-hidden p-[2px]"
           >
             <div
-              class="h-full bg-emerald-500 rounded-full transition-all duration-300 ease-out shadow-[0_0_10px_rgba(16,185,129,0.3)]"
+              class="h-full bg-primary-600 dark:bg-primary-500 rounded-full transition-all duration-300 ease-out shadow-[0_0_10px_rgba(37,99,235,0.3)] dark:shadow-[0_0_10px_rgba(59,130,246,0.3)]"
               :style="{ width: `${progressPercent}%` }"
             ></div>
           </div>
@@ -76,19 +73,19 @@
           <div class="grid grid-cols-4 gap-1">
             <div
               class="h-1 rounded-full transition-colors"
-              :class="progressPercent > 25 ? 'bg-emerald-500/40' : 'bg-slate-800'"
+              :class="progressPercent > 25 ? 'bg-primary-500/40 dark:bg-primary-500/40' : 'bg-gray-200 dark:bg-slate-800'"
             ></div>
             <div
               class="h-1 rounded-full transition-colors"
-              :class="progressPercent > 50 ? 'bg-emerald-500/40' : 'bg-slate-800'"
+              :class="progressPercent > 50 ? 'bg-primary-500/40 dark:bg-primary-500/40' : 'bg-gray-200 dark:bg-slate-800'"
             ></div>
             <div
               class="h-1 rounded-full transition-colors"
-              :class="progressPercent > 75 ? 'bg-emerald-500/40' : 'bg-slate-800'"
+              :class="progressPercent > 75 ? 'bg-primary-500/40 dark:bg-primary-500/40' : 'bg-gray-200 dark:bg-slate-800'"
             ></div>
             <div
               class="h-1 rounded-full transition-colors"
-              :class="progressPercent >= 100 ? 'bg-emerald-500/40' : 'bg-slate-800'"
+              :class="progressPercent >= 100 ? 'bg-primary-500/40 dark:bg-primary-500/40' : 'bg-gray-200 dark:bg-slate-800'"
             ></div>
           </div>
         </div>
