@@ -266,7 +266,7 @@
                   <h3
                     class="text-lg font-bold border-b border-gray-100 dark:border-slate-800 pb-2 text-slate-900 dark:text-white"
                   >
-                    {{ $t('projects.about') }}
+                    {{ $t("projects.about") }}
                   </h3>
                   <p
                     class="text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line text-sm md:text-base"
@@ -284,12 +284,15 @@
                     <h4
                       class="font-bold text-sm uppercase tracking-wide text-slate-400 mt-6"
                     >
-                      {{ $t('projects.keyPoints') }}
+                      {{ $t("projects.keyPoints") }}
                     </h4>
                     <ul
                       class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300 text-sm"
                     >
-                      <li v-for="feat in currentProject.features[locale]" :key="feat">
+                      <li
+                        v-for="feat in currentProject.features[locale]"
+                        :key="feat"
+                      >
                         {{ feat }}
                       </li>
                     </ul>
@@ -303,7 +306,7 @@
                     <h4
                       class="font-bold text-sm uppercase tracking-wide text-slate-400 mb-3"
                     >
-                      {{ $t('projects.links') }}
+                      {{ $t("projects.links") }}
                     </h4>
                     <div class="flex flex-col gap-2">
                       <a
@@ -335,13 +338,14 @@
                   <!-- Tech Stack -->
                   <div
                     v-if="
-                      currentProject.stack && (currentProject.stack[locale]?.length ?? 0) > 0
+                      currentProject.stack &&
+                      (currentProject.stack[locale]?.length ?? 0) > 0
                     "
                   >
                     <h4
                       class="font-bold text-sm uppercase tracking-wide text-slate-400 mb-3"
                     >
-                      {{ $t('projects.technologies') }}
+                      {{ $t("projects.technologies") }}
                     </h4>
                     <div class="flex flex-wrap gap-2">
                       <span
@@ -359,7 +363,7 @@
                     <h4
                       class="font-bold text-sm uppercase tracking-wide text-slate-400 mb-3"
                     >
-                      {{ $t('projects.status') }}
+                      {{ $t("projects.status") }}
                     </h4>
                     <span
                       class="inline-flex items-center gap-2 px-3 py-1.5 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 text-sm font-medium rounded-full"

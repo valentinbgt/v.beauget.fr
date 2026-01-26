@@ -19,22 +19,22 @@
             <a
               href="#home"
               class="hover:text-primary-600 dark:hover:text-primary-500 transition-colors"
-              >{{ $t('nav.home') }}</a
+              >{{ $t("nav.home") }}</a
             >
             <a
               href="#projects"
               class="hover:text-primary-600 dark:hover:text-primary-500 transition-colors"
-              >{{ $t('nav.projects') }}</a
+              >{{ $t("nav.projects") }}</a
             >
             <a
               href="#skills"
               class="hover:text-primary-600 dark:hover:text-primary-500 transition-colors"
-              >{{ $t('nav.skills') }}</a
+              >{{ $t("nav.skills") }}</a
             >
             <a
               href="#contact"
               class="hover:text-primary-600 dark:hover:text-primary-500 transition-colors"
-              >{{ $t('nav.contact') }}</a
+              >{{ $t("nav.contact") }}</a
             >
           </div>
 
@@ -45,7 +45,7 @@
               class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition text-base"
               aria-label="Toggle language"
             >
-              {{ locale === 'fr' ? '🇬🇧' : '🇫🇷' }}
+              {{ locale === "fr" ? "🇬🇧" : "🇫🇷" }}
             </button>
             <!-- Theme Toggle -->
             <button
@@ -131,17 +131,18 @@
             <h1
               class="text-5xl md:text-7xl font-bold tracking-tight leading-tight"
             >
-              {{ $t('hero.title') }}<span class="text-primary-600">.</span>
+              {{ $t("hero.title") }}<span class="text-primary-600">.</span>
             </h1>
             <h2
               class="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-light"
             >
-              {{ $t('hero.subtitle') }}
+              {{ $t("hero.subtitle") }} TODO: compétences et carroussel des
+              projets
             </h2>
             <p
               class="max-w-lg text-lg text-slate-600 dark:text-slate-300 leading-relaxed indent-8 whitespace-pre-line"
             >
-              {{ $t('hero.description') }}
+              {{ $t("hero.description") }}
             </p>
             <div
               class="flex flex-wrap gap-4 pt-4 justify-center md:justify-start"
@@ -150,13 +151,13 @@
                 href="#projects"
                 class="px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium rounded-lg hover:bg-slate-700 dark:hover:bg-slate-200 transition shadow-lg shadow-primary-500/20"
               >
-                {{ $t('hero.cta.projects') }}
+                {{ $t("hero.cta.projects") }}
               </a>
               <a
                 href="#contact"
                 class="px-6 py-3 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-slate-800 transition"
               >
-                {{ $t('hero.cta.contact') }}
+                {{ $t("hero.cta.contact") }}
               </a>
             </div>
           </div>
@@ -224,7 +225,7 @@
                 >
                   <span class="animate-pulse">●</span>
                   <span class="ml-2 text-slate-400"
-                    >{{ $t('terminal.serverActive') }} {{ currentHost }}</span
+                    >{{ $t("terminal.serverActive") }} {{ currentHost }}</span
                   >
                 </div>
               </div>
@@ -241,9 +242,11 @@
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-12">
-          <h2 class="text-3xl font-bold mb-4">{{ $t('projects.dashboard') }}</h2>
+          <h2 class="text-3xl font-bold mb-4">
+            {{ $t("projects.dashboard") }}
+          </h2>
           <p class="text-slate-500 dark:text-slate-400 max-w-3xl">
-            {{ $t('projects.dashboardDesc') }}
+            {{ $t("projects.dashboardDesc") }}
           </p>
         </div>
 
@@ -258,7 +261,7 @@
             <div class="p-4 border-b border-gray-200 dark:border-slate-700">
               <span
                 class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider"
-                >{{ $t('projects.workspace') }}</span
+                >{{ $t("projects.workspace") }}</span
               >
               <div class="mt-2 flex items-center gap-2 font-medium">
                 <div
@@ -266,7 +269,7 @@
                 >
                   V
                 </div>
-                {{ $t('projects.portfolio') }}
+                {{ $t("projects.portfolio") }}
               </div>
             </div>
             <div
@@ -288,7 +291,7 @@
                     d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
                   ></path>
                 </svg>
-                {{ $t('projects.all') }}
+                {{ $t("projects.all") }}
               </div>
               <!--               <div
                 class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700/50 rounded-md text-sm cursor-not-allowed opacity-60 whitespace-nowrap"
@@ -338,15 +341,15 @@
               <div class="flex items-center gap-2 text-sm text-slate-500">
                 <span>Valentin</span>
                 <span class="text-gray-300">/</span>
-                <span class="text-slate-900 dark:text-slate-100 font-medium"
-                  >{{ $t('nav.projects').replace('./', '') }}</span
-                >
+                <span class="text-slate-900 dark:text-slate-100 font-medium">{{
+                  $t("nav.projects").replace("./", "")
+                }}</span>
               </div>
               <div class="flex gap-2 items-center">
                 <span class="w-2 h-2 rounded-full bg-green-500"></span>
-                <span class="text-xs font-mono text-slate-500"
-                  >{{ $t('projects.systemOnline') }}</span
-                >
+                <span class="text-xs font-mono text-slate-500">{{
+                  $t("projects.systemOnline")
+                }}</span>
               </div>
             </div>
 
@@ -446,7 +449,7 @@
       <div class="absolute top-8 left-0 right-0 z-20 pointer-events-none">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 class="text-3xl font-bold text-center md:text-left">
-            {{ $t('skills.title') }}
+            {{ $t("skills.title") }}
           </h2>
         </div>
       </div>
@@ -460,9 +463,9 @@
     <!-- Contact Section -->
     <section id="contact" class="py-24 bg-white dark:bg-dark-bg">
       <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold mb-2">{{ $t('contact.title') }}</h2>
+        <h2 class="text-3xl font-bold mb-2">{{ $t("contact.title") }}</h2>
         <p class="text-slate-500 dark:text-slate-400 max-w-3xl mb-8">
-          {{ $t('contact.subtitle') }}
+          {{ $t("contact.subtitle") }}
         </p>
 
         <form
@@ -473,7 +476,7 @@
             <div>
               <label
                 class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-                >{{ $t('contact.form.lastName') }}</label
+                >{{ $t("contact.form.lastName") }}</label
               >
               <input
                 v-model="formData.lastName"
@@ -486,7 +489,7 @@
             <div>
               <label
                 class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-                >{{ $t('contact.form.firstName') }}</label
+                >{{ $t("contact.form.firstName") }}</label
               >
               <input
                 v-model="formData.firstName"
@@ -500,7 +503,7 @@
           <div class="mb-6">
             <label
               class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-              >{{ $t('contact.form.email') }}</label
+              >{{ $t("contact.form.email") }}</label
             >
             <input
               v-model="formData.email"
@@ -513,7 +516,7 @@
           <div class="mb-6">
             <label
               class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-              >{{ $t('contact.form.message') }}</label
+              >{{ $t("contact.form.message") }}</label
             >
             <textarea
               v-model="formData.message"
@@ -528,7 +531,11 @@
             :disabled="isSubmitting"
             class="w-full py-4 bg-slate-900 dark:bg-primary-600 text-white font-bold rounded-lg hover:bg-slate-800 dark:hover:bg-primary-700 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {{ isSubmitting ? $t('contact.form.sending') : $t('contact.form.submit') }}
+            {{
+              isSubmitting
+                ? $t("contact.form.sending")
+                : $t("contact.form.submit")
+            }}
           </button>
         </form>
       </div>
@@ -560,7 +567,7 @@
               href="https://github.com/valentinbgt/v.beauget.fr/"
               target="_blank"
               class="hover:text-primary-500 transition-colors"
-              >{{ $t('footer.source') }}</a
+              >{{ $t("footer.source") }}</a
             >
           </div>
         </div>
@@ -593,7 +600,7 @@ import projectsData from "~/assets/data/projects.json";
 const { locale, setLocale, t } = useI18n();
 
 const toggleLocale = () => {
-  setLocale(locale.value === 'fr' ? 'en' : 'fr');
+  setLocale(locale.value === "fr" ? "en" : "fr");
 };
 
 // Theme
@@ -699,12 +706,22 @@ const generateInitialLogs = () => {
     { method: "GET", path: "/favicon.ico", status: 200, duration: 8 },
     { method: "GET", path: "/_nuxt/chunks/vue.js", status: 200, duration: 67 },
     { method: "GET", path: "/images/hero.webp", status: 200, duration: 234 },
-    { method: "GET", path: "/_nuxt/builds/meta.json", status: 200, duration: 15 },
+    {
+      method: "GET",
+      path: "/_nuxt/builds/meta.json",
+      status: 200,
+      duration: 15,
+    },
     { method: "GET", path: "/api/skills", status: 200, duration: 42 },
     { method: "POST", path: "/api/analytics", status: 201, duration: 78 },
     { method: "GET", path: "/robots.txt", status: 200, duration: 5 },
     { method: "GET", path: "/_nuxt/components.js", status: 200, duration: 38 },
-    { method: "GET", path: "/images/projects/bde.png", status: 200, duration: 189 },
+    {
+      method: "GET",
+      path: "/images/projects/bde.png",
+      status: 200,
+      duration: 189,
+    },
     { method: "GET", path: "/_nuxt/composables.js", status: 200, duration: 29 },
     { method: "GET", path: "/api/contact", status: 200, duration: 56 },
     { method: "GET", path: "/fonts/Mono.woff2", status: 200, duration: 112 },
@@ -848,14 +865,14 @@ const handleSubmit = async () => {
 
     notification.value = {
       show: true,
-      message: t('contact.success'),
+      message: t("contact.success"),
       type: "success",
     };
   } catch (error) {
     console.error("Error saving message:", error);
     notification.value = {
       show: true,
-      message: t('contact.error'),
+      message: t("contact.error"),
       type: "error",
     };
   } finally {
