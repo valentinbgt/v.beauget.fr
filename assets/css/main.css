@@ -49,11 +49,8 @@
   grid-row: span 2;
 }
 .grid-gallery-4 {
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-}
-.grid-gallery-4 > *:first-child {
-  grid-row: span 2;
 }
 
 /* Modal Transitions */

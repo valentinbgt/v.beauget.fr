@@ -25,12 +25,12 @@
     "id": "#PRJ-002",
     "hidden": false,
     "title": "Organisation Nuit Campus 3",
-    "shortDesc": "Responsable de la House Stage lors de la Nuit Campus 3 2025.",
-    "description": "Responsable de la House Stage lors de la Nuit Campus 3 2025, un festival étudiant regroupant plusieurs scènes musicales.\n\nJ'ai géré la programmation, la logistique et la coordination technique de la scène.",
+    "shortDesc": "Gestion des artistes lors de la Nuit Campus 3 2025.",
+    "description": "Responsable de la House Stage lors de la Nuit Campus 3 2025, un festival étudiant regroupant plusieurs milliers de participants pour une soirée festive.\n\nPour cet événement, je me suis occupé de la gestion des artistes de la House Stage et j'ai prêté main forte pour la Diamond Stage.\n\nJ'ai beaucoup appris sur le monde de l'événementiel et en Son et Lumières.",
     "images": ["/images/nc3.jpg", "/images/nc3_2.png", "/images/nc3_3.JPEG", "/images/nc3_4.JPEG"],
-    "stack": ["Événementiel", "Logistique", "Son"],
+    "stack": ["Événementiel", "Relations", "Coordination", "S&L"],
     "status": "Terminé",
-    "category": "Festival",
+    "category": "Événement associatif",
     "year": "2025",
     "links": [
       { "label": "Site du festival", "url": "https://nc3.campus3.fr/" },
@@ -38,8 +38,8 @@
     ],
     "features": [
       "Programmation artistique",
-      "Coordination technique",
-      "Gestion des artistes"
+      "Coordination",
+      "Réponse aux besoins"
     ]
   },
   {
@@ -47,52 +47,54 @@
     "hidden": false,
     "title": "Serveur Auto Hébergé",
     "shortDesc": "Un serveur sous Debian 12 CLI avec redondance des données.",
-    "description": "Un serveur personnel sous Debian 12 CLI, configuré avec une redondance des données (RAID) et hébergeant plusieurs services.\n\nCe projet m'a permis d'approfondir mes connaissances en administration système et DevOps.",
-    "images": ["/images/serveur.png"],
-    "stack": ["Debian", "Docker", "RAID", "Nginx"],
-    "status": "En production",
+    "description": "Pour répondre aux besoins en hébergement que nécessitent mes différents projets web et mon drive personnel, j'ai vite eu besoin de mon propre serveur.\nCe projet m'a permis d'en apprendre beaucoup sur l'hébergement, en administration système et DevOps.\n\nJ'ai d'abord commencé avec du matériel de récupération bricolé mais j'ai récemment pu investir dans du matériel performant qui m'a permis d'étendre les possibilités.\n\nPour ce projet, j'ai mis l'accent sur la sécurité et la fiabilité. Le système est configuré avec une redondance des données (RAID1) et est en permanence sauvegardé par un Raspberry Pi et un HDD situés dans une autre ville pour un maximum de sécurité.",
+    "images": ["/images/serveur.png", "/images/dokploy.png", "/images/beszel.png"],
+    "stack": ["Debian", "RAID", "Dokploy", "CI/CD"],
+    "status": "Production",
     "category": "Infrastructure",
-    "year": "2024",
-    "links": [],
+    "year": "2020-2026",
+    "links": [{ "label": "Disponibilité", "url": "https://status.beauget.fr/status/default" }],
     "features": [
+      "Multiples services hébergés (+30)",
       "Configuration RAID pour la redondance",
-      "Conteneurisation avec Docker",
-      "Reverse proxy avec Nginx"
+      "Conteneurisation avec Docker via Dokploy",
+      "Sauvegardé en permanance dans un autre lieu"
     ]
   },
   {
     "id": "#PRJ-004",
     "hidden": false,
     "title": "La SAÉ 105",
-    "shortDesc": "Un projet réalisé dans le cadre de mes études en Bachelor MMI.",
-    "description": "Un projet de site web réalisé dans le cadre de mes études en Bachelor Métiers du Multimédia et de l'Internet.\n\nCe projet a été l'occasion de mettre en pratique mes compétences en développement web et design.",
-    "images": ["/images/sae105.png"],
-    "stack": ["HTML", "CSS", "JavaScript"],
+    "shortDesc": "Premier site web réalisé dans le cadre de mes études en MMI.",
+    "description": "Pour ce projet nous devions réaliser un site web avec un front-end, une gestion d'au moins 50 entrées données et un back-end en PHP avec upload et visualisation d'images.\n\nIl s'agit du premier site web réalisé dans le cadre de mes études en BUT MMI.\nCe projet a été l'occasion de mettre a exécution les compétences que j'ai acquis en autodidacte avant d'intégrer la formation.",
+    "images": ["/images/sae105.png", "/images/sae105_2.png", "/images/sae105_3.png"],
+    "stack": ["PHP", "HTML", "CSS", "JavaScript"],
     "status": "Terminé",
-    "category": "Web",
+    "category": "Site web",
     "year": "2023",
     "links": [
-      { "label": "Voir le projet", "url": "https://mmi23a02.sae105.ovh/" }
+      { "label": "Site web", "url": "https://mmi23a02.sae105.ovh/" },
+      { "label": "Code source", "url": "https://github.com/valentinbgt/sae105" }
     ],
     "features": [
-      "Design responsive",
-      "Intégration HTML/CSS",
-      "Interactivité JavaScript"
+      "Gestion de données et backend PHP",
+      "Intégration HTML/CSS/JS"
     ]
   },
   {
     "id": "#PRJ-005",
     "hidden": false,
     "title": "Results",
-    "shortDesc": "Un projet pour visualiser les différences dans les résultats électoraux.",
-    "description": "Un outil de visualisation des résultats électoraux permettant de comparer les différences entre les scrutins.\n\nL'interface intuitive permet d'explorer les données de manière interactive.",
-    "images": ["/images/results.png"],
-    "stack": ["Vue.js", "Tailwind", "API"],
-    "status": "En ligne",
-    "category": "Data Viz",
-    "year": "2024",
+    "shortDesc": "Un projet de visualisation de données électorales.",
+    "description": "Dans le cadre de nos études, nous avons réalisé en binôme, avec un camarade, un site web permettant la visualisation d'un jeu important de données.\nLe sujet a mis l'accent sur le front-end et nous avons choisis l'analyse de données électorale car, vu les enjeux, nous estimons important que ces informations soient accessible à tous.\n\nNous avons appris à manipuler des données et les exposer en front via des graphiques et dataviz interactifs.",
+    "images": ["/images/results.png", "/images/results_2.png", "/images/results_3.png"],
+    "stack": ["SPA", "Vue.js", "Vite", "Tailwind CSS", "D3.js", "ApexCharts", "Chart.js"],
+    "status": "Terminé",
+    "category": "Site web",
+    "year": "2025",
     "links": [
-      { "label": "Voir le projet", "url": "https://results.beauget.fr/" }
+      { "label": "Site web", "url": "https://results.beauget.fr/" },
+      { "label": "Code source", "url": "https://github.com/valentinbgt/results" }
     ],
     "features": [
       "Visualisation de données",
@@ -104,20 +106,65 @@
     "id": "#PRJ-006",
     "hidden": true,
     "title": "BledMarket",
-    "shortDesc": "Un moyen de stocker ses fichiers sur Internet et les partager.",
-    "description": "Une plateforme de stockage et de partage de fichiers en ligne.\n\nCe projet personnel m'a permis d'explorer les problématiques de stockage cloud et de partage sécurisé.",
+    "shortDesc": "",
+    "description": "",
     "images": ["/images/bledmarket.png"],
-    "stack": ["Node.js", "Express", "MongoDB"],
-    "status": "En développement",
-    "category": "SaaS",
-    "year": "2024",
+    "stack": [],
+    "status": "Fermé",
+    "category": "",
+    "year": "2019",
     "links": [
       { "label": "Accéder", "url": "https://bledmarket.fr/" }
     ],
     "features": [
-      "Upload de fichiers",
-      "Partage sécurisé",
-      "Gestion des utilisateurs"
+    ]
+  },
+  {
+    "id": "#PRJ-006",
+    "hidden": true,
+    "title": "NDS 2025",
+    "shortDesc": "",
+    "description": "",
+    "images": [],
+    "stack": [],
+    "status": "",
+    "category": "",
+    "year": "",
+    "links": [
+    ],
+    "features": [
+    ]
+  },
+  {
+    "id": "#PRJ-006",
+    "hidden": true,
+    "title": "NDS 2026",
+    "shortDesc": "",
+    "description": "",
+    "images": [],
+    "stack": [],
+    "status": "",
+    "category": "",
+    "year": "",
+    "links": [
+    ],
+    "features": [
+    ]
+  },
+  {
+    "id": "#PRJ-006",
+    "hidden": true,
+    "title": "DMX NDS 2026",
+    "shortDesc": "",
+    "description": "",
+    "images": [],
+    "stack": [],
+    "status": "",
+    "category": "",
+    "year": "",
+    "links": [
+    ],
+    "features": [
     ]
   }
 ]
