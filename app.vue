@@ -19,26 +19,34 @@
             <a
               href="#home"
               class="hover:text-primary-600 dark:hover:text-primary-500 transition-colors"
-              >~/accueil</a
+              >{{ $t('nav.home') }}</a
             >
             <a
               href="#projects"
               class="hover:text-primary-600 dark:hover:text-primary-500 transition-colors"
-              >./projets</a
+              >{{ $t('nav.projects') }}</a
             >
             <a
               href="#skills"
               class="hover:text-primary-600 dark:hover:text-primary-500 transition-colors"
-              >./compétences</a
+              >{{ $t('nav.skills') }}</a
             >
             <a
               href="#contact"
               class="hover:text-primary-600 dark:hover:text-primary-500 transition-colors"
-              >./contact</a
+              >{{ $t('nav.contact') }}</a
             >
           </div>
 
-          <div class="flex items-center gap-4">
+          <div class="flex items-center gap-2">
+            <!-- Language Toggle -->
+            <button
+              @click="toggleLocale"
+              class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition text-base"
+              aria-label="Toggle language"
+            >
+              {{ locale === 'fr' ? '🇬🇧' : '🇫🇷' }}
+            </button>
             <!-- Theme Toggle -->
             <button
               @click="toggleTheme"
@@ -123,21 +131,17 @@
             <h1
               class="text-5xl md:text-7xl font-bold tracking-tight leading-tight"
             >
-              Valentin BEAUGET<span class="text-primary-600">.</span>
+              {{ $t('hero.title') }}<span class="text-primary-600">.</span>
             </h1>
             <h2
               class="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-light"
             >
-              Développeur Fullstack
+              {{ $t('hero.subtitle') }}
             </h2>
             <p
-              class="max-w-lg text-lg text-slate-600 dark:text-slate-300 leading-relaxed indent-8"
+              class="max-w-lg text-lg text-slate-600 dark:text-slate-300 leading-relaxed indent-8 whitespace-pre-line"
             >
-              Développeur depuis 2019, je suis actuellement en formation en MMI
-              à l'IUT de Troyes.
-              <br />
-              Je suis aussi apprenti alternant chez Gravity Media où de
-              développe des applications sur mesure pour la télévision.
+              {{ $t('hero.description') }}
             </p>
             <div
               class="flex flex-wrap gap-4 pt-4 justify-center md:justify-start"
@@ -146,13 +150,13 @@
                 href="#projects"
                 class="px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium rounded-lg hover:bg-slate-700 dark:hover:bg-slate-200 transition shadow-lg shadow-primary-500/20"
               >
-                Voir mes projets
+                {{ $t('hero.cta.projects') }}
               </a>
               <a
                 href="#contact"
                 class="px-6 py-3 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-slate-800 transition"
               >
-                Me contacter
+                {{ $t('hero.cta.contact') }}
               </a>
             </div>
           </div>
@@ -220,7 +224,7 @@
                 >
                   <span class="animate-pulse">●</span>
                   <span class="ml-2 text-slate-400"
-                    >Serveur actif sur {{ currentHost }}</span
+                    >{{ $t('terminal.serverActive') }} {{ currentHost }}</span
                   >
                 </div>
               </div>
@@ -237,10 +241,9 @@
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-12">
-          <h2 class="text-3xl font-bold mb-4">Mes projets - Tableau de bord</h2>
+          <h2 class="text-3xl font-bold mb-4">{{ $t('projects.dashboard') }}</h2>
           <p class="text-slate-500 dark:text-slate-400 max-w-3xl">
-            Voici une sélection de certains de mes projets, du développement web
-            à la gestion de projets.
+            {{ $t('projects.dashboardDesc') }}
           </p>
         </div>
 
@@ -255,7 +258,7 @@
             <div class="p-4 border-b border-gray-200 dark:border-slate-700">
               <span
                 class="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider"
-                >Workspace</span
+                >{{ $t('projects.workspace') }}</span
               >
               <div class="mt-2 flex items-center gap-2 font-medium">
                 <div
@@ -263,7 +266,7 @@
                 >
                   V
                 </div>
-                Portfolio
+                {{ $t('projects.portfolio') }}
               </div>
             </div>
             <div
@@ -285,7 +288,7 @@
                     d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
                   ></path>
                 </svg>
-                Tous les projets
+                {{ $t('projects.all') }}
               </div>
               <!--               <div
                 class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700/50 rounded-md text-sm cursor-not-allowed opacity-60 whitespace-nowrap"
@@ -336,13 +339,13 @@
                 <span>Valentin</span>
                 <span class="text-gray-300">/</span>
                 <span class="text-slate-900 dark:text-slate-100 font-medium"
-                  >Projets</span
+                  >{{ $t('nav.projects').replace('./', '') }}</span
                 >
               </div>
               <div class="flex gap-2 items-center">
                 <span class="w-2 h-2 rounded-full bg-green-500"></span>
                 <span class="text-xs font-mono text-slate-500"
-                  >Système en ligne</span
+                  >{{ $t('projects.systemOnline') }}</span
                 >
               </div>
             </div>
@@ -363,7 +366,7 @@
                   <div class="relative h-48 overflow-hidden bg-slate-200">
                     <img
                       :src="project.images[0]"
-                      :alt="project.title"
+                      :alt="project.title[locale]"
                       class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                     />
                     <div
@@ -379,33 +382,33 @@
                       <h3
                         class="font-bold text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors"
                       >
-                        {{ project.title }}
+                        {{ project.title[locale] }}
                       </h3>
                       <span
                         class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
                       >
-                        {{ project.status }}
+                        {{ project.status[locale] }}
                       </span>
                     </div>
                     <p
                       class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 mb-4 flex-1"
                     >
-                      {{ project.shortDesc }}
+                      {{ project.shortDesc[locale] }}
                     </p>
                     <div
                       class="flex items-center gap-2 pt-3 border-t border-gray-100 dark:border-slate-700"
                     >
                       <span
-                        v-for="tech in project.stack.slice(0, 3)"
+                        v-for="tech in project.stack[locale].slice(0, 3)"
                         :key="tech"
                         class="text-[10px] font-mono text-slate-400 bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded"
                       >
                         {{ tech }}
                       </span>
                       <span
-                        v-if="project.stack.length > 3"
+                        v-if="project.stack[locale].length > 3"
                         class="text-[10px] text-slate-400"
-                        >+{{ project.stack.length - 3 }}</span
+                        >+{{ project.stack[locale].length - 3 }}</span
                       >
                     </div>
                   </div>
@@ -422,6 +425,7 @@
       v-if="isModalOpen"
       :projects="visibleProjects"
       :initial-index="selectedProjectIndex"
+      :locale="locale"
       @close="closeProject"
       @update:index="updateProjectIndex"
     />
@@ -442,7 +446,7 @@
       <div class="absolute top-8 left-0 right-0 z-20 pointer-events-none">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 class="text-3xl font-bold text-center md:text-left">
-            Compétences Techniques
+            {{ $t('skills.title') }}
           </h2>
         </div>
       </div>
@@ -456,9 +460,9 @@
     <!-- Contact Section -->
     <section id="contact" class="py-24 bg-white dark:bg-dark-bg">
       <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold mb-2">Des questions ?</h2>
+        <h2 class="text-3xl font-bold mb-2">{{ $t('contact.title') }}</h2>
         <p class="text-slate-500 dark:text-slate-400 max-w-3xl mb-8">
-          Laissez-moi un petit message, ça coûte rien :)
+          {{ $t('contact.subtitle') }}
         </p>
 
         <form
@@ -469,11 +473,11 @@
             <div>
               <label
                 class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-                >Nom</label
+                >{{ $t('contact.form.lastName') }}</label
               >
               <input
                 v-model="formData.lastName"
-                placeholder="Bruel"
+                :placeholder="$t('contact.form.lastNamePlaceholder')"
                 type="text"
                 required
                 class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition text-slate-900 dark:text-slate-100"
@@ -482,11 +486,11 @@
             <div>
               <label
                 class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-                >Prénom</label
+                >{{ $t('contact.form.firstName') }}</label
               >
               <input
                 v-model="formData.firstName"
-                placeholder="Patrick"
+                :placeholder="$t('contact.form.firstNamePlaceholder')"
                 type="text"
                 required
                 class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition text-slate-900 dark:text-slate-100"
@@ -496,11 +500,11 @@
           <div class="mb-6">
             <label
               class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-              >Email</label
+              >{{ $t('contact.form.email') }}</label
             >
             <input
               v-model="formData.email"
-              placeholder="email-pour-que-je-puisse-repondre@gmail.com"
+              :placeholder="$t('contact.form.emailPlaceholder')"
               type="email"
               required
               class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition text-slate-900 dark:text-slate-100"
@@ -509,11 +513,11 @@
           <div class="mb-6">
             <label
               class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-              >Message</label
+              >{{ $t('contact.form.message') }}</label
             >
             <textarea
               v-model="formData.message"
-              placeholder="Bonjour Valentin, j'adore ton portfolio, il est vraiment incroyable..."
+              :placeholder="$t('contact.form.messagePlaceholder')"
               rows="4"
               required
               class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition resize-none text-slate-900 dark:text-slate-100"
@@ -524,7 +528,7 @@
             :disabled="isSubmitting"
             class="w-full py-4 bg-slate-900 dark:bg-primary-600 text-white font-bold rounded-lg hover:bg-slate-800 dark:hover:bg-primary-700 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {{ isSubmitting ? "Envoi en cours..." : "Envoyer le message" }}
+            {{ isSubmitting ? $t('contact.form.sending') : $t('contact.form.submit') }}
           </button>
         </form>
       </div>
@@ -556,7 +560,7 @@
               href="https://github.com/valentinbgt/v.beauget.fr/"
               target="_blank"
               class="hover:text-primary-500 transition-colors"
-              >Source</a
+              >{{ $t('footer.source') }}</a
             >
           </div>
         </div>
@@ -584,6 +588,13 @@
 <script setup>
 import { ref, reactive, computed, onMounted, onUnmounted } from "vue";
 import projectsData from "~/assets/data/projects.json";
+
+// i18n
+const { locale, setLocale, t } = useI18n();
+
+const toggleLocale = () => {
+  setLocale(locale.value === 'fr' ? 'en' : 'fr');
+};
 
 // Theme
 const isDark = ref(false);
@@ -837,14 +848,14 @@ const handleSubmit = async () => {
 
     notification.value = {
       show: true,
-      message: "Message envoyé avec succès !",
+      message: t('contact.success'),
       type: "success",
     };
   } catch (error) {
     console.error("Error saving message:", error);
     notification.value = {
       show: true,
-      message: "Une erreur est survenue lors de l'envoi du message.",
+      message: t('contact.error'),
       type: "error",
     };
   } finally {

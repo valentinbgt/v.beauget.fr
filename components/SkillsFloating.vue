@@ -18,22 +18,24 @@
       >
         <img
           :src="skill.image"
-          :alt="skill.name"
+          :alt="skill.name[locale]"
           class="w-full h-full object-contain"
         />
       </div>
       <span
         class="font-mono text-xs sm:text-sm md:text-md font-bold text-slate-700 dark:text-slate-300 pointer-events-none"
       >
-        {{ skill.name }}
+        {{ skill.name[locale] }}
       </span>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, nextTick } from "vue";
+import { ref, onMounted, onUnmounted, nextTick, computed } from "vue";
 import { gsap } from "gsap";
+
+const { locale } = useI18n();
 
 // --- Configuration Physique ---
 const CONFIG = {
@@ -51,10 +53,10 @@ const mousePos = ref({ x: -9999, y: -9999 }); // Hors écran par défaut
 let containerBounds = { width: 0, height: 0 };
 
 // Liste des skills avec leurs propriétés physiques initiales
-const skills = ref([
+const skillsData = ref([
   {
     id: 1,
-    name: "Vue.js",
+    name: { fr: "Vue.js", en: "Vue.js" },
     borderColor: "border-[#3fb984]",
     image: "/icons/skills/vue.png",
     x: 0,
@@ -66,7 +68,7 @@ const skills = ref([
   },
   {
     id: 2,
-    name: "TypeScript",
+    name: { fr: "TypeScript", en: "TypeScript" },
     borderColor: "border-[#2d79c7]",
     image: "/icons/skills/typescript.png",
     x: 0,
@@ -78,7 +80,7 @@ const skills = ref([
   },
   {
     id: 3,
-    name: "Tailwind CSS",
+    name: { fr: "Tailwind CSS", en: "Tailwind CSS" },
     borderColor: "border-[#39bef8]",
     image: "/icons/skills/tailwind.png",
     x: 0,
@@ -90,7 +92,7 @@ const skills = ref([
   },
   {
     id: 4,
-    name: "Nuxt",
+    name: { fr: "Nuxt", en: "Nuxt" },
     borderColor: "border-[#00dc82]",
     image: "/icons/skills/nuxt.svg",
     x: 0,
@@ -102,7 +104,7 @@ const skills = ref([
   },
   {
     id: 6,
-    name: "Debian",
+    name: { fr: "Debian", en: "Debian" },
     borderColor: "border-red-600",
     x: 0,
     y: 0,
@@ -113,7 +115,7 @@ const skills = ref([
   },
   {
     id: 7,
-    name: "Docker",
+    name: { fr: "Docker", en: "Docker" },
     borderColor: "border-[#5b87a9]",
     image: "/icons/skills/docker.png",
     x: 0,
@@ -125,7 +127,7 @@ const skills = ref([
   },
   {
     id: 8,
-    name: "Git",
+    name: { fr: "Git", en: "Git" },
     borderColor: "border-[#f05030]",
     image: "/icons/skills/git.png",
     x: 0,
@@ -137,7 +139,7 @@ const skills = ref([
   },
   {
     id: 9,
-    name: "Réseau",
+    name: { fr: "Réseau", en: "Network" },
     borderColor: "border-[#54c3f1]",
     image: "/icons/skills/network.png",
     x: 0,
@@ -149,7 +151,7 @@ const skills = ref([
   },
   {
     id: 10,
-    name: "Gestion d'équipe",
+    name: { fr: "Gestion d'équipe", en: "Team Management" },
     borderColor: "border-[#3a3a3a]",
     x: 0,
     y: 0,
@@ -160,7 +162,7 @@ const skills = ref([
   },
   {
     id: 11,
-    name: "Gestion de projets",
+    name: { fr: "Gestion de projets", en: "Project Management" },
     borderColor: "border-yellow-500",
     x: 0,
     y: 0,
@@ -171,7 +173,7 @@ const skills = ref([
   },
   {
     id: 12,
-    name: "Dokploy",
+    name: { fr: "Dokploy", en: "Dokploy" },
     borderColor: "border-[#3a3a3a]",
     image: "/icons/skills/dokploy.png",
     x: 0,
@@ -183,7 +185,7 @@ const skills = ref([
   },
   {
     id: 13,
-    name: "Gestion des risques",
+    name: { fr: "Gestion des risques", en: "Risk Management" },
     borderColor: "border-red-500",
     x: 0,
     y: 0,
@@ -194,7 +196,7 @@ const skills = ref([
   },
   {
     id: 14,
-    name: "CI/CD",
+    name: { fr: "CI/CD", en: "CI/CD" },
     borderColor: "border-red-500",
     x: 0,
     y: 0,
@@ -205,7 +207,7 @@ const skills = ref([
   },
   {
     id: 15,
-    name: "Autonomie",
+    name: { fr: "Autonomie", en: "Autonomy" },
     borderColor: "border-red-500",
     x: 0,
     y: 0,
@@ -216,7 +218,7 @@ const skills = ref([
   },
   {
     id: 16,
-    name: "Son",
+    name: { fr: "Son", en: "Sound" },
     borderColor: "border-black-900",
     image: "/icons/skills/xlr.jpg",
     x: 0,
@@ -228,7 +230,7 @@ const skills = ref([
   },
   {
     id: 17,
-    name: "DMX",
+    name: { fr: "DMX", en: "DMX" },
     borderColor: "border-white-900",
     image: "/icons/skills/dmx.png",
     x: 0,
@@ -239,6 +241,9 @@ const skills = ref([
     height: 0,
   },
 ]);
+
+// Computed to get skills with localized names for display
+const skills = computed(() => skillsData.value);
 
 // Setters pour GSAP (Performance optimization)
 let skillSetters = [];
@@ -271,7 +276,7 @@ const initPhysics = () => {
   const rect = containerRef.value.getBoundingClientRect();
   containerBounds = { width: rect.width, height: rect.height };
 
-  skills.value.forEach((skill, i) => {
+  skillsData.value.forEach((skill, i) => {
     const el = brickElements.value[i];
     if (el) {
       skill.width = el.offsetWidth;
@@ -296,7 +301,7 @@ const update = () => {
   const { width, height } = containerBounds;
   const minAngleRad = 2 * (Math.PI / 180); // 2 degrés
 
-  skills.value.forEach((skill, i) => {
+  skillsData.value.forEach((skill, i) => {
     // --- 1. Répulsion Souris ---
     const dx = skill.x + skill.width / 2 - mousePos.value.x;
     const dy = skill.y + skill.height / 2 - mousePos.value.y;
@@ -404,7 +409,7 @@ const handleResize = () => {
     const rect = containerRef.value.getBoundingClientRect();
     containerBounds = { width: rect.width, height: rect.height };
     // On réajuste ceux qui seraient sortis de l'écran
-    skills.value.forEach((skill) => {
+    skillsData.value.forEach((skill) => {
       if (skill.x > rect.width) skill.x = rect.width - skill.width;
       if (skill.y > rect.height) skill.y = rect.height - skill.height;
     });

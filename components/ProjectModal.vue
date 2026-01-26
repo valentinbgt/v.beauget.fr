@@ -24,7 +24,7 @@
           <div class="relative h-48 overflow-hidden bg-slate-200 flex-shrink-0">
             <img
               :src="prevProject.images[0]"
-              :alt="prevProject.title"
+              :alt="prevProject.title[locale]"
               class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
             />
             <div
@@ -40,33 +40,33 @@
               <h3
                 class="font-bold text-sm group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors truncate"
               >
-                {{ prevProject.title }}
+                {{ prevProject.title[locale] }}
               </h3>
               <span
                 class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 flex-shrink-0"
               >
-                {{ prevProject.status }}
+                {{ prevProject.status[locale] }}
               </span>
             </div>
             <p
               class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mb-3 flex-1"
             >
-              {{ prevProject.shortDesc }}
+              {{ prevProject.shortDesc[locale] }}
             </p>
             <div
               class="flex items-center gap-1 pt-2 border-t border-gray-100 dark:border-slate-700 flex-wrap"
             >
               <span
-                v-for="tech in prevProject.stack.slice(0, 2)"
+                v-for="tech in prevProject?.stack[locale]?.slice(0, 2) ?? []"
                 :key="tech"
                 class="text-[9px] font-mono text-slate-400 bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded"
               >
                 {{ tech }}
               </span>
               <span
-                v-if="prevProject.stack.length > 2"
+                v-if="(prevProject?.stack[locale]?.length ?? 0) > 2"
                 class="text-[9px] text-slate-400"
-                >+{{ prevProject.stack.length - 2 }}</span
+                >+{{ (prevProject?.stack[locale]?.length ?? 0) - 2 }}</span
               >
             </div>
           </div>
@@ -85,7 +85,7 @@
           <div class="relative h-48 overflow-hidden bg-slate-200 flex-shrink-0">
             <img
               :src="nextProject.images[0]"
-              :alt="nextProject.title"
+              :alt="nextProject.title[locale]"
               class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
             />
             <div
@@ -101,33 +101,33 @@
               <h3
                 class="font-bold text-sm group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors truncate"
               >
-                {{ nextProject.title }}
+                {{ nextProject.title[locale] }}
               </h3>
               <span
                 class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 flex-shrink-0"
               >
-                {{ nextProject.status }}
+                {{ nextProject.status[locale] }}
               </span>
             </div>
             <p
               class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mb-3 flex-1"
             >
-              {{ nextProject.shortDesc }}
+              {{ nextProject.shortDesc[locale] }}
             </p>
             <div
               class="flex items-center gap-1 pt-2 border-t border-gray-100 dark:border-slate-700 flex-wrap"
             >
               <span
-                v-for="tech in nextProject.stack.slice(0, 2)"
+                v-for="tech in nextProject?.stack[locale]?.slice(0, 2) ?? []"
                 :key="tech"
                 class="text-[9px] font-mono text-slate-400 bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded"
               >
                 {{ tech }}
               </span>
               <span
-                v-if="nextProject.stack.length > 2"
+                v-if="(nextProject?.stack[locale]?.length ?? 0) > 2"
                 class="text-[9px] text-slate-400"
-                >+{{ nextProject.stack.length - 2 }}</span
+                >+{{ (nextProject?.stack[locale]?.length ?? 0) - 2 }}</span
               >
             </div>
           </div>
@@ -191,11 +191,11 @@
                 <h2
                   class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white truncate"
                 >
-                  {{ currentProject.title }}
+                  {{ currentProject.title[locale] }}
                 </h2>
                 <span
                   class="px-2 py-1 bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 text-xs font-mono rounded flex-shrink-0"
-                  >{{ currentProject.category }}</span
+                  >{{ currentProject.category[locale] }}</span
                 >
               </div>
               <p class="text-slate-500 text-sm font-mono mt-1">
@@ -247,7 +247,7 @@
                 >
                   <img
                     :src="img"
-                    :alt="`${currentProject.title} - Image ${idx + 1}`"
+                    :alt="`${currentProject.title[locale]} - Image ${idx + 1}`"
                     class="w-full h-full object-cover"
                     loading="lazy"
                   />
@@ -266,29 +266,30 @@
                   <h3
                     class="text-lg font-bold border-b border-gray-100 dark:border-slate-800 pb-2 text-slate-900 dark:text-white"
                   >
-                    À propos
+                    {{ $t('projects.about') }}
                   </h3>
                   <p
                     class="text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line text-sm md:text-base"
                   >
-                    {{ currentProject.description }}
+                    {{ currentProject.description[locale] }}
                   </p>
 
                   <template
                     v-if="
                       currentProject.features &&
-                      currentProject.features.length > 0
+                      currentProject.features[locale] &&
+                      (currentProject.features[locale]?.length ?? 0) > 0
                     "
                   >
                     <h4
                       class="font-bold text-sm uppercase tracking-wide text-slate-400 mt-6"
                     >
-                      Points clés
+                      {{ $t('projects.keyPoints') }}
                     </h4>
                     <ul
                       class="list-disc list-inside space-y-1 text-slate-600 dark:text-slate-300 text-sm"
                     >
-                      <li v-for="feat in currentProject.features" :key="feat">
+                      <li v-for="feat in currentProject.features[locale]" :key="feat">
                         {{ feat }}
                       </li>
                     </ul>
@@ -302,7 +303,7 @@
                     <h4
                       class="font-bold text-sm uppercase tracking-wide text-slate-400 mb-3"
                     >
-                      Liens
+                      {{ $t('projects.links') }}
                     </h4>
                     <div class="flex flex-col gap-2">
                       <a
@@ -326,7 +327,7 @@
                             d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                           ></path>
                         </svg>
-                        {{ link.label }}
+                        {{ link.label[locale] }}
                       </a>
                     </div>
                   </div>
@@ -334,17 +335,17 @@
                   <!-- Tech Stack -->
                   <div
                     v-if="
-                      currentProject.stack && currentProject.stack.length > 0
+                      currentProject.stack && (currentProject.stack[locale]?.length ?? 0) > 0
                     "
                   >
                     <h4
                       class="font-bold text-sm uppercase tracking-wide text-slate-400 mb-3"
                     >
-                      Technologies
+                      {{ $t('projects.technologies') }}
                     </h4>
                     <div class="flex flex-wrap gap-2">
                       <span
-                        v-for="tech in currentProject.stack"
+                        v-for="tech in currentProject.stack[locale]"
                         :key="tech"
                         class="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs rounded-md border border-slate-200 dark:border-slate-700"
                       >
@@ -358,13 +359,13 @@
                     <h4
                       class="font-bold text-sm uppercase tracking-wide text-slate-400 mb-3"
                     >
-                      Statut
+                      {{ $t('projects.status') }}
                     </h4>
                     <span
                       class="inline-flex items-center gap-2 px-3 py-1.5 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-400 text-sm font-medium rounded-full"
                     >
                       <span class="w-2 h-2 rounded-full bg-green-500"></span>
-                      {{ currentProject.status }}
+                      {{ currentProject.status[locale] }}
                     </span>
                   </div>
                 </div>
@@ -404,7 +405,7 @@
         <div class="w-full h-full flex items-center justify-center relative">
           <img
             :src="currentProject.images[lightboxIndex]"
-            :alt="`${currentProject.title} - Image ${lightboxIndex + 1}`"
+            :alt="`${currentProject.title[locale]} - Image ${lightboxIndex + 1}`"
             class="max-h-screen max-w-full object-contain p-4 md:p-10"
           />
 
@@ -463,29 +464,44 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from "vue";
 
+const { t } = useI18n();
+
+interface LocalizedString {
+  fr: string;
+  en: string;
+  [key: string]: string;
+}
+
+interface LocalizedStringArray {
+  fr: string[];
+  en: string[];
+  [key: string]: string[];
+}
+
 interface ProjectLink {
-  label: string;
+  label: LocalizedString;
   url: string;
 }
 
 interface Project {
   id: string;
   hidden: boolean;
-  title: string;
-  shortDesc: string;
-  description: string;
+  title: LocalizedString;
+  shortDesc: LocalizedString;
+  description: LocalizedString;
   images: string[];
-  stack: string[];
-  status: string;
-  category: string;
+  stack: LocalizedStringArray;
+  status: LocalizedString;
+  category: LocalizedString;
   year: string;
   links: ProjectLink[];
-  features?: string[];
+  features?: LocalizedStringArray;
 }
 
 const props = defineProps<{
   projects: Project[];
   initialIndex: number;
+  locale: string;
 }>();
 
 const emit = defineEmits<{

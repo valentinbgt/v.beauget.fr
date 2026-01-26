@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "home": "~/accueil",
+    "projects": "./projets",
+    "skills": "./compétences",
+    "contact": "./contact"
+  },
+  "hero": {
+    "title": "Valentin BEAUGET",
+    "subtitle": "Développeur Fullstack",
+    "description": "Développeur depuis 2019, je suis actuellement en formation en MMI à l'IUT de Troyes.\nJe suis aussi apprenti alternant chez Gravity Media où de développe des applications sur mesure pour la télévision.",
+    "cta": {
+      "projects": "Voir mes projets",
+      "contact": "Me contacter"
+    }
+  },
+  "terminal": {
+    "serverActive": "Serveur actif sur"
+  },
+  "projects": {
+    "dashboard": "Mes projets - Tableau de bord",
+    "dashboardDesc": "Voici une sélection de certains de mes projets, du développement web à la gestion de projets.",
+    "workspace": "Workspace",
+    "portfolio": "Portfolio",
+    "all": "Tous les projets",
+    "systemOnline": "Système en ligne",
+    "about": "À propos",
+    "keyPoints": "Points clés",
+    "links": "Liens",
+    "technologies": "Technologies",
+    "status": "Statut"
+  },
+  "skills": {
+    "title": "Compétences Techniques",
+    "network": "Réseau",
+    "teamManagement": "Gestion d'équipe",
+    "projectManagement": "Gestion de projets",
+    "riskManagement": "Gestion des risques",
+    "autonomy": "Autonomie",
+    "sound": "Son"
+  },
+  "contact": {
+    "title": "Des questions ?",
+    "subtitle": "Laissez-moi un petit message, ça coûte rien :)",
+    "form": {
+      "lastName": "Nom",
+      "lastNamePlaceholder": "Bruel",
+      "firstName": "Prénom",
+      "firstNamePlaceholder": "Patrick",
+      "email": "Email",
+      "emailPlaceholder": "email-pour-que-je-puisse-repondre{'@'}gmail.com",
+      "message": "Message",
+      "messagePlaceholder": "Bonjour Valentin, j'adore ton portfolio, il est vraiment incroyable...",
+      "submit": "Envoyer le message",
+      "sending": "Envoi en cours..."
+    },
+    "success": "Message envoyé avec succès !",
+    "error": "Une erreur est survenue lors de l'envoi du message."
+  },
+  "footer": {
+    "source": "Source"
+  }
+}

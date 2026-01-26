@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "home": "~/home",
+    "projects": "./projects",
+    "skills": "./skills",
+    "contact": "./contact"
+  },
+  "hero": {
+    "title": "Valentin BEAUGET",
+    "subtitle": "Fullstack Developer",
+    "description": "Developer since 2019, I am currently studying MMI at IUT Troyes.\nI am also an apprentice at Gravity Media where I develop custom applications for television.",
+    "cta": {
+      "projects": "View my projects",
+      "contact": "Contact me"
+    }
+  },
+  "terminal": {
+    "serverActive": "Server running on"
+  },
+  "projects": {
+    "dashboard": "My projects - Dashboard",
+    "dashboardDesc": "Here is a selection of some of my projects, from web development to project management.",
+    "workspace": "Workspace",
+    "portfolio": "Portfolio",
+    "all": "All projects",
+    "systemOnline": "System online",
+    "about": "About",
+    "keyPoints": "Key points",
+    "links": "Links",
+    "technologies": "Technologies",
+    "status": "Status"
+  },
+  "skills": {
+    "title": "Technical Skills",
+    "network": "Network",
+    "teamManagement": "Team Management",
+    "projectManagement": "Project Management",
+    "riskManagement": "Risk Management",
+    "autonomy": "Autonomy",
+    "sound": "Sound"
+  },
+  "contact": {
+    "title": "Any questions?",
+    "subtitle": "Leave me a message, it's free :)",
+    "form": {
+      "lastName": "Last name",
+      "lastNamePlaceholder": "Jordan",
+      "firstName": "First name",
+      "firstNamePlaceholder": "Michael",
+      "email": "Email",
+      "emailPlaceholder": "email-so-i-can-reply{'@'}gmail.com",
+      "message": "Message",
+      "messagePlaceholder": "Hello Valentin, I love your portfolio, it's really amazing...",
+      "submit": "Send message",
+      "sending": "Sending..."
+    },
+    "success": "Message sent successfully!",
+    "error": "An error occurred while sending the message."
+  },
+  "footer": {
+    "source": "Source"
+  }
+}
