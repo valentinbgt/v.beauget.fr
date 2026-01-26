@@ -161,8 +161,8 @@ const skillsData = ref([
   {
     id: 5,
     name: { fr: "Debian", en: "Debian" },
-    borderColor: "border-red-600",
-    borderColorDark: "border-red-600",
+    borderColor: "border-[#a80030]",
+    borderColorDark: "border-[#a80030]",
     image: "/icons/skills/debian.png",
     imageDark: "/icons/skills/debian.png",
     x: 0,
