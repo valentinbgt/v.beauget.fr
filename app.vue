@@ -42,10 +42,10 @@
             <!-- Language Toggle -->
             <button
               @click="toggleLocale"
-              class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition text-base"
+              class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
               aria-label="Toggle language"
             >
-              {{ locale === "fr" ? "🇬🇧" : "🇫🇷" }}
+              <span class="text-base leading-none">{{ locale === "fr" ? "🇬🇧" : "🇫🇷" }}</span>
             </button>
             <!-- Theme Toggle -->
             <button
