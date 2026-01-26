@@ -1,9 +1,6 @@
 <template>
-  <!-- Loading Screen -->
-  <LoadingScreen v-if="isPageLoading" @complete="handleLoadingComplete" />
-
+  <!-- Main Content (always rendered, visible behind loading screen) -->
   <div
-    v-show="!isPageLoading"
     class="min-h-screen flex flex-col bg-gray-50 text-slate-800 dark:bg-dark-bg dark:text-slate-100 transition-colors duration-300 font-sans"
   >
     <!-- Navigation -->
@@ -590,6 +587,9 @@
       </div>
     </Transition>
   </div>
+
+  <!-- Loading Screen (overlay on top) -->
+  <LoadingScreen v-if="isPageLoading" @complete="handleLoadingComplete" />
 </template>
 
 <script setup>

@@ -1,10 +1,17 @@
 <template>
   <Transition name="loader-fade">
     <div
-      class="fixed inset-0 z-50 bg-gray-50 dark:bg-dark-bg text-slate-800 dark:text-slate-100 flex items-center justify-center overflow-hidden transition-colors duration-300"
+      v-if="isVisible"
+      class="fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
     >
-      <!-- Background Decoration -->
-      <div class="absolute inset-0 z-0 opacity-10 dark:opacity-20">
+      <!-- Backdrop that fades out -->
+      <div
+        class="absolute inset-0 bg-gray-50 dark:bg-dark-bg transition-opacity duration-700"
+        :class="isFadingOut ? 'opacity-0' : 'opacity-100'"
+      ></div>
+
+      <!-- Background Decoration (behind backdrop) -->
+      <div class="absolute inset-0 z-0 opacity-10 dark:opacity-20 pointer-events-none">
         <div
           class="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-500 rounded-full filter blur-[120px]"
         ></div>
@@ -13,8 +20,11 @@
         ></div>
       </div>
 
-      <!-- Main Loader Container -->
-      <div class="relative z-10 w-full max-w-lg px-6">
+      <!-- Content Container -->
+      <div 
+        class="relative z-10 text-slate-800 dark:text-slate-100 w-full max-w-lg px-6 transition-all duration-700"
+        :class="isFadingOut ? 'opacity-0 scale-[0.98]' : 'opacity-100 scale-100'"
+      >
         <!-- Top Identity -->
         <div class="flex flex-col items-center mb-12">
           <div class="flex items-center gap-3 mb-4">
@@ -113,6 +123,8 @@ const logs = [
 const terminalLogs = ref([]);
 const currentTask = ref("Initializing...");
 const progressPercent = ref(0);
+const isVisible = ref(true);
+const isFadingOut = ref(false);
 
 async function runLoader() {
   let progress = 0;
@@ -135,9 +147,17 @@ async function runLoader() {
     await new Promise((resolve) => setTimeout(resolve, log.delay));
   }
 
-  // End animation
+  // Start fade out
   setTimeout(() => {
-    emit("complete");
+    isFadingOut.value = true;
+    // Start content fade at the same time
+    setTimeout(() => {
+      isVisible.value = false;
+      // Emit complete after fade out transition completes
+      setTimeout(() => {
+        emit("complete");
+      }, 1200); // Match the transition duration (700ms + buffer)
+    }, 300); // Start content fade slightly after backdrop starts fading
   }, 500);
 }
 
@@ -178,13 +198,20 @@ onMounted(() => {
   }
 }
 
-.loader-fade-enter-active,
-.loader-fade-leave-active {
-  transition: opacity 0.8s ease-out;
+.loader-fade-enter-active {
+  transition: opacity 0.5s ease-in;
 }
 
-.loader-fade-enter-from,
+.loader-fade-leave-active {
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.loader-fade-enter-from {
+  opacity: 0;
+}
+
 .loader-fade-leave-to {
   opacity: 0;
+  transform: scale(0.98);
 }
 </style>
