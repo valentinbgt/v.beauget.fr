@@ -685,6 +685,25 @@ onMounted(() => {
 
   // Set current host
   currentHost.value = window.location.host;
+
+  // Debug: Vérifier la configuration du formulaire au chargement
+  const formUrl = config.public.formUrl;
+  console.log("[Contact Form] Initialization check:");
+  console.log("[Contact Form] - Form URL:", formUrl || "(empty or undefined)");
+  console.log("[Contact Form] - Form URL type:", typeof formUrl);
+  console.log("[Contact Form] - Full public config:", config.public);
+  
+  if (!formUrl || formUrl.trim() === "") {
+    console.warn("[Contact Form] ⚠️ WARNING: NUXT_PUBLIC_FORM_URL is not set or empty!");
+    console.warn("[Contact Form] The contact form will not work until this is configured.");
+  } else {
+    try {
+      const url = new URL(formUrl);
+      console.log("[Contact Form] ✓ Form URL is valid:", url.href);
+    } catch (urlError) {
+      console.error("[Contact Form] ✗ Form URL is invalid:", formUrl, urlError);
+    }
+  }
 });
 
 onUnmounted(() => {
@@ -898,22 +917,60 @@ const handleSubmit = async () => {
   try {
     isSubmitting.value = true;
 
-    const response = await fetch(config.public.formUrl, {
+    // Vérification et debug de la configuration
+    const formUrl = config.public.formUrl;
+    console.log("[Contact Form] Form URL from config:", formUrl);
+    console.log("[Contact Form] Config object:", config.public);
+
+    if (!formUrl || formUrl.trim() === "") {
+      const errorMsg = "Form URL is not configured. Please set NUXT_PUBLIC_FORM_URL environment variable.";
+      console.error("[Contact Form] Configuration error:", errorMsg);
+      throw new Error(errorMsg);
+    }
+
+    // Vérification que l'URL est valide
+    try {
+      new URL(formUrl);
+    } catch (urlError) {
+      const errorMsg = `Invalid form URL format: ${formUrl}`;
+      console.error("[Contact Form] URL validation error:", errorMsg, urlError);
+      throw new Error(errorMsg);
+    }
+
+    // Préparation des données
+    const requestBody = JSON.stringify(formData);
+    console.log("[Contact Form] Submitting to:", formUrl);
+    console.log("[Contact Form] Request body:", requestBody);
+
+    // Envoi de la requête
+    const response = await fetch(formUrl, {
       method: "POST",
-      body: JSON.stringify(formData),
+      body: requestBody,
       headers: {
         "Content-Type": "application/json",
       },
     });
 
+    console.log("[Contact Form] Response status:", response.status);
+    console.log("[Contact Form] Response ok:", response.ok);
+
     if (!response.ok) {
-      throw new Error("Failed to send message");
+      const responseText = await response.text().catch(() => "Unable to read response");
+      console.error("[Contact Form] Response error:", {
+        status: response.status,
+        statusText: response.statusText,
+        body: responseText,
+      });
+      throw new Error(`Failed to send message: ${response.status} ${response.statusText}`);
     }
 
+    // Succès - vider le formulaire uniquement si tout s'est bien passé
     formData.firstName = "";
     formData.lastName = "";
     formData.email = "";
     formData.message = "";
+
+    console.log("[Contact Form] Success - form submitted and cleared");
 
     notification.value = {
       show: true,
@@ -921,7 +978,15 @@ const handleSubmit = async () => {
       type: "success",
     };
   } catch (error) {
-    console.error("Error saving message:", error);
+    console.error("[Contact Form] Error saving message:", error);
+    console.error("[Contact Form] Error details:", {
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+    });
+
+    // Ne pas vider le formulaire en cas d'erreur
+    // Le formulaire garde ses valeurs pour que l'utilisateur puisse réessayer
+
     notification.value = {
       show: true,
       message: t("contact.error"),
