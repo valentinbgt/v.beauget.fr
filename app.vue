@@ -424,14 +424,16 @@
     </section>
 
     <!-- Project Modal -->
-    <ProjectModal
-      v-if="isModalOpen"
-      :projects="visibleProjects"
-      :initial-index="selectedProjectIndex"
-      :locale="locale"
-      @close="closeProject"
-      @update:index="updateProjectIndex"
-    />
+    <Transition name="modal">
+      <ProjectModal
+        v-if="isModalOpen"
+        :projects="visibleProjects"
+        :initial-index="selectedProjectIndex"
+        :locale="locale"
+        @close="closeProject"
+        @update:index="updateProjectIndex"
+      />
+    </Transition>
 
     <!-- Skills Section -->
     <section
@@ -906,5 +908,27 @@ html {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+/* Modal animation */
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-enter-active .modal-content,
+.modal-leave-active .modal-content {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-from .modal-content,
+.modal-leave-to .modal-content {
+  transform: scale(0.95) translateY(20px);
+  opacity: 0;
 }
 </style>

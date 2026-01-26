@@ -9,7 +9,7 @@
     </Transition>
 
     <div
-      class="relative w-full h-full flex items-center justify-center z-10 overflow-hidden"
+      class="modal-content relative w-full h-full flex items-center justify-center z-10 overflow-hidden"
     >
       <div
         class="absolute z-40 w-full max-w-4xl lg:max-w-5xl h-0 flex items-center justify-between pointer-events-none px-4 xl:px-0"
