@@ -1,5 +1,9 @@
 <template>
+  <!-- Loading Screen -->
+  <LoadingScreen v-if="isPageLoading" @complete="handleLoadingComplete" />
+
   <div
+    v-show="!isPageLoading"
     class="min-h-screen flex flex-col bg-gray-50 text-slate-800 dark:bg-dark-bg dark:text-slate-100 transition-colors duration-300 font-sans"
   >
     <!-- Navigation -->
@@ -591,6 +595,13 @@
 <script setup>
 import { ref, reactive, computed, onMounted, onUnmounted } from "vue";
 import projectsData from "~/assets/data/projects.json";
+
+// Loading Screen
+const isPageLoading = ref(true);
+
+const handleLoadingComplete = () => {
+  isPageLoading.value = false;
+};
 
 // i18n
 const { locale, setLocale, t } = useI18n();
