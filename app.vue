@@ -883,20 +883,6 @@ const handleSubmit = async () => {
   }
 };
 
-// Keyboard navigation for modal
-const handleKeydown = (event) => {
-  if (event.key === "Escape" && isModalOpen.value) {
-    closeProject();
-  }
-};
-
-onMounted(() => {
-  window.addEventListener("keydown", handleKeydown);
-});
-
-onUnmounted(() => {
-  window.removeEventListener("keydown", handleKeydown);
-});
 </script>
 
 <style>
