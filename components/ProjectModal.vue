@@ -18,7 +18,7 @@
           v-if="prevProject"
           :key="prevProject.id"
           @click="goToPrev"
-          class="hidden xl:block absolute left-0 top-1/2 -translate-y-1/2 w-[15%] max-h-[70%] cursor-pointer z-10 transition-all duration-300 hover:w-[17%] group bg-white dark:bg-slate-800 rounded-r-2xl border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-primary-400 dark:hover:border-primary-500 flex flex-col opacity-60 hover:opacity-100"
+          class="hidden xl:flex absolute left-0 top-1/2 -translate-y-1/2 w-[15%] max-h-[70%] cursor-pointer z-10 transition-all duration-300 hover:w-[17%] group bg-white dark:bg-slate-800 rounded-r-2xl border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-primary-400 dark:hover:border-primary-500 flex-col opacity-60 hover:opacity-100"
         >
           <!-- Header Image -->
           <div class="relative h-48 overflow-hidden bg-slate-200 flex-shrink-0">
@@ -79,7 +79,7 @@
           v-if="nextProject"
           :key="nextProject.id"
           @click="goToNext"
-          class="hidden xl:block absolute right-0 top-1/2 -translate-y-1/2 w-[15%] max-h-[70%] cursor-pointer z-10 transition-all duration-300 hover:w-[17%] group bg-white dark:bg-slate-800 rounded-l-2xl border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-primary-400 dark:hover:border-primary-500 flex flex-col opacity-60 hover:opacity-100"
+          class="hidden xl:flex absolute right-0 top-1/2 -translate-y-1/2 w-[15%] max-h-[70%] cursor-pointer z-10 transition-all duration-300 hover:w-[17%] group bg-white dark:bg-slate-800 rounded-l-2xl border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-primary-400 dark:hover:border-primary-500 flex-col opacity-60 hover:opacity-100"
         >
           <!-- Header Image -->
           <div class="relative h-48 overflow-hidden bg-slate-200 flex-shrink-0">
@@ -178,6 +178,7 @@
       <!-- Main Modal Content with Slide Animation -->
       <Transition :name="slideDirection" mode="out-in">
         <div
+          v-if="currentProject"
           :key="currentProject.id"
           class="relative bg-white dark:bg-slate-900 w-full max-w-4xl lg:max-w-5xl max-h-[90vh] lg:max-h-[85vh] rounded-2xl shadow-2xl overflow-hidden flex flex-col border border-gray-200 dark:border-slate-700 mx-auto xl:mx-[17%]"
         >
@@ -379,7 +380,7 @@
   <Teleport to="body">
     <Transition name="lightbox">
       <div
-        v-if="lightboxIndex !== null"
+        v-if="lightboxIndex !== null && currentProject"
         class="fixed inset-0 z-[60] bg-black flex items-center justify-center"
       >
         <button
@@ -513,12 +514,12 @@ const nextProject = computed(() => {
 
 // Limit to 4 images in the grid
 const displayImages = computed(() => {
-  return currentProject.value.images.slice(0, 4);
+  return currentProject.value?.images.slice(0, 4) ?? [];
 });
 
 // Limit to 3 links
 const displayLinks = computed(() => {
-  return currentProject.value.links.slice(0, 3);
+  return currentProject.value?.links.slice(0, 3) ?? [];
 });
 
 const getGridClass = (count: number): string => {
@@ -553,13 +554,13 @@ const closeLightbox = () => {
 };
 
 const nextLightboxImage = () => {
-  if (lightboxIndex.value === null) return;
+  if (lightboxIndex.value === null || !currentProject.value) return;
   lightboxIndex.value =
     (lightboxIndex.value + 1) % currentProject.value.images.length;
 };
 
 const prevLightboxImage = () => {
-  if (lightboxIndex.value === null) return;
+  if (lightboxIndex.value === null || !currentProject.value) return;
   lightboxIndex.value =
     (lightboxIndex.value - 1 + currentProject.value.images.length) %
     currentProject.value.images.length;
