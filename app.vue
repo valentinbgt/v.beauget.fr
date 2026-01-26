@@ -137,7 +137,6 @@
               class="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-light"
             >
               {{ $t("hero.subtitle") }}
-              projets
             </h2>
             <p
               class="max-w-lg text-lg text-slate-600 dark:text-slate-300 leading-relaxed indent-8 whitespace-pre-line"
