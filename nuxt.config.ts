@@ -53,6 +53,17 @@ export default defineNuxtConfig({
         'Cache-Control': 'public, max-age=3600, must-revalidate',
       },
     },
+    // Cache static assets for 1 year
+    '/images/**': {
+      headers: {
+        'Cache-Control': 'public, max-age=31536000, immutable',
+      },
+    },
+    '/_nuxt/**': {
+      headers: {
+        'Cache-Control': 'public, max-age=31536000, immutable',
+      },
+    },
   },
   vite: {
     build: {
@@ -74,6 +85,33 @@ export default defineNuxtConfig({
         { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" },
         // DNS prefetch for form submission
         { rel: "dns-prefetch", href: "https://hooks.n8n.cloud" },
+        // Load fonts asynchronously to prevent render-blocking
+        // Critical font (Inter) - loaded with high priority
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
+          media: "print",
+          onload: "this.media='all'",
+        },
+        // Non-critical fonts - loaded with lower priority
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Kufam:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap",
+          media: "print",
+          onload: "this.media='all'",
+        },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Krona+One&display=swap",
+          media: "print",
+          onload: "this.media='all'",
+        },
+        {
+          rel: "stylesheet",
+          href: "https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap",
+          media: "print",
+          onload: "this.media='all'",
+        },
       ],
       meta: [
         { charset: "utf-8" },
@@ -86,6 +124,11 @@ export default defineNuxtConfig({
       script: [
         {
           innerHTML: `(function(){try{const theme=localStorage.getItem('theme');const shouldBeDark=theme!=='light';if(shouldBeDark){document.documentElement.classList.add('dark');if(document.body){document.body.classList.add('dark');}else{document.addEventListener('DOMContentLoaded',function(){document.body.classList.add('dark');});}}}catch(e){document.documentElement.classList.add('dark');if(document.body){document.body.classList.add('dark');}else{document.addEventListener('DOMContentLoaded',function(){document.body.classList.add('dark');});}}})();`,
+          type: "text/javascript",
+        },
+        // Fallback for browsers that don't support onload on link tags
+        {
+          innerHTML: `(function(){var links=document.querySelectorAll('link[media="print"]');for(var i=0;i<links.length;i++){links[i].onload=function(){this.media='all'};links[i].onerror=function(){this.media='all'}}}());`,
           type: "text/javascript",
         },
       ],
