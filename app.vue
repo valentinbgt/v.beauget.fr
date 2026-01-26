@@ -372,7 +372,11 @@
                     <img
                       :src="project.images[0]"
                       :alt="project.title[locale]"
+                      width="800"
+                      height="400"
                       class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                      :fetchpriority="visibleProjects.indexOf(project) === 0 ? 'high' : 'auto'"
                     />
                     <div
                       class="absolute top-2 right-2 bg-black/70 backdrop-blur-md text-white text-[10px] font-mono px-2 py-1 rounded"
@@ -427,7 +431,7 @@
 
     <!-- Project Modal -->
     <Transition name="modal">
-      <ProjectModal
+      <LazyProjectModal
         v-if="isModalOpen"
         :projects="visibleProjects"
         :initial-index="selectedProjectIndex"
@@ -453,7 +457,7 @@
 
       <!-- Canvas qui prend tout l'espace -->
       <div class="absolute inset-0 z-10">
-        <SkillsFloating />
+        <LazySkillsFloating />
       </div>
     </section>
 

@@ -152,6 +152,8 @@
                     <img
                       :src="img"
                       :alt="`${project.title[locale]} - Image ${idx + 1}`"
+                      width="800"
+                      height="600"
                       class="w-full h-full object-cover"
                       loading="lazy"
                     />
@@ -303,6 +305,8 @@
             <img
               :src="currentProject.images[lightboxIndex]"
               :alt="currentProject.title[locale]"
+              width="1200"
+              height="800"
               class="max-h-screen max-w-full object-contain p-4 md:p-10"
             />
             <button

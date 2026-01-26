@@ -2,13 +2,18 @@
 module.exports = {
   darkMode: "class",
   content: [
-    "./components/**/*.{vue,js}",
+    "./components/**/*.{vue,js,ts}",
     "./layouts/**/*.vue",
     "./pages/**/*.vue",
     "./plugins/**/*.{js,ts}",
     "./nuxt.config.{js,ts}",
     "./app.vue",
   ],
+  // Optimize CSS output
+  corePlugins: {
+    // Disable unused features to reduce CSS size
+    preflight: true,
+  },
   theme: {
     extend: {
       colors: {

@@ -29,10 +29,52 @@ export default defineNuxtConfig({
       formUrl: "",
     },
   },
+  // Performance optimizations
+  experimental: {
+    payloadExtraction: false, // Reduce bundle size
+  },
+  nitro: {
+    compressPublicAssets: true, // Enable compression
+    minify: true,
+    // Optimize static assets
+    prerender: {
+      crawlLinks: false, // Don't crawl links for static generation
+    },
+  },
+  // Optimize route rules
+  routeRules: {
+    '/': {
+      prerender: true, // Pre-render homepage
+      headers: {
+        'Cache-Control': 'public, max-age=3600, must-revalidate',
+      },
+    },
+  },
+  vite: {
+    build: {
+      cssCodeSplit: true, // Split CSS for better caching
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'vendor-vue': ['vue', 'vue-router'],
+            'vendor-i18n': ['@nuxtjs/i18n'],
+            'vendor-gsap': ['gsap'],
+          },
+        },
+      },
+    },
+  },
   app: {
     head: {
       title: "Valentin BEAUGET",
-      link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
+      link: [
+        { rel: "icon", type: "image/png", href: "/favicon.png" },
+        // Preconnect to external domains
+        { rel: "preconnect", href: "https://fonts.googleapis.com" },
+        { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" },
+        // DNS prefetch for form submission
+        { rel: "dns-prefetch", href: "https://hooks.n8n.cloud" },
+      ],
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
