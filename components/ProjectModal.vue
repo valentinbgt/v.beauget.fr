@@ -18,12 +18,14 @@
           v-if="prevProject"
           @click.stop="goToPrev"
           class="pointer-events-auto transform xl:-translate-x-20 p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full text-white transition-all hover:scale-110 border border-white/10 shadow-lg"
+          aria-label="Projet précédent"
         >
           <svg
             class="w-6 h-6"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path
               stroke-linecap="round"
@@ -39,12 +41,14 @@
           v-if="nextProject"
           @click.stop="goToNext"
           class="pointer-events-auto transform xl:translate-x-20 p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full text-white transition-all hover:scale-110 border border-white/10 shadow-lg"
+          aria-label="Projet suivant"
         >
           <svg
             class="w-6 h-6"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path
               stroke-linecap="round"
@@ -102,12 +106,14 @@
                 <button
                   @click.stop="$emit('close')"
                   class="p-2 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-full transition"
+                  aria-label="Fermer la modal"
                 >
                   <svg
                     class="w-6 h-6 text-slate-600 dark:text-slate-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
+                    aria-hidden="true"
                   >
                     <path
                       stroke-linecap="round"
@@ -286,12 +292,14 @@
           <button
             @click="closeLightbox"
             class="absolute top-4 right-4 text-white p-2 z-20 hover:bg-white/10 rounded-full transition"
+            aria-label="Fermer la galerie d'images"
           >
             <svg
               class="w-8 h-8"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
             >
               <path
                 stroke-linecap="round"
@@ -313,12 +321,14 @@
               v-if="currentProject.images.length > 1"
               @click.stop="prevLightboxImage"
               class="absolute left-4 text-white bg-black/50 p-2 rounded-full hover:bg-white/20 transition"
+              aria-label="Image précédente"
             >
               <svg
                 class="w-8 h-8"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path
                   stroke-linecap="round"
@@ -332,12 +342,14 @@
               v-if="currentProject.images.length > 1"
               @click.stop="nextLightboxImage"
               class="absolute right-4 text-white bg-black/50 p-2 rounded-full hover:bg-white/20 transition"
+              aria-label="Image suivante"
             >
               <svg
                 class="w-8 h-8"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path
                   stroke-linecap="round"

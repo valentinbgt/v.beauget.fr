@@ -67,6 +67,9 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: "Valentin BEAUGET",
+      htmlAttrs: {
+        lang: "fr", // Will be updated dynamically by i18n
+      },
       link: [
         { rel: "icon", type: "image/png", href: "/favicon.png" },
         // Preconnect to external domains

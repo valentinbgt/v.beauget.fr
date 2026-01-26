@@ -6,6 +6,8 @@
     <!-- Navigation -->
     <nav
       class="fixed top-0 w-full z-40 border-b border-gray-200 dark:border-dark-border admin-glass transition-colors"
+      role="navigation"
+      aria-label="Navigation principale"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 items-center">
@@ -67,6 +69,7 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
+                aria-hidden="true"
               >
                 <circle cx="12" cy="12" r="5" />
                 <path
@@ -84,6 +87,7 @@
                 stroke-width="2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
+                aria-hidden="true"
               >
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
               </svg>
@@ -93,10 +97,13 @@
       </div>
     </nav>
 
+    <!-- Main Content -->
+    <main role="main">
     <!-- Hero Section -->
     <section
       id="home"
       class="min-h-screen pt-16 flex items-center justify-center relative overflow-hidden"
+      aria-label="Section d'accueil"
     >
       <!-- Background Decoration -->
       <div
@@ -137,7 +144,7 @@
               {{ $t("hero.title") }}<span class="text-primary-600">.</span>
             </h1>
             <h2
-              class="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-light"
+              class="text-xl md:text-2xl text-slate-600 dark:text-slate-400 font-light"
             >
               {{ $t("hero.subtitle") }}
             </h2>
@@ -152,12 +159,14 @@
               <a
                 href="#projects"
                 class="px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium rounded-lg hover:bg-slate-700 dark:hover:bg-slate-200 transition shadow-lg shadow-primary-500/20"
+                aria-label="Aller à la section projets"
               >
                 {{ $t("hero.cta.projects") }}
               </a>
               <a
                 href="#contact"
-                class="px-6 py-3 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-slate-800 transition"
+                class="px-6 py-3 border-2 border-slate-400 dark:border-slate-500 text-slate-800 dark:text-slate-200 font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-slate-800 transition"
+                aria-label="Aller à la section contact"
               >
                 {{ $t("hero.cta.contact") }}
               </a>
@@ -241,13 +250,14 @@
     <section
       id="projects"
       class="py-24 bg-white dark:bg-dark-bg transition-colors"
+      aria-label="Section projets"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-12">
           <h2 class="text-3xl font-bold mb-4">
             {{ $t("projects.dashboard") }}
           </h2>
-          <p class="text-slate-500 dark:text-slate-400 max-w-3xl">
+          <p class="text-slate-600 dark:text-slate-400 max-w-3xl">
             {{ $t("projects.dashboardDesc") }}
           </p>
         </div>
@@ -285,6 +295,7 @@
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path
                     stroke-linecap="round"
@@ -445,6 +456,7 @@
     <section
       id="skills"
       class="relative overflow-hidden min-h-[600px] xs:min-h-[700px] md:min-h-[500px] 2xl:min-h-[400px]"
+      aria-label="Section compétences"
     >
       <!-- Titre positionné au-dessus -->
       <div class="absolute top-8 left-0 right-0 z-20 pointer-events-none">
@@ -462,10 +474,14 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-white dark:bg-dark-bg">
+    <section
+      id="contact"
+      class="py-24 bg-white dark:bg-dark-bg transition-colors"
+      aria-label="Section contact"
+    >
       <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="text-3xl font-bold mb-2">{{ $t("contact.title") }}</h2>
-        <p class="text-slate-500 dark:text-slate-400 max-w-3xl mb-8">
+        <p class="text-slate-600 dark:text-slate-400 max-w-3xl mb-8">
           {{ $t("contact.subtitle") }}
         </p>
 
@@ -541,10 +557,12 @@
         </form>
       </div>
     </section>
+    </main>
 
     <!-- Footer -->
     <footer
       class="py-8 text-center border-t border-gray-100 dark:border-slate-800 text-slate-400 text-sm font-mono"
+      role="contentinfo"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
@@ -555,19 +573,25 @@
             <a
               href="https://github.com/valentinbgt"
               target="_blank"
+              rel="noopener noreferrer"
               class="hover:text-primary-500 transition-colors"
+              aria-label="Profil GitHub (nouvelle fenêtre)"
               >GitHub</a
             >
             <a
               href="https://linkedin.com/in/valentin-beauget"
               target="_blank"
+              rel="noopener noreferrer"
               class="hover:text-primary-500 transition-colors"
+              aria-label="Profil LinkedIn (nouvelle fenêtre)"
               >LinkedIn</a
             >
             <a
               href="https://github.com/valentinbgt/v.beauget.fr/"
               target="_blank"
+              rel="noopener noreferrer"
               class="hover:text-primary-500 transition-colors"
+              aria-label="Code source du site (nouvelle fenêtre)"
               >{{ $t("footer.source") }}</a
             >
           </div>
@@ -597,7 +621,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted, onUnmounted } from "vue";
+import { ref, reactive, computed, onMounted, onUnmounted, watch } from "vue";
 import projectsData from "~/assets/data/projects.json";
 
 // Loading Screen
@@ -609,6 +633,13 @@ const handleLoadingComplete = () => {
 
 // i18n
 const { locale, setLocale, t } = useI18n();
+
+// Update HTML lang attribute when locale changes
+watch(locale, (newLocale) => {
+  if (typeof document !== 'undefined') {
+    document.documentElement.lang = newLocale;
+  }
+}, { immediate: true });
 
 const toggleLocale = () => {
   setLocale(locale.value === "fr" ? "en" : "fr");
