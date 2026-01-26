@@ -45,7 +45,9 @@
               class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
               aria-label="Toggle language"
             >
-              <span class="text-base leading-none">{{ locale === "fr" ? "🇬🇧" : "🇫🇷" }}</span>
+              <span class="text-base leading-none">{{
+                locale === "fr" ? "🇬🇧" : "🇫🇷"
+              }}</span>
             </button>
             <!-- Theme Toggle -->
             <button
@@ -116,12 +118,12 @@
       </div>
 
       <div
-        class="relative z-10 max-w-7xl mx-auto px-6 md:px-8 lg:px-10 text-center md:text-left w-full"
+        class="relative z-10 max-w-7xl mx-auto px-4 xs:px-6 md:px-8 lg:px-10 text-center md:text-left w-full"
       >
         <div
           class="flex flex-col md:flex-row items-center justify-between gap-12"
         >
-          <div class="flex-1 space-y-6">
+          <div class="flex-1 space-y-2 sm:space-y-4 md:space-y-6">
             <!--             <div
               class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs font-mono border border-primary-200 dark:border-primary-700/50"
             >
@@ -139,12 +141,12 @@
               {{ $t("hero.subtitle") }}
             </h2>
             <p
-              class="max-w-lg text-lg text-slate-600 dark:text-slate-300 leading-relaxed indent-8 whitespace-pre-line"
+              class="max-w-lg text-lg text-slate-600 dark:text-slate-300 leading-relaxed indent-6 xs:indent-8 md:indent-10 whitespace-pre-line"
             >
               {{ $t("hero.description") }}
             </p>
             <div
-              class="flex flex-wrap gap-4 pt-4 justify-center md:justify-start"
+              class="flex flex-wrap gap-2 md:gap-4 pt-2 md:pt-4 mx-2 justify-center md:justify-start"
             >
               <a
                 href="#projects"
@@ -437,15 +439,8 @@
     <!-- Skills Section -->
     <section
       id="skills"
-      class="relative bg-gray-50 dark:bg-slate-900/50 overflow-hidden min-h-[400px]"
+      class="relative overflow-hidden min-h-[800px] md:min-h-[500px] 2xl:min-h-[400px]"
     >
-      <!-- Decorative background text -->
-      <div
-        class="absolute right-0 bottom-0 text-[10rem] font-bold text-gray-200 dark:text-slate-800 opacity-20 pointer-events-none select-none z-0"
-      >
-        STACK
-      </div>
-
       <!-- Titre positionné au-dessus -->
       <div class="absolute top-8 left-0 right-0 z-20 pointer-events-none">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

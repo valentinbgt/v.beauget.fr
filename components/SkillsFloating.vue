@@ -1,7 +1,7 @@
 <template>
   <div
     ref="containerRef"
-    class="relative w-full h-full overflow-hidden bg-slate-50 dark:bg-slate-900"
+    class="relative w-full h-full overflow-hidden bg-slate-50 dark:bg-slate-800"
     @mousemove="handleMouseMove"
     @mouseleave="handleMouseLeave"
   >
@@ -39,11 +39,11 @@ const { locale } = useI18n();
 
 // --- Configuration Physique ---
 const CONFIG = {
-  baseSpeed: 0.8, // Vitesse de croisière
+  baseSpeed: 0.4, // Vitesse de croisière
   maxSpeed: 3.5, // Vitesse max après impact souris
-  friction: 0.98, // Ralentissement progressif après un boost (plus proche de 1 = glisse plus)
+  friction: 0.994, // Ralentissement progressif après un boost (plus proche de 1 = glisse plus)
   mouseRepulsion: 1.5, // Force de la répulsion
-  mouseRadius: 200, // Rayon d'action de la souris
+  mouseRadius: 160, // Rayon d'action de la souris
 };
 
 // --- Données ---
