@@ -102,7 +102,7 @@ export default defineNuxtConfig({
         lang: "fr", // Will be updated dynamically by i18n
       },
       link: [
-        { rel: "icon", type: "image/png", href: "/favicon.png" },
+        { rel: "icon", type: "image/png", href: "/favicon.webp" },
         // Preconnect to external domains
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
         {
