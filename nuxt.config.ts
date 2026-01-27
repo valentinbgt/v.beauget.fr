@@ -2,12 +2,22 @@
 
 // Debug: Log environment variables at build time
 if (process.env.NUXT_PUBLIC_FORM_URL) {
-  console.log("[Nuxt Config] ✓ NUXT_PUBLIC_FORM_URL is set:", process.env.NUXT_PUBLIC_FORM_URL.substring(0, 30) + "...");
+  console.log(
+    "[Nuxt Config] ✓ NUXT_PUBLIC_FORM_URL is set:",
+    process.env.NUXT_PUBLIC_FORM_URL.substring(0, 30) + "...",
+  );
 } else if (process.env.FORM_URL) {
-  console.log("[Nuxt Config] ✓ FORM_URL is set (fallback):", process.env.FORM_URL.substring(0, 30) + "...");
+  console.log(
+    "[Nuxt Config] ✓ FORM_URL is set (fallback):",
+    process.env.FORM_URL.substring(0, 30) + "...",
+  );
 } else {
-  console.warn("[Nuxt Config] ⚠️ WARNING: Neither NUXT_PUBLIC_FORM_URL nor FORM_URL is set!");
-  console.warn("[Nuxt Config] The contact form will not work. Set NUXT_PUBLIC_FORM_URL in your .env file or environment variables.");
+  console.warn(
+    "[Nuxt Config] ⚠️ WARNING: Neither NUXT_PUBLIC_FORM_URL nor FORM_URL is set!",
+  );
+  console.warn(
+    "[Nuxt Config] The contact form will not work. Set NUXT_PUBLIC_FORM_URL in your .env file or environment variables.",
+  );
 }
 
 export default defineNuxtConfig({
@@ -48,7 +58,7 @@ export default defineNuxtConfig({
   },
   // Fix for i18n compatibility with Nuxt 4
   build: {
-    transpile: ['@nuxtjs/i18n'],
+    transpile: ["@nuxtjs/i18n"],
   },
   nitro: {
     compressPublicAssets: true, // Enable compression
@@ -60,21 +70,21 @@ export default defineNuxtConfig({
   },
   // Optimize route rules
   routeRules: {
-    '/': {
+    "/": {
       prerender: true, // Pre-render homepage
       headers: {
-        'Cache-Control': 'public, max-age=3600, must-revalidate',
+        "Cache-Control": "public, max-age=3600, must-revalidate",
       },
     },
     // Cache static assets for 1 year
-    '/images/**': {
+    "/images/**": {
       headers: {
-        'Cache-Control': 'public, max-age=31536000, immutable',
+        "Cache-Control": "public, max-age=31536000, immutable",
       },
     },
-    '/_nuxt/**': {
+    "/_nuxt/**": {
       headers: {
-        'Cache-Control': 'public, max-age=31536000, immutable',
+        "Cache-Control": "public, max-age=31536000, immutable",
       },
     },
   },
@@ -95,7 +105,11 @@ export default defineNuxtConfig({
         { rel: "icon", type: "image/png", href: "/favicon.png" },
         // Preconnect to external domains
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
-        { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "" },
+        {
+          rel: "preconnect",
+          href: "https://fonts.gstatic.com",
+          crossorigin: "",
+        },
         // DNS prefetch for form submission
         { rel: "dns-prefetch", href: "https://hooks.n8n.cloud" },
         // Load fonts asynchronously to prevent render-blocking

@@ -15,9 +15,9 @@
       "en": "In June 2024, I founded the Student Union for Multimedia and Internet Professions in Troyes.\n\nThis experience taught me skills such as volunteer leadership, the ability to unite people, team and project management, as well as communication.\n\nWe started from scratch, with a few motivated students, to arrive a year later with about 25 invested students, a solid structure and a treasury worthy of a student association."
     },
     "images": [
-      "/images/bde.png",
-      "/images/nds.jpg",
-      "/images/pull_bde_2025.jpg"
+      "/images/bde.webp",
+      "/images/nds.webp",
+      "/images/pull_bde_2025.webp"
     ],
     "stack": {
       "fr": ["Organisation", "Vision", "Autonomie"],
@@ -73,10 +73,10 @@
       "en": "Responsible for the House Stage during Night Campus 3 2025, a student festival bringing together several thousand participants for a festive evening.\n\nFor this event, I managed the artists of the House Stage and helped out with the Diamond Stage.\n\nI learned a lot about the event industry and Sound & Lighting."
     },
     "images": [
-      "/images/nc3.jpg",
-      "/images/nc3_2.png",
-      "/images/nc3_3.JPEG",
-      "/images/nc3_4.JPEG"
+      "/images/nc3.webp",
+      "/images/nc3_2.webp",
+      "/images/nc3_3.webp",
+      "/images/nc3_4.webp"
     ],
     "stack": {
       "fr": ["Événementiel", "Relations", "Coordination", "S&L"],
@@ -122,9 +122,9 @@
       "en": "To meet the hosting needs of my various web projects and personal drive, I quickly needed my own server.\nThis project allowed me to learn a lot about hosting, system administration and DevOps.\n\nI first started with salvaged DIY hardware but I recently invested in high-performance equipment that allowed me to expand possibilities.\n\nFor this project, I emphasized security and reliability. The system is configured with data redundancy (RAID1) and is constantly backed up by a Raspberry Pi and HDD located in another city for maximum security."
     },
     "images": [
-      "/images/serveur.png",
-      "/images/dokploy.png",
-      "/images/beszel.png"
+      "/images/serveur.webp",
+      "/images/dokploy.webp",
+      "/images/beszel.webp"
     ],
     "stack": {
       "fr": ["Debian", "RAID", "Dokploy", "CI/CD"],
@@ -176,9 +176,9 @@
       "en": "For this project we had to create a website with a front-end, management of at least 50 data entries and a PHP back-end with image upload and visualization.\n\nThis is the first website created as part of my BUT MMI studies.\nThis project was an opportunity to put into practice the skills I acquired self-taught before joining the program."
     },
     "images": [
-      "/images/sae105.png",
-      "/images/sae105_2.png",
-      "/images/sae105_3.png"
+      "/images/sae105.webp",
+      "/images/sae105_2.webp",
+      "/images/sae105_3.webp"
     ],
     "stack": {
       "fr": ["PHP", "HTML", "CSS", "JavaScript"],
@@ -224,9 +224,9 @@
       "en": "As part of our studies, we created a website in pairs with a classmate that allows visualization of a large dataset.\nThe subject emphasized front-end and we chose electoral data analysis because, given the stakes, we believe it is important that this information be accessible to everyone.\n\nWe learned how to manipulate data and display it on the front-end via interactive charts and dataviz."
     },
     "images": [
-      "/images/results.png",
-      "/images/results_2.png",
-      "/images/results_3.png"
+      "/images/results.webp",
+      "/images/results_2.webp",
+      "/images/results_3.webp"
     ],
     "stack": {
       "fr": [
@@ -295,7 +295,7 @@
       "fr": "",
       "en": ""
     },
-    "images": ["/images/bledmarket.png"],
+    "images": ["/images/bledmarket.webp"],
     "stack": {
       "fr": [],
       "en": []

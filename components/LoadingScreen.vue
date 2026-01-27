@@ -158,7 +158,7 @@ const animationComplete = ref(false);
 // Check if page is fully loaded
 function checkPageReady() {
   if (typeof window === "undefined") return false;
-  
+
   // Check if document is ready
   if (document.readyState === "complete") {
     // Check if all images are loaded
@@ -166,7 +166,7 @@ function checkPageReady() {
     const allImagesLoaded = Array.from(images).every((img) => {
       return img.complete && img.naturalHeight !== 0;
     });
-    
+
     return allImagesLoaded;
   }
   return false;

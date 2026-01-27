@@ -91,7 +91,9 @@
                     {{ project.category[locale] }}
                   </span>
                 </div>
-                <p class="text-slate-600 dark:text-slate-400 text-sm font-mono mt-1">
+                <p
+                  class="text-slate-600 dark:text-slate-400 text-sm font-mono mt-1"
+                >
                   {{ project.id }} • {{ project.year }}
                 </p>
               </div>
@@ -100,7 +102,9 @@
                 v-if="project === currentProject"
                 class="flex items-center gap-2 flex-shrink-0"
               >
-                <span class="text-xs font-mono text-slate-600 dark:text-slate-400 hidden sm:block">
+                <span
+                  class="text-xs font-mono text-slate-600 dark:text-slate-400 hidden sm:block"
+                >
                   {{ currentIndex + 1 }} / {{ projects.length }}
                 </span>
                 <button

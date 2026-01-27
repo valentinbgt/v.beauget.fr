@@ -99,214 +99,221 @@
 
     <!-- Main Content -->
     <main role="main">
-    <!-- Hero Section -->
-    <section
-      id="home"
-      class="min-h-screen pt-16 flex items-center justify-center relative overflow-hidden"
-      aria-label="Section d'accueil"
-    >
-      <!-- Background Decoration -->
-      <div
-        class="absolute inset-0 z-0 opacity-10 dark:opacity-20 pointer-events-none"
+      <!-- Hero Section -->
+      <section
+        id="home"
+        class="min-h-screen pt-16 flex items-center justify-center relative overflow-hidden"
+        aria-label="Section d'accueil"
       >
+        <!-- Background Decoration -->
         <div
-          class="absolute top-20 left-10 w-64 h-64 bg-primary-500 rounded-full filter blur-[100px]"
-        ></div>
-        <div
-          class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500 rounded-full filter blur-[120px]"
-        ></div>
-        <!-- Grid lines -->
-        <div
-          class="absolute inset-0"
-          style="
-            background-image: radial-gradient(#64748b 1px, transparent 1px);
-            background-size: 40px 40px;
-          "
-        ></div>
-      </div>
-
-      <div
-        class="relative z-10 max-w-7xl mx-auto px-4 xs:px-6 md:px-8 lg:px-10 text-center md:text-left w-full"
-      >
-        <div
-          class="flex flex-col md:flex-row items-center justify-between gap-12"
+          class="absolute inset-0 z-0 opacity-10 dark:opacity-20 pointer-events-none"
         >
-          <div class="flex-1 space-y-2 sm:space-y-4 md:space-y-6">
-            <!--             <div
+          <div
+            class="absolute top-20 left-10 w-64 h-64 bg-primary-500 rounded-full filter blur-[100px]"
+          ></div>
+          <div
+            class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500 rounded-full filter blur-[120px]"
+          ></div>
+          <!-- Grid lines -->
+          <div
+            class="absolute inset-0"
+            style="
+              background-image: radial-gradient(#64748b 1px, transparent 1px);
+              background-size: 40px 40px;
+            "
+          ></div>
+        </div>
+
+        <div
+          class="relative z-10 max-w-7xl mx-auto px-4 xs:px-6 md:px-8 lg:px-10 text-center md:text-left w-full"
+        >
+          <div
+            class="flex flex-col md:flex-row items-center justify-between gap-12"
+          >
+            <div class="flex-1 space-y-2 sm:space-y-4 md:space-y-6">
+              <!--             <div
               class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs font-mono border border-primary-200 dark:border-primary-700/50"
             >
               <span class="w-2 h-2 rounded-full bg-primary-500"></span>
               Disponible pour missions
             </div> -->
-            <h1
-              class="text-5xl md:text-7xl font-bold tracking-tight leading-tight"
-            >
-              {{ $t("hero.title") }}<span class="text-primary-600">.</span>
-            </h1>
-            <h2
-              class="text-xl md:text-2xl text-slate-600 dark:text-slate-400 font-light"
-            >
-              {{ $t("hero.subtitle") }}
-            </h2>
-            <p
-              class="max-w-lg text-lg text-slate-600 dark:text-slate-300 leading-relaxed indent-6 xs:indent-8 md:indent-10 whitespace-pre-line"
-            >
-              {{ $t("hero.description") }}
-            </p>
-            <div
-              class="flex flex-wrap gap-2 md:gap-4 pt-2 md:pt-4 mx-2 justify-center md:justify-start"
-            >
-              <a
-                href="#projects"
-                class="px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium rounded-lg hover:bg-slate-700 dark:hover:bg-slate-200 transition shadow-lg shadow-primary-500/20"
-                aria-label="Aller à la section projets"
+              <h1
+                class="text-5xl md:text-7xl font-bold tracking-tight leading-tight"
               >
-                {{ $t("hero.cta.projects") }}
-              </a>
-              <a
-                href="#contact"
-                class="px-6 py-3 border-2 border-slate-400 dark:border-slate-500 text-slate-800 dark:text-slate-200 font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-slate-800 transition"
-                aria-label="Aller à la section contact"
+                {{ $t("hero.title") }}<span class="text-primary-600">.</span>
+              </h1>
+              <h2
+                class="text-xl md:text-2xl text-slate-600 dark:text-slate-400 font-light"
               >
-                {{ $t("hero.cta.contact") }}
-              </a>
-            </div>
-          </div>
-
-          <!-- Abstract Visualization -->
-          <div class="flex-1 w-full max-w-md hidden md:block">
-            <div class="relative aspect-square">
+                {{ $t("hero.subtitle") }}
+              </h2>
+              <p
+                class="max-w-lg text-lg text-slate-600 dark:text-slate-300 leading-relaxed indent-6 xs:indent-8 md:indent-10 whitespace-pre-line"
+              >
+                {{ $t("hero.description") }}
+              </p>
               <div
-                class="absolute inset-0 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-slate-700 p-6 flex flex-col gap-4 transform rotate-3 hover:rotate-0 transition-transform duration-500"
+                class="flex flex-wrap gap-2 md:gap-4 pt-2 md:pt-4 mx-2 justify-center md:justify-start"
               >
-                <!-- Terminal Header -->
-                <div
-                  class="flex justify-between items-center border-b border-gray-100 dark:border-slate-700 pb-4"
+                <a
+                  href="#projects"
+                  class="px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium rounded-lg hover:bg-slate-700 dark:hover:bg-slate-200 transition shadow-lg shadow-primary-500/20"
+                  aria-label="Aller à la section projets"
                 >
-                  <div class="flex gap-2">
-                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
-                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
-                    <div class="w-3 h-3 rounded-full bg-green-400"></div>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span
-                      class="w-2 h-2 rounded-full bg-green-500 animate-pulse"
-                    ></span>
-                    <span class="font-mono text-xs text-slate-600 dark:text-slate-400">live</span>
-                  </div>
-                </div>
-                <!-- Terminal Content - Real Network Requests -->
-                <div
-                  class="flex-1 flex flex-col-reverse bg-gray-50 dark:bg-slate-900 rounded-xl p-3 font-mono text-[10px] leading-relaxed overflow-hidden"
+                  {{ $t("hero.cta.projects") }}
+                </a>
+                <a
+                  href="#contact"
+                  class="px-6 py-3 border-2 border-slate-400 dark:border-slate-500 text-slate-800 dark:text-slate-200 font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-slate-800 transition"
+                  aria-label="Aller à la section contact"
                 >
-                  <div class="space-y-1">
-                    <div
-                      v-for="(log, index) in terminalLogs"
-                      :key="index"
-                      class="flex gap-2 whitespace-nowrap"
-                    >
-                      <span class="text-slate-600 dark:text-slate-400">{{ log.time }}</span>
+                  {{ $t("hero.cta.contact") }}
+                </a>
+              </div>
+            </div>
+
+            <!-- Abstract Visualization -->
+            <div class="flex-1 w-full max-w-md hidden md:block">
+              <div class="relative aspect-square">
+                <div
+                  class="absolute inset-0 bg-white dark:bg-slate-800 rounded-2xl shadow-2xl border border-gray-100 dark:border-slate-700 p-6 flex flex-col gap-4 transform rotate-3 hover:rotate-0 transition-transform duration-500"
+                >
+                  <!-- Terminal Header -->
+                  <div
+                    class="flex justify-between items-center border-b border-gray-100 dark:border-slate-700 pb-4"
+                  >
+                    <div class="flex gap-2">
+                      <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                      <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                      <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                    </div>
+                    <div class="flex items-center gap-2">
                       <span
-                        :class="{
-                          'text-green-500': log.method === 'GET',
-                          'text-blue-500': log.method === 'POST',
-                          'text-yellow-500': log.method === 'PUT',
-                        }"
-                        >{{ log.method }}</span
-                      >
+                        class="w-2 h-2 rounded-full bg-green-500 animate-pulse"
+                      ></span>
                       <span
-                        class="text-slate-700 dark:text-slate-300 truncate"
-                        >{{ log.path }}</span
+                        class="font-mono text-xs text-slate-600 dark:text-slate-400"
+                        >live</span
                       >
-                      <span
-                        :class="{
-                          'text-green-500': log.status < 300,
-                          'text-yellow-500':
-                            log.status >= 300 && log.status < 400,
-                          'text-red-500': log.status >= 400,
-                        }"
-                        >{{ log.status }}</span
-                      >
-                      <span class="text-slate-600 dark:text-slate-400">{{ log.duration }}ms</span>
                     </div>
                   </div>
-                </div>
-                <div
-                  class="h-10 bg-gray-50 dark:bg-slate-900 rounded-lg flex items-center px-4 font-mono text-xs text-green-500"
-                >
-                  <span class="animate-pulse">●</span>
-                  <span class="ml-2 text-slate-600 dark:text-slate-400"
-                    >{{ $t("terminal.serverActive") }} {{ currentHost }}</span
+                  <!-- Terminal Content - Real Network Requests -->
+                  <div
+                    class="flex-1 flex flex-col-reverse bg-gray-50 dark:bg-slate-900 rounded-xl p-3 font-mono text-[10px] leading-relaxed overflow-hidden"
                   >
+                    <div class="space-y-1">
+                      <div
+                        v-for="(log, index) in terminalLogs"
+                        :key="index"
+                        class="flex gap-2 whitespace-nowrap"
+                      >
+                        <span class="text-slate-600 dark:text-slate-400">{{
+                          log.time
+                        }}</span>
+                        <span
+                          :class="{
+                            'text-green-500': log.method === 'GET',
+                            'text-blue-500': log.method === 'POST',
+                            'text-yellow-500': log.method === 'PUT',
+                          }"
+                          >{{ log.method }}</span
+                        >
+                        <span
+                          class="text-slate-700 dark:text-slate-300 truncate"
+                          >{{ log.path }}</span
+                        >
+                        <span
+                          :class="{
+                            'text-green-500': log.status < 300,
+                            'text-yellow-500':
+                              log.status >= 300 && log.status < 400,
+                            'text-red-500': log.status >= 400,
+                          }"
+                          >{{ log.status }}</span
+                        >
+                        <span class="text-slate-600 dark:text-slate-400"
+                          >{{ log.duration }}ms</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="h-10 bg-gray-50 dark:bg-slate-900 rounded-lg flex items-center px-4 font-mono text-xs text-green-500"
+                  >
+                    <span class="animate-pulse">●</span>
+                    <span class="ml-2 text-slate-600 dark:text-slate-400"
+                      >{{ $t("terminal.serverActive") }} {{ currentHost }}</span
+                    >
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Projects Section -->
-    <section
-      id="projects"
-      class="py-24 bg-white dark:bg-dark-bg transition-colors"
-      aria-label="Section projets"
-    >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mb-12">
-          <h2 class="text-3xl font-bold mb-4">
-            {{ $t("projects.dashboard") }}
-          </h2>
-          <p class="text-slate-600 dark:text-slate-400 max-w-3xl">
-            {{ $t("projects.dashboardDesc") }}
-          </p>
-        </div>
+      <!-- Projects Section -->
+      <section
+        id="projects"
+        class="py-24 bg-white dark:bg-dark-bg transition-colors"
+        aria-label="Section projets"
+      >
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="mb-12">
+            <h2 class="text-3xl font-bold mb-4">
+              {{ $t("projects.dashboard") }}
+            </h2>
+            <p class="text-slate-600 dark:text-slate-400 max-w-3xl">
+              {{ $t("projects.dashboardDesc") }}
+            </p>
+          </div>
 
-        <!-- Admin Panel Container -->
-        <div
-          class="bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-sm flex flex-col md:flex-row h-auto md:h-[600px]"
-        >
-          <!-- Sidebar -->
+          <!-- Admin Panel Container -->
           <div
-            class="w-full md:w-64 bg-white dark:bg-slate-800 border-b md:border-b-0 md:border-r border-gray-200 dark:border-slate-700 flex flex-col"
+            class="bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-sm flex flex-col md:flex-row h-auto md:h-[600px]"
           >
-            <div class="p-4 border-b border-gray-200 dark:border-slate-700">
-              <span
-                class="text-xs font-mono font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider"
-                >{{ $t("projects.workspace") }}</span
-              >
-              <div class="mt-2 flex items-center gap-2 font-medium">
-                <div
-                  class="w-5 h-5 rounded bg-primary-600 flex items-center justify-center text-white text-xs"
-                >
-                  V
-                </div>
-                {{ $t("projects.portfolio") }}
-              </div>
-            </div>
+            <!-- Sidebar -->
             <div
-              class="p-4 space-y-1 overflow-x-auto md:overflow-visible flex md:block gap-4 md:gap-0"
+              class="w-full md:w-64 bg-white dark:bg-slate-800 border-b md:border-b-0 md:border-r border-gray-200 dark:border-slate-700 flex flex-col"
             >
-              <div
-                class="flex items-center gap-3 px-3 py-2 bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 rounded-md text-sm font-medium cursor-pointer whitespace-nowrap"
-              >
-                <svg
-                  class="w-4 h-4 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
+              <div class="p-4 border-b border-gray-200 dark:border-slate-700">
+                <span
+                  class="text-xs font-mono font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider"
+                  >{{ $t("projects.workspace") }}</span
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-                  ></path>
-                </svg>
-                {{ $t("projects.all") }}
+                <div class="mt-2 flex items-center gap-2 font-medium">
+                  <div
+                    class="w-5 h-5 rounded bg-primary-600 flex items-center justify-center text-white text-xs"
+                  >
+                    V
+                  </div>
+                  {{ $t("projects.portfolio") }}
+                </div>
               </div>
-              <!--               <div
+              <div
+                class="p-4 space-y-1 overflow-x-auto md:overflow-visible flex md:block gap-4 md:gap-0"
+              >
+                <div
+                  class="flex items-center gap-3 px-3 py-2 bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 rounded-md text-sm font-medium cursor-pointer whitespace-nowrap"
+                >
+                  <svg
+                    class="w-4 h-4 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                    ></path>
+                  </svg>
+                  {{ $t("projects.all") }}
+                </div>
+                <!--               <div
                 class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700/50 rounded-md text-sm cursor-not-allowed opacity-60 whitespace-nowrap"
               >
                 <svg
@@ -342,221 +349,231 @@
                 </svg>
                 Archivés
               </div> -->
-            </div>
-          </div>
-
-          <!-- Main Content Area -->
-          <div class="flex-1 flex flex-col overflow-hidden">
-            <!-- Top Bar -->
-            <div
-              class="h-14 border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-between px-6"
-            >
-              <div class="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300">
-                <span>Valentin</span>
-                <span class="text-gray-400 dark:text-gray-500">/</span>
-                <span class="text-slate-900 dark:text-slate-100 font-medium">{{
-                  $t("nav.projects").replace("./", "")
-                }}</span>
-              </div>
-              <div class="flex gap-2 items-center">
-                <span class="w-2 h-2 rounded-full bg-green-500"></span>
-                <span class="text-xs font-mono text-slate-700 dark:text-slate-300">{{
-                  $t("projects.systemOnline")
-                }}</span>
               </div>
             </div>
 
-            <!-- Scrollable Grid -->
-            <div
-              class="flex-1 overflow-y-auto p-6 bg-gray-50 dark:bg-slate-900/50"
-            >
-              <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Project Card -->
-                <article
-                  v-for="project in visibleProjects"
-                  :key="project.id"
-                  @click="openProject(project)"
-                  class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 overflow-hidden cursor-pointer hover:shadow-xl hover:border-primary-400 dark:hover:border-primary-500 transition-all duration-300 flex flex-col"
+            <!-- Main Content Area -->
+            <div class="flex-1 flex flex-col overflow-hidden">
+              <!-- Top Bar -->
+              <div
+                class="h-14 border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex items-center justify-between px-6"
+              >
+                <div
+                  class="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300"
                 >
-                  <!-- Header Image -->
-                  <div class="relative h-48 overflow-hidden bg-slate-200">
-                    <img
-                      :src="project.images[0]"
-                      :alt="project.title[locale]"
-                      width="800"
-                      height="400"
-                      class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                      :fetchpriority="visibleProjects.indexOf(project) === 0 ? 'high' : 'auto'"
-                    />
-                    <div
-                      class="absolute top-2 right-2 bg-black/70 backdrop-blur-md text-white text-[10px] font-mono px-2 py-1 rounded"
-                    >
-                      {{ project.id }}
-                    </div>
-                  </div>
+                  <span>Valentin</span>
+                  <span class="text-gray-400 dark:text-gray-500">/</span>
+                  <span
+                    class="text-slate-900 dark:text-slate-100 font-medium"
+                    >{{ $t("nav.projects").replace("./", "") }}</span
+                  >
+                </div>
+                <div class="flex gap-2 items-center">
+                  <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                  <span
+                    class="text-xs font-mono text-slate-700 dark:text-slate-300"
+                    >{{ $t("projects.systemOnline") }}</span
+                  >
+                </div>
+              </div>
 
-                  <!-- Content -->
-                  <div class="p-4 flex flex-col flex-1">
-                    <div class="flex justify-between items-start mb-2">
-                      <h3
-                        class="font-bold text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors"
+              <!-- Scrollable Grid -->
+              <div
+                class="flex-1 overflow-y-auto p-6 bg-gray-50 dark:bg-slate-900/50"
+              >
+                <div
+                  class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6"
+                >
+                  <!-- Project Card -->
+                  <article
+                    v-for="project in visibleProjects"
+                    :key="project.id"
+                    @click="openProject(project)"
+                    class="group bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 overflow-hidden cursor-pointer hover:shadow-xl hover:border-primary-400 dark:hover:border-primary-500 transition-all duration-300 flex flex-col"
+                  >
+                    <!-- Header Image -->
+                    <div class="relative h-48 overflow-hidden bg-slate-200">
+                      <img
+                        :src="project.images[0]"
+                        :alt="project.title[locale]"
+                        width="800"
+                        height="400"
+                        class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                        :fetchpriority="
+                          visibleProjects.indexOf(project) === 0
+                            ? 'high'
+                            : 'auto'
+                        "
+                      />
+                      <div
+                        class="absolute top-2 right-2 bg-black/70 backdrop-blur-md text-white text-[10px] font-mono px-2 py-1 rounded"
                       >
-                        {{ project.title[locale] }}
-                      </h3>
-                      <span
-                        class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
-                      >
-                        {{ project.status[locale] }}
-                      </span>
+                        {{ project.id }}
+                      </div>
                     </div>
-                    <p
-                      class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2 mb-4 flex-1"
-                    >
-                      {{ project.shortDesc[locale] }}
-                    </p>
-                    <div
-                      class="flex items-center gap-2 pt-3 border-t border-gray-100 dark:border-slate-700"
-                    >
-                      <span
-                        v-for="tech in project.stack[locale].slice(0, 3)"
-                        :key="tech"
-                        class="text-[10px] font-mono text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded"
+
+                    <!-- Content -->
+                    <div class="p-4 flex flex-col flex-1">
+                      <div class="flex justify-between items-start mb-2">
+                        <h3
+                          class="font-bold text-lg group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors"
+                        >
+                          {{ project.title[locale] }}
+                        </h3>
+                        <span
+                          class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
+                        >
+                          {{ project.status[locale] }}
+                        </span>
+                      </div>
+                      <p
+                        class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2 mb-4 flex-1"
                       >
-                        {{ tech }}
-                      </span>
-                      <span
-                        v-if="project.stack[locale].length > 3"
-                        class="text-[10px] text-slate-600 dark:text-slate-400"
-                        >+{{ project.stack[locale].length - 3 }}</span
+                        {{ project.shortDesc[locale] }}
+                      </p>
+                      <div
+                        class="flex items-center gap-2 pt-3 border-t border-gray-100 dark:border-slate-700"
                       >
+                        <span
+                          v-for="tech in project.stack[locale].slice(0, 3)"
+                          :key="tech"
+                          class="text-[10px] font-mono text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded"
+                        >
+                          {{ tech }}
+                        </span>
+                        <span
+                          v-if="project.stack[locale].length > 3"
+                          class="text-[10px] text-slate-600 dark:text-slate-400"
+                          >+{{ project.stack[locale].length - 3 }}</span
+                        >
+                      </div>
                     </div>
-                  </div>
-                </article>
+                  </article>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Project Modal -->
-    <Transition name="modal">
-      <LazyProjectModal
-        v-if="isModalOpen"
-        :projects="visibleProjects"
-        :initial-index="selectedProjectIndex"
-        :locale="locale"
-        @close="closeProject"
-        @update:index="updateProjectIndex"
-      />
-    </Transition>
+      <!-- Project Modal -->
+      <Transition name="modal">
+        <LazyProjectModal
+          v-if="isModalOpen"
+          :projects="visibleProjects"
+          :initial-index="selectedProjectIndex"
+          :locale="locale"
+          @close="closeProject"
+          @update:index="updateProjectIndex"
+        />
+      </Transition>
 
-    <!-- Skills Section -->
-    <section
-      id="skills"
-      class="relative overflow-hidden min-h-[600px] xs:min-h-[700px] md:min-h-[500px] 2xl:min-h-[400px]"
-      aria-label="Section compétences"
-    >
-      <!-- Titre positionné au-dessus -->
-      <div class="absolute top-8 left-0 right-0 z-20 pointer-events-none">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 class="text-3xl font-bold text-center md:text-left">
-            {{ $t("skills.title") }}
-          </h2>
+      <!-- Skills Section -->
+      <section
+        id="skills"
+        class="relative overflow-hidden min-h-[600px] xs:min-h-[700px] md:min-h-[500px] 2xl:min-h-[400px]"
+        aria-label="Section compétences"
+      >
+        <!-- Titre positionné au-dessus -->
+        <div class="absolute top-8 left-0 right-0 z-20 pointer-events-none">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center md:text-left">
+              {{ $t("skills.title") }}
+            </h2>
+          </div>
         </div>
-      </div>
 
-      <!-- Canvas qui prend tout l'espace -->
-      <div class="absolute inset-0 z-10">
-        <LazySkillsFloating />
-      </div>
-    </section>
+        <!-- Canvas qui prend tout l'espace -->
+        <div class="absolute inset-0 z-10">
+          <LazySkillsFloating />
+        </div>
+      </section>
 
-    <!-- Contact Section -->
-    <section
-      id="contact"
-      class="py-24 bg-white dark:bg-dark-bg transition-colors"
-      aria-label="Section contact"
-    >
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl font-bold mb-2">{{ $t("contact.title") }}</h2>
-        <p class="text-slate-600 dark:text-slate-400 max-w-3xl mb-8">
-          {{ $t("contact.subtitle") }}
-        </p>
+      <!-- Contact Section -->
+      <section
+        id="contact"
+        class="py-24 bg-white dark:bg-dark-bg transition-colors"
+        aria-label="Section contact"
+      >
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 class="text-3xl font-bold mb-2">{{ $t("contact.title") }}</h2>
+          <p class="text-slate-600 dark:text-slate-400 max-w-3xl mb-8">
+            {{ $t("contact.subtitle") }}
+          </p>
 
-        <form
-          @submit.prevent="handleSubmit"
-          class="text-left bg-gray-50 dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-800"
-        >
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <div>
-              <label
-                class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-                >{{ $t("contact.form.lastName") }}</label
-              >
-              <input
-                v-model="formData.lastName"
-                :placeholder="$t('contact.form.lastNamePlaceholder')"
-                type="text"
-                required
-                class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition text-slate-900 dark:text-slate-100"
-              />
-            </div>
-            <div>
-              <label
-                class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-                >{{ $t("contact.form.firstName") }}</label
-              >
-              <input
-                v-model="formData.firstName"
-                :placeholder="$t('contact.form.firstNamePlaceholder')"
-                type="text"
-                required
-                class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition text-slate-900 dark:text-slate-100"
-              />
-            </div>
-          </div>
-          <div class="mb-6">
-            <label
-              class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-              >{{ $t("contact.form.email") }}</label
-            >
-            <input
-              v-model="formData.email"
-              :placeholder="$t('contact.form.emailPlaceholder')"
-              type="email"
-              required
-              class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition text-slate-900 dark:text-slate-100"
-            />
-          </div>
-          <div class="mb-6">
-            <label
-              class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
-              >{{ $t("contact.form.message") }}</label
-            >
-            <textarea
-              v-model="formData.message"
-              :placeholder="$t('contact.form.messagePlaceholder')"
-              rows="4"
-              required
-              class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition resize-none text-slate-900 dark:text-slate-100"
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            :disabled="isSubmitting"
-            class="w-full py-4 bg-slate-900 dark:bg-primary-600 text-white font-bold rounded-lg hover:bg-slate-800 dark:hover:bg-primary-700 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+          <form
+            @submit.prevent="handleSubmit"
+            class="text-left bg-gray-50 dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-800"
           >
-            {{
-              isSubmitting
-                ? $t("contact.form.sending")
-                : $t("contact.form.submit")
-            }}
-          </button>
-        </form>
-      </div>
-    </section>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label
+                  class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                  >{{ $t("contact.form.lastName") }}</label
+                >
+                <input
+                  v-model="formData.lastName"
+                  :placeholder="$t('contact.form.lastNamePlaceholder')"
+                  type="text"
+                  required
+                  class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition text-slate-900 dark:text-slate-100"
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                  >{{ $t("contact.form.firstName") }}</label
+                >
+                <input
+                  v-model="formData.firstName"
+                  :placeholder="$t('contact.form.firstNamePlaceholder')"
+                  type="text"
+                  required
+                  class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition text-slate-900 dark:text-slate-100"
+                />
+              </div>
+            </div>
+            <div class="mb-6">
+              <label
+                class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                >{{ $t("contact.form.email") }}</label
+              >
+              <input
+                v-model="formData.email"
+                :placeholder="$t('contact.form.emailPlaceholder')"
+                type="email"
+                required
+                class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition text-slate-900 dark:text-slate-100"
+              />
+            </div>
+            <div class="mb-6">
+              <label
+                class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                >{{ $t("contact.form.message") }}</label
+              >
+              <textarea
+                v-model="formData.message"
+                :placeholder="$t('contact.form.messagePlaceholder')"
+                rows="4"
+                required
+                class="w-full px-4 py-3 rounded-lg bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 focus:ring-2 focus:ring-primary-500 outline-none transition resize-none text-slate-900 dark:text-slate-100"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              :disabled="isSubmitting"
+              class="w-full py-4 bg-slate-900 dark:bg-primary-600 text-white font-bold rounded-lg hover:bg-slate-800 dark:hover:bg-primary-700 transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {{
+                isSubmitting
+                  ? $t("contact.form.sending")
+                  : $t("contact.form.submit")
+              }}
+            </button>
+          </form>
+        </div>
+      </section>
     </main>
 
     <!-- Footer -->
@@ -635,11 +652,15 @@ const handleLoadingComplete = () => {
 const { locale, setLocale, t } = useI18n();
 
 // Update HTML lang attribute when locale changes
-watch(locale, (newLocale) => {
-  if (typeof document !== 'undefined') {
-    document.documentElement.lang = newLocale;
-  }
-}, { immediate: true });
+watch(
+  locale,
+  (newLocale) => {
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = newLocale;
+    }
+  },
+  { immediate: true },
+);
 
 const toggleLocale = () => {
   setLocale(locale.value === "fr" ? "en" : "fr");
@@ -668,9 +689,9 @@ onMounted(() => {
   const theme = localStorage.getItem("theme");
   // Dark mode by default, unless explicitly set to 'light'
   const shouldBeDark = theme !== "light";
-  
+
   isDark.value = shouldBeDark;
-  
+
   // Ensure classes are applied (should already be done by inline script)
   if (shouldBeDark) {
     document.documentElement.classList.add("dark");
@@ -693,13 +714,24 @@ onMounted(() => {
   console.log("[Contact Form] - Form URL type:", typeof formUrl);
   console.log("[Contact Form] - Form URL length:", formUrl?.length || 0);
   console.log("[Contact Form] - Full public config:", config.public);
-  console.log("[Contact Form] - All public config keys:", Object.keys(config.public || {}));
-  
+  console.log(
+    "[Contact Form] - All public config keys:",
+    Object.keys(config.public || {}),
+  );
+
   if (!formUrl || formUrl.trim() === "") {
-    console.warn("[Contact Form] ⚠️ WARNING: NUXT_PUBLIC_FORM_URL is not set or empty!");
-    console.warn("[Contact Form] The contact form will not work until this is configured.");
-    console.warn("[Contact Form] Note: This variable must be set at BUILD TIME, not runtime.");
-    console.warn("[Contact Form] Make sure NUXT_PUBLIC_FORM_URL is defined before running 'npm run build' or 'nuxt build'.");
+    console.warn(
+      "[Contact Form] ⚠️ WARNING: NUXT_PUBLIC_FORM_URL is not set or empty!",
+    );
+    console.warn(
+      "[Contact Form] The contact form will not work until this is configured.",
+    );
+    console.warn(
+      "[Contact Form] Note: This variable must be set at BUILD TIME, not runtime.",
+    );
+    console.warn(
+      "[Contact Form] Make sure NUXT_PUBLIC_FORM_URL is defined before running 'npm run build' or 'nuxt build'.",
+    );
   } else {
     try {
       const url = new URL(formUrl);
@@ -782,7 +814,7 @@ const generateInitialLogs = () => {
     { method: "GET", path: "/fonts/Inter.woff2", status: 200, duration: 156 },
     { method: "GET", path: "/favicon.ico", status: 200, duration: 8 },
     { method: "GET", path: "/_nuxt/chunks/vue.js", status: 200, duration: 67 },
-    { method: "GET", path: "/images/hero.webp", status: 200, duration: 234 },
+    { method: "GET", path: "/images/nc3.webp", status: 200, duration: 234 },
     {
       method: "GET",
       path: "/_nuxt/builds/meta.json",
@@ -795,7 +827,7 @@ const generateInitialLogs = () => {
     { method: "GET", path: "/_nuxt/components.js", status: 200, duration: 38 },
     {
       method: "GET",
-      path: "/images/projects/bde.png",
+      path: "/images/projects/bde.webp",
       status: 200,
       duration: 189,
     },
@@ -929,10 +961,15 @@ const handleSubmit = async () => {
     console.log("[Contact Form] Config object:", config.public);
 
     if (!formUrl || formUrl.trim() === "") {
-      const errorMsg = "Form URL is not configured. Please set NUXT_PUBLIC_FORM_URL environment variable at build time.";
+      const errorMsg =
+        "Form URL is not configured. Please set NUXT_PUBLIC_FORM_URL environment variable at build time.";
       console.error("[Contact Form] Configuration error:", errorMsg);
-      console.error("[Contact Form] Note: NUXT_PUBLIC_FORM_URL must be defined BEFORE building the application.");
-      console.error("[Contact Form] Rebuild the application after setting the environment variable.");
+      console.error(
+        "[Contact Form] Note: NUXT_PUBLIC_FORM_URL must be defined BEFORE building the application.",
+      );
+      console.error(
+        "[Contact Form] Rebuild the application after setting the environment variable.",
+      );
       throw new Error(errorMsg);
     }
 
@@ -963,13 +1000,17 @@ const handleSubmit = async () => {
     console.log("[Contact Form] Response ok:", response.ok);
 
     if (!response.ok) {
-      const responseText = await response.text().catch(() => "Unable to read response");
+      const responseText = await response
+        .text()
+        .catch(() => "Unable to read response");
       console.error("[Contact Form] Response error:", {
         status: response.status,
         statusText: response.statusText,
         body: responseText,
       });
-      throw new Error(`Failed to send message: ${response.status} ${response.statusText}`);
+      throw new Error(
+        `Failed to send message: ${response.status} ${response.statusText}`,
+      );
     }
 
     // Succès - vider le formulaire uniquement si tout s'est bien passé
