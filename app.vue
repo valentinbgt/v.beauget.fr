@@ -170,6 +170,14 @@
                 >
                   {{ $t("hero.cta.contact") }}
                 </a>
+                <a
+                  href="/cv"
+                  class="px-6 py-3 border-2 border-slate-400 dark:border-slate-500 text-slate-800 dark:text-slate-200 font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-slate-800 transition"
+                  aria-label="Voir le cv"
+                  target="_blank"
+                >
+                  {{ $t("hero.cta.resume") }}
+                </a>
               </div>
             </div>
 
