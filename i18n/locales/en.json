@@ -51,7 +51,7 @@
       "email": "Email",
       "emailPlaceholder": "email-so-i-can-reply{'@'}gmail.com",
       "message": "Message",
-      "messagePlaceholder": "Hello Valentin, I love your portfolio, it's really amazing...",
+      "messagePlaceholder": "Hi Valentin,\nI love your work!\nLet's get in touch...",
       "submit": "Send message",
       "sending": "Sending..."
     },
