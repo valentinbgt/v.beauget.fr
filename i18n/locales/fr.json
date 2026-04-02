@@ -45,9 +45,9 @@
     "subtitle": "Laissez-moi un petit message, ça coûte rien :)",
     "form": {
       "lastName": "Nom",
-      "lastNamePlaceholder": "Bruel",
+      "lastNamePlaceholder": "Goldman",
       "firstName": "Prénom",
-      "firstNamePlaceholder": "Patrick",
+      "firstNamePlaceholder": "Jean-Jacques",
       "email": "Email",
       "emailPlaceholder": "email-pour-que-je-puisse-repondre{'@'}gmail.com",
       "message": "Message",
