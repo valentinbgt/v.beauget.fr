@@ -1,1 +1,17 @@
+# https://v.beauget.fr/robots.txt
 
+User-agent: *
+Allow: /
+
+# Le CV (/cv et /cv.pdf) est exclu de l'index via l'en-tete HTTP
+# "X-Robots-Tag: noindex, nofollow" (cf. server/routes/cv.get.ts et
+# les routeRules de nuxt.config.ts).
+#
+# Volontairement PAS de "Disallow" ici : une URL bloquee dans robots.txt
+# n'est plus crawlee, donc le noindex ne serait jamais lu et l'URL
+# pourrait rester affichee dans les resultats de recherche.
+# A n'activer qu'une fois la desindexation constatee dans la Search Console :
+# Disallow: /cv
+# Disallow: /cv.pdf
+
+Sitemap: https://v.beauget.fr/sitemap.xml

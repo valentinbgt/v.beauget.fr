@@ -87,6 +87,14 @@ export default defineNuxtConfig({
         "Cache-Control": "public, max-age=31536000, immutable",
       },
     },
+    "/cv": {
+      headers: {
+        "X-Robots-Tag": "noindex, nofollow, noarchive",
+      },
+    },
+    "/cv.pdf": {
+      redirect: { to: "/cv", statusCode: 301 },
+    },
   },
   vite: {
     build: {
