@@ -8,6 +8,8 @@ module.exports = {
     "./plugins/**/*.{js,ts}",
     "./nuxt.config.{js,ts}",
     "./app.vue",
+    // Layers Nuxt montes localement (dossier ignore par Git)
+    "./layers/**/*.{vue,js,ts}",
   ],
   // Optimize CSS output
   corePlugins: {

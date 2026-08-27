@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { existsSync, readdirSync } from "node:fs";
 
 // Debug: Log environment variables at build time
 if (process.env.NUXT_PUBLIC_FORM_URL) {
@@ -20,7 +21,16 @@ if (process.env.NUXT_PUBLIC_FORM_URL) {
   );
 }
 
+// Monte automatiquement tout layer Nuxt present dans layers/.
+// Le dossier est ignore par Git : le depot reste buildable tel quel, sans layer.
+const localLayers = existsSync("layers")
+  ? readdirSync("layers", { withFileTypes: true })
+      .filter((d) => d.isDirectory())
+      .map((d) => `./layers/${d.name}`)
+  : [];
+
 export default defineNuxtConfig({
+  extends: localLayers,
   css: ["~/assets/css/main.css"],
   postcss: {
     plugins: {

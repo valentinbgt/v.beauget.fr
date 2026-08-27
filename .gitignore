@@ -1,3 +1,6 @@
+# Layers Nuxt montes localement (depots separes, non suivis ici)
+layers/
+
 # Nuxt dev/build outputs
 .output
 .data
@@ -17,6 +20,9 @@ logs
 .DS_Store
 .fleet
 .idea
+
+# Documents generes a la racine (non versionnes par principe)
+/*.pdf
 
 # Local env files
 .env

@@ -1,0 +1,20 @@
+# Historiques Git : inutiles au build et jamais souhaitables dans une image
+.git
+**/.git
+**/.github
+
+# Dependances et sorties de build : reconstruits dans l'image
+node_modules
+.output
+.nuxt
+.nitro
+.cache
+dist
+
+# Environnement local et documentation
+.env
+.env.*
+!.env.example
+docs
+.ai-documentation
+.vscode
