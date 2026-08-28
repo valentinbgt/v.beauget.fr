@@ -1,0 +1,53 @@
+# Integration continue du portfolio public.
+#
+# Le depot doit builder et passer ses tests SANS aucun layer : c'est ce qui
+# garantit qu'une extension montee localement ne devient jamais une dependance
+# du site public. Aucun secret n'est utilise ici.
+
+name: CI
+
+on:
+  push:
+    branches: [main, preprod, dev]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Aucun layer monte
+        # Le depot est clone sans layers/ : on le verifie explicitement plutot
+        # que de le supposer.
+        run: |
+          test ! -d layers \
+            || { echo "::error::Un layer est present dans le contexte de CI"; exit 1; }
+
+      - name: Typecheck
+        run: npx nuxi typecheck
+
+      - name: Tests unitaires
+        run: npm test
+
+      - name: Build sans layer
+        run: npm run build
+
+      - name: Les routes repondent
+        run: |
+          node .output/server/index.mjs & sleep 5
+          for route in / /cv /github /linkedin /mmi; do
+            code=$(curl -so /dev/null -w '%{http_code}' "http://localhost:3000$route")
+            case "$route:$code" in
+              /:200|/cv:200|/github:302|/linkedin:302|/mmi:302) echo "OK  $route $code" ;;
+              *) echo "::error::$route a repondu $code"; exit 1 ;;
+            esac
+          done
