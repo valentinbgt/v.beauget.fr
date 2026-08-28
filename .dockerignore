@@ -5,8 +5,11 @@
 
 # Dependances et sorties de build : reconstruits dans l'image
 node_modules
+**/node_modules
 .output
+**/.output
 .nuxt
+**/.nuxt
 .nitro
 .cache
 dist
